@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './authScreens/SignUpScreen.dart';
-void main(){
+
+void main() {
   runApp(MyApp());
 }
 
