@@ -16,6 +16,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'infinity',
+      theme: ThemeData(
+        primarySwatch: Colors.white,
+        primaryColor: Colors.black,
+        hintColor: Colors.grey,
+      ),
       home: SignUpScreen(),
     );
   }
