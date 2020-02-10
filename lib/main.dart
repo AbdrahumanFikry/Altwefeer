@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
+import './mainScreens/homeScreen.dart';
 import './authScreens/SignUpScreen.dart';
 
 void main() {
@@ -17,11 +19,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'infinity',
       theme: ThemeData(
-        primarySwatch: Colors.white,
-        primaryColor: Colors.black,
-        hintColor: Colors.grey,
+        primaryColor: Colors.white,
       ),
-      home: SignUpScreen(),
+      home: BottomNavigationScreen(),
     );
   }
 }
