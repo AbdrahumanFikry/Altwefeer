@@ -63,7 +63,7 @@ class _ItemViewerState extends State<ItemViewer> {
                 ),
               ),
               image: DecorationImage(
-                image: NetworkImage(
+                image: AssetImage(
                   widget.image,
                 ),
                 fit: BoxFit.cover,
@@ -172,6 +172,7 @@ class _ItemViewerState extends State<ItemViewer> {
                         fontFamily: 'Roboto',
                         color: Colors.black,
                         fontSize: 16.0,
+                        fontWeight: FontWeight.bold
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
