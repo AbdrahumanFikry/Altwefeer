@@ -19,7 +19,7 @@ class Section extends StatelessWidget {
               ),
         Container(
           width: MediaQuery.of(context).size.width,
-          height: 225,
+          height: 230,
           margin: EdgeInsets.symmetric(
             vertical: 8.0,
           ),
@@ -30,7 +30,6 @@ class Section extends StatelessWidget {
             left: 7.0,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Row(
                 children: <Widget>[
@@ -57,9 +56,10 @@ class Section extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ItemViewer(
-                      title: 'Apple Iphone X With Facetime - 64 GB, 4G LTE, Space Grey ',
+                      title:
+                          'Apple Iphone X With Facetime - 64 GB, 4G LTE, Space Grey ',
                       price: '5000',
-                      image:'assets/images/iphoneTest.png',
+                      image: 'assets/images/iphoneTest.png',
                       offer: '4200',
                     );
                   },
