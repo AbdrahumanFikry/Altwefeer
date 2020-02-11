@@ -9,6 +9,7 @@ class DetailSlider extends StatelessWidget {
     'assets/images/iphoneTest.png',
     'assets/images/iphoneTest.png',
   ];
+
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -19,7 +20,7 @@ class DetailSlider extends StatelessWidget {
       autoPlay: true,
       enlargeCenterPage: true,
       items: imgList.map(
-            (imageTest) {
+        (imageTest) {
           return Container(
             width: deviceWidth > 400
                 ? 400

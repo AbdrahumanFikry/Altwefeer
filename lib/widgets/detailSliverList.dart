@@ -1,169 +1,272 @@
 import 'package:flutter/material.dart';
+import '../widgets/detailSlider.dart';
 import '../widgets/features.dart';
-import '../widgets/reviewsList.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+
 class DetailSliverList extends StatefulWidget {
+  final String title;
+  final String image;
+  final String description;
+  final String price;
+  final String offer;
+  final String reviews;
+
+  DetailSliverList({
+    this.title,
+    this.image,
+    this.description,
+    this.price,
+    this.offer,
+    this.reviews,
+  });
+
   @override
   _DetailSliverListState createState() => _DetailSliverListState();
 }
 
 class _DetailSliverListState extends State<DetailSliverList> {
-  var rating = 0.0;
+  var rating = 4.5;
+
   @override
   Widget build(BuildContext context) {
+    double offerNum = double.parse(widget.offer);
+    double percent =
+        100 - ((double.parse(widget.offer) / double.parse(widget.price)) * 100);
     return SliverList(
-          delegate: SliverChildListDelegate([
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Text('500',style:  TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                          ),),
-
-                        Icon(Icons.attach_money,size: 20.0,),
-                        Text('1200',style:  TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            decoration: TextDecoration.lineThrough,
-                          ),),
-
-                        Icon(Icons.attach_money,size: 20.0,),
-                      ],
-                    ),
-                    Container(
-                      height: 20.0,
-                      width: 45.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xffFFDEDC),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Center(child: Text('-15 %',style: TextStyle(color: Color(0xffE62E04)),)),
-                    )
-                  ],
-                ),
+      delegate: SliverChildListDelegate(
+        [
+          Padding(
+            padding: const EdgeInsets.all(
+              16.0,
             ),
-
-            Padding(
-              padding: const EdgeInsets.only(left:16.0),
-              child: Text('All prices include VAT',style: TextStyle(
-                color: Color(0xff007AFF),
-                fontFamily: 'Roboto',
-              ),),
-            ),
-            Row(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SmoothStarRating(
-                      allowHalfRating: true,
-                      onRatingChanged: (v) {
-                        rating = v;
-                        setState(() {
-                          //ToDo
-                        });
-                      },
-                      starCount: 5,
-                      rating: rating,
-                      size: 25.0,
-                      color: Color(0xffEA9307),
-                      borderColor: Color(0xffEA9307),
-                      spacing:0.0
-                  ),
-                ),
-                Text('4.5'),
+                offerNum == 0
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            widget.price,
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: Colors.black,
+                              fontSize: 16.0,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Icon(
+                            Icons.attach_money,
+                            color: Colors.black,
+                            size: 16.0,
+                          ),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            widget.offer,
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Icon(
+                            Icons.attach_money,
+                            color: Colors.black,
+                            size: 16.0,
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Text(
+                            widget.price,
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: Colors.grey,
+                              fontSize: 14.0,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Icon(
+                            Icons.attach_money,
+                            color: Colors.grey,
+                            size: 14.0,
+                          ),
+                        ],
+                      ),
+                offerNum > 0
+                    ? Container(
+                        height: 20.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(
+                              7.0,
+                            ),
+                          ),
+                          color: Colors.grey[200],
+                        ),
+                        child: Center(
+                          child: FittedBox(
+                            child: Text(
+                              '-' + percent.toString().split('.')[0] + '%',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : new Container(),
               ],
             ),
-
-            SizedBox(height: 10.0,),
-            //Divider
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 10.0,
-              color: Color(0xffF0F4F9),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text('Features',style: TextStyle(
+            child: Text(
+              'All prices include VAT',
+              style: TextStyle(
+                color: Color(0xff007AFF),
+                fontFamily: 'Roboto',
+              ),
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(
+                  10.0,
+                ),
+                child: SmoothStarRating(
+                  allowHalfRating: true,
+                  starCount: 5,
+                  rating: rating,
+                  size: 23.0,
+                  color: Colors.yellow,
+                  borderColor: Colors.grey,
+                  spacing: 0.0,
+                ),
+              ),
+              Text(
+                rating.toString(),
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          //Divider
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 10.0,
+            color: Color(0xffF0F4F9),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Features',
+              style: TextStyle(
                 fontFamily: 'Roboto',
                 color: Colors.black,
                 fontSize: 16.0,
-                fontWeight: FontWeight.bold
-              ),),
-            ),
-            Features(
-              feature: 'fast shipping',
-              containerColor: Color(0xffEA9307),
-            ),
-            Features(
-              feature: 'Easy Returns',
-              containerColor: Color(0xff59B95F),
-            ),
-            //Divider
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 10.0,
-              color: Color(0xffF0F4F9),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text('Description',style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Colors.black,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold
-              ),),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'We have eliminated distractions for a cinematic viewing experience. By utilizing precise laser cutting, the camera has been discreetly tucked away within the display without sacrificing photo quality.',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Colors.black,
-                  fontSize: 12.0,
-              ),),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right:8.0,left: 8.0),
-              child: Container(
-                height: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40.0),
-                  ),
-                  child: Image.asset('assets/images/iphoneTest.png')
+                fontWeight: FontWeight.bold,
               ),
             ),
-            // // مكان btn بتاع view more
-
-
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 10.0,
-              color: Color(0xffF0F4F9),
+          ),
+          Container(
+            //TODO -------- Length ------
+            height: 3 * 42.0,
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                return Features(
+                  feature: 'fast shipping',
+                  containerColor: Color(0xffEA9307),
+                );
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: <Widget>[
-                  Text('Reviews',style: TextStyle(
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 10.0,
+            color: Color(0xffF0F4F9),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(
+              16.0,
+            ),
+            child: Text(
+              'Description',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                color: Colors.black,
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              widget.description,
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                color: Colors.black,
+                fontSize: 12.0,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+            child: Container(
+              height: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40.0),
+              ),
+              child: DetailSlider(),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 10.0,
+            color: Color(0xffF0F4F9),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'Reviews',
+                  style: TextStyle(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
-                  ),),
-                  Text('(190)'),
-                ],
-              ),
+                  ),
+                ),
+                Text(
+                  widget.reviews == null ? '0' : widget.reviews,
+                ),
+              ],
             ),
-
-          ])
-      );
-
+          ),
+          SizedBox(
+            height: 70.0,
+          ),
+        ],
+      ),
+    );
   }
 }

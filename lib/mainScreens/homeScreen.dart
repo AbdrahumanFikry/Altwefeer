@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                 '0',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 12.0,
+                  fontSize: 10.0,
                   fontFamily: 'Roboto',
                 ),
               ),

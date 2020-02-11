@@ -43,7 +43,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _alreadyHaveAnAccount() {
-    Navigator.push(context, FadeRoute(page: LogInScreen()));
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: LogInScreen(),
+      ),
+    );
   }
 
   Future<void> _signUp() async {

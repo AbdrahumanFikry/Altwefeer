@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
+import 'package:infinity/mainScreens/homeScreen.dart';
 import './mainScreens/detailScreen.dart';
+
 void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(MyApp());
 }
 
@@ -19,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: DetailScreen(),
+      home: BottomNavigationScreen(),
     );
   }
 }

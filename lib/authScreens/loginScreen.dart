@@ -43,7 +43,12 @@ class _LogInScreenState extends State<LogInScreen> {
   }
 
   void _doNotHaveAccount() {
-    Navigator.push(context, FadeRoute(page: SignUpScreen()));
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: SignUpScreen(),
+      ),
+    );
   }
 
   void _forgotPassword() {
