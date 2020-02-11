@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   carousel_slider:
   badges: ^1.1.0
+  smooth_star_rating: 1.0.4+2
 
 
 
@@ -52,6 +53,7 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
 
     - family: RobotoMedium
       fonts:

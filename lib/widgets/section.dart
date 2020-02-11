@@ -57,10 +57,9 @@ class Section extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ItemViewer(
-                      title: 'sony S10+',
+                      title: 'Apple Iphone X With Facetime - 64 GB, 4G LTE, Space Grey ',
                       price: '5000',
-                      image:
-                          'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+                      image:'assets/images/iphoneTest.png',
                       offer: '4200',
                     );
                   },
