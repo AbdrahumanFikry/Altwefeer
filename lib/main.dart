@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:infinity/authScreens/loginScreen.dart';
 import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
 import 'package:infinity/mainScreens/homeScreen.dart';
 import './mainScreens/detailScreen.dart';
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: BottomNavigationScreen(),
+      home: AddAddressScreen(),
     );
   }
 }
