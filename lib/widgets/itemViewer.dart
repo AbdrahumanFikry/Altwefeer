@@ -185,14 +185,14 @@ class _ItemViewerState extends State<ItemViewer> {
                         style: TextStyle(
                             fontFamily: 'Roboto',
                             color: Colors.black,
-                            fontSize: 8.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.bold),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Icon(
                         Icons.attach_money,
                         color: Colors.black,
-                        size: 12.0,
+                        size: 14.0,
                       ),
                       SizedBox(
                         width: 3.0,
@@ -202,7 +202,7 @@ class _ItemViewerState extends State<ItemViewer> {
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           color: Colors.grey,
-                          fontSize: 8.0,
+                          fontSize: 14.0,
                           decoration: TextDecoration.lineThrough,
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -210,7 +210,7 @@ class _ItemViewerState extends State<ItemViewer> {
                       Icon(
                         Icons.attach_money,
                         color: Colors.grey,
-                        size: 10.0,
+                        size: 14.0,
                       ),
                     ],
                   ),

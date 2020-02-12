@@ -3,12 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
 import 'package:infinity/mainScreens/homeScreen.dart';
 import './mainScreens/detailScreen.dart';
+import './mainScreens/addAddressScreen.dart';
+import './mainScreens/addressBookScreen.dart';
+import './mainScreens/paymentMethodScreen.dart';
 
 void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitUp,
-  ]);
+//  SystemChrome.setPreferredOrientations([
+//    DeviceOrientation.portraitUp,
+//    DeviceOrientation.portraitUp,
+//  ]);
   runApp(MyApp());
 }
 
