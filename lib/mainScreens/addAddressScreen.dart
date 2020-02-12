@@ -79,9 +79,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               //ToDo
             }),
       ),
-      body: Stack(
-        children: <Widget>[
-          Form(
+      body: Form(
             key: _formKey,
               child: ListView(
                 children: <Widget>[
@@ -122,39 +120,36 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     hintText: 'Additional Detail(optional)',
                     onSaved: onSavedAdditionalDetail,
                   ),
-                  SizedBox(height: 40.0,)
+                 Padding(
+                      padding: const EdgeInsets.only(right:16.0,left: 16.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.white,
+                        child: Container(
+                          height: 42,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Center(
+                            child: Text('Save Address',style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Roboto',
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ),
+                        ),
+                      ),
+                    ),
+                  SizedBox(height: 10.0,)
                 ],
               )
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(right:16.0,left: 16.0),
-              child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
-                  child: Container(
-                    height: 42,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Center(
-                      child: Text('Save Address',style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Roboto',
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),),
-                    ),
-                  ),
-                ),
-            ),
 
-          )
-        ],
-      ),
+
+
     );
   }
 }
