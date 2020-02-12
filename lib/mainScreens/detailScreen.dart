@@ -1,35 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:infinity/models/cartItemModel.dart';
 import '../widgets/detailSliverList.dart';
+import '../widgets/BottomSheet.dart';
+import '../widgets/pageRoute.dart';
+import '../mainScreens/cartScreen.dart';
+import '../Providers/cartProvider.dart';
+import 'package:provider/provider.dart';
 
-class DetailScreen extends StatefulWidget {
-  @override
-  _DetailScreenState createState() => _DetailScreenState();
-}
-
-class _DetailScreenState extends State<DetailScreen> {
+class DetailScreen extends StatelessWidget {
   //------------------------------variables------------------------------------
 
-  bool _isFavourite = false;
-  int count = 0;
+  final bool _isFavourite = false;
 
   //-------------------------------methods-------------------------------------
 
   void _switchFavorite() {
-    setState(() {
-      _isFavourite = !_isFavourite;
-    });
+//    setState(() {
+//      _isFavourite = !_isFavourite;
+//    });
     //TODO ------
   }
 
-  void _goToCart() {
-    //TODO -------
+  void _goToCart(BuildContext context) {
+    Navigator.of(context).push(
+      ScaleRoute(
+        page: CartScreen(),
+      ),
+    );
   }
 
-  void _addToCart() {
-    setState(() {
-      count++;
-    });
+  Future<void> _addToCart(BuildContext context) async {
+    await Provider.of<Cart>(context, listen: false).addItemToCart(
+      CartItemModel(
+        id: 6,
+        name: 'sasdsd',
+        image: 'assets/images/iphoneTest.png',
+        amount: 1,
+        price: 500,
+      ),
+    );
     //TODO ------
   }
 
@@ -71,35 +81,37 @@ class _DetailScreenState extends State<DetailScreen> {
                         padding: const EdgeInsets.all(
                           8.0,
                         ),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.grey[200],
-                          radius: 18.0,
-                          child: IconButton(
-                            icon: Badge(
-                              animationType: BadgeAnimationType.slide,
-                              badgeColor: Colors.red,
-                              shape: BadgeShape.circle,
-                              animationDuration: Duration(microseconds: 200),
-                              toAnimate: true,
-                              elevation: 5.0,
-                              position: BadgePosition.topLeft(
-                                left: 5.0,
-                              ),
-                              badgeContent: Text(
-                                count.toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10.0,
-                                  fontFamily: 'Roboto',
+                        child: Consumer<Cart>(
+                          builder: (context, cartItem, child) => CircleAvatar(
+                            backgroundColor: Colors.grey[200],
+                            radius: 18.0,
+                            child: IconButton(
+                              icon: Badge(
+                                animationType: BadgeAnimationType.scale,
+                                badgeColor: Colors.red,
+                                shape: BadgeShape.circle,
+                                animationDuration: Duration(microseconds: 200),
+                                toAnimate: true,
+                                elevation: 5.0,
+                                position: BadgePosition.topLeft(
+                                  left: 5.0,
+                                ),
+                                badgeContent: Text(
+                                  cartItem.cartList.length.toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10.0,
+                                    fontFamily: 'Roboto',
+                                  ),
+                                ),
+                                child: Icon(
+                                  Icons.shopping_cart,
+                                  color: Colors.black,
+                                  size: 28.0,
                                 ),
                               ),
-                              child: Icon(
-                                Icons.shopping_cart,
-                                color: Colors.black,
-                                size: 28.0,
-                              ),
+                              onPressed: () => _goToCart(context),
                             ),
-                            onPressed: _goToCart,
                           ),
                         ),
                       ),
@@ -187,8 +199,9 @@ class _DetailScreenState extends State<DetailScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      GestureDetector(
-                        onTap: _buyNow,
+                      BottomSheetAction(
+                        buttonTitle: 'Buy Now',
+                        onTab: () => _buyNow,
                         child: Container(
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 60.0,
@@ -212,8 +225,9 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: _addToCart,
+                      BottomSheetAction(
+                        buttonTitle: 'Add TO Cart',
+                        onTab: () => _addToCart(context),
                         child: Container(
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 50.0,

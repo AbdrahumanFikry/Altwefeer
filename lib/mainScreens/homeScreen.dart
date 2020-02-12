@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import '../widgets/section.dart';
+import '../widgets/pageRoute.dart';
+import '../mainScreens/cartScreen.dart';
+import 'package:provider/provider.dart';
+import '../Providers/cartProvider.dart';
 
 class HomeScreen extends StatelessWidget {
   //-----------------------------variables----------------------------------
 
   //-----------------------------methods------------------------------------
 
-  void _goToCart() {
+  void _goToCart(BuildContext context) {
+    Navigator.of(context).push(
+      ScaleRoute(
+        page: CartScreen(),
+      ),
+    );
+  }
+
+  void _goToProfile() {
     //TODO -------
   }
 
@@ -17,6 +29,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<Cart>(context, listen: false).fetchData();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -56,10 +69,18 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.perm_identity,
+            color: Colors.grey[500],
+            size: 30.0,
+          ),
+          onPressed: _goToProfile,
+        ),
         actions: <Widget>[
           IconButton(
             icon: Badge(
-              animationType: BadgeAnimationType.slide,
+              animationType: BadgeAnimationType.scale,
               badgeColor: Colors.red,
               shape: BadgeShape.circle,
               animationDuration: Duration(microseconds: 200),
@@ -68,12 +89,14 @@ class HomeScreen extends StatelessWidget {
               position: BadgePosition.topRight(
                 right: 5.0,
               ),
-              badgeContent: Text(
-                '0',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10.0,
-                  fontFamily: 'Roboto',
+              badgeContent: Consumer<Cart>(
+                builder: (context, cartItems, child) => Text(
+                  cartItems.cartList.length.toString(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10.0,
+                    fontFamily: 'Roboto',
+                  ),
                 ),
               ),
               child: Icon(
@@ -82,12 +105,12 @@ class HomeScreen extends StatelessWidget {
                 size: 30.0,
               ),
             ),
-            onPressed: _goToCart,
+            onPressed: () => _goToCart(context),
           )
         ],
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height - 150,
+        height: MediaQuery.of(context).size.height,
         child: ListView.builder(
           itemCount: 6,
           itemBuilder: (context, index) {
