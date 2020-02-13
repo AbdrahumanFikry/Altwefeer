@@ -213,7 +213,7 @@ class DetailScreen extends StatelessWidget {
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 60.0,
                           decoration: BoxDecoration(
-                            color: Colors.grey[350],
+                            color: Color(0xffD9EEFF),
                             borderRadius: BorderRadius.circular(
                               100.0,
                             ),
@@ -223,7 +223,7 @@ class DetailScreen extends StatelessWidget {
                               child: Text(
                                 'Buy Now',
                                 style: TextStyle(
-                                  color: Colors.red,
+                                  color: Color(0xff008BFF),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16.0,
                                 ),
@@ -239,7 +239,7 @@ class DetailScreen extends StatelessWidget {
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 50.0,
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: Color(0xff008BFF),
                             borderRadius: BorderRadius.circular(
                               100.0,
                             ),

@@ -149,7 +149,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   height: 42,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: Color(0xff008BFF),
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Center(

@@ -3,6 +3,7 @@ import '../models/cartItemModel.dart';
 import 'package:provider/provider.dart';
 import '../widgets/cartItem.dart';
 import '../Providers/cartProvider.dart';
+import '../widgets/cartEmptyWidget.dart';
 
 class CartScreen extends StatelessWidget {
   void _checkOut() {
@@ -103,16 +104,7 @@ class CartScreen extends StatelessWidget {
         ],
       ),
       body: cart.cartList.length == 0
-          ? Center(
-              child: Text(
-                'Your cart is Empty',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Colors.grey[300],
-                  fontSize: 20.0,
-                ),
-              ),
-            )
+          ? cartEmpty(context)
           : Stack(
               children: <Widget>[
                 Container(
@@ -169,7 +161,7 @@ class CartScreen extends StatelessWidget {
                             horizontal: 20.0,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: Color(0xff008BFF),
                             borderRadius: BorderRadius.circular(
                               100.0,
                             ),
