@@ -6,6 +6,7 @@ class AddressBookScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0.4,
         title: Text(
           'Address book',
@@ -17,12 +18,18 @@ class AddressBookScreen extends StatelessWidget {
           ),
         ),
         leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              //ToDo
-            }),
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
-      body: AddressBookItem(),
+      body: ListView.builder(
+        itemCount: 2,
+        itemBuilder: (context, index) {
+          return AddressBookItem();
+        },
+      ),
     );
   }
 }

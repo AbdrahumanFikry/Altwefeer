@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:infinity/Providers/cartProvider.dart';
 import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
 import 'package:infinity/mainScreens/homeScreen.dart';
+import 'package:provider/provider.dart';
 import './mainScreens/detailScreen.dart';
 import './mainScreens/addAddressScreen.dart';
 import './mainScreens/addressBookScreen.dart';
@@ -23,13 +25,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'infinity',
-      theme: ThemeData(
-        primaryColor: Colors.white,
+    return ChangeNotifierProvider(
+      create: (context) => Cart(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'infinity',
+        theme: ThemeData(
+          primaryColor: Colors.grey,
+        ),
+        home: HomeScreen(),
       ),
-      home: BottomNavigationScreen(),
     );
   }
 }

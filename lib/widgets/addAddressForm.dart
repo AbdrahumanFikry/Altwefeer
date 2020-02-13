@@ -10,12 +10,11 @@ class AddAddressForm extends StatefulWidget {
     this.onSaved,
     this.validator,
   });
+
   @override
   _AddAddressFormState createState() => _AddAddressFormState();
 }
 
-//--------------------------------variables-----------------------------------
-//----------------------------------build-------------------------------------
 class _AddAddressFormState extends State<AddAddressForm> {
   @override
   Widget build(BuildContext context) {
@@ -48,31 +47,44 @@ class _AddAddressFormState extends State<AddAddressForm> {
 //------------------------------------------------------------------------//
 class DropDownFormFieldCountries extends StatefulWidget {
   final String hintText;
+
   DropDownFormFieldCountries({this.hintText});
+
   @override
   _DropDownFormFieldCountriesState createState() =>
       _DropDownFormFieldCountriesState();
 }
 
-var _currentSelectedValueCountries;
-var countries = ['Egypt', 'London'];
-
 class _DropDownFormFieldCountriesState
     extends State<DropDownFormFieldCountries> {
+  String _currentSelectedValueCountries;
+
+  var countries = ['Egypt', 'London'];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+      padding: const EdgeInsets.only(
+        right: 16.0,
+        left: 16.0,
+      ),
       child: FormField<String>(
         builder: (FormFieldState<String> state) {
           return InputDecorator(
             decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(16.0),
-                //labelStyle: textStyle,
-                errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
-                hintText: widget.hintText,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40.0))),
+              contentPadding: EdgeInsets.all(16.0),
+              //labelStyle: textStyle,
+              errorStyle: TextStyle(
+                color: Colors.redAccent,
+                fontSize: 16.0,
+              ),
+              hintText: widget.hintText,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(
+                  40.0,
+                ),
+              ),
+            ),
             isEmpty: _currentSelectedValueCountries == 'Country',
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
@@ -84,12 +96,14 @@ class _DropDownFormFieldCountriesState
                     state.didChange(newValue);
                   });
                 },
-                items: countries.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                items: countries.map(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  },
+                ).toList(),
               ),
             ),
           );
@@ -102,7 +116,9 @@ class _DropDownFormFieldCountriesState
 //-------------------------------------------------------------------//
 class DropDownFormFieldCities extends StatefulWidget {
   final String hintText;
+
   DropDownFormFieldCities({this.hintText});
+
   @override
   _DropDownFormFieldCitiesState createState() =>
       _DropDownFormFieldCitiesState();

@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0.0,
         title: GestureDetector(
           onTap: _goToSearch,
