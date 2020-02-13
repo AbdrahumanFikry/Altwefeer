@@ -80,6 +80,12 @@
       "languageVersion": "2.2"
     },
     {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///C:/Users/DELL/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "image",
       "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/image-2.1.4",
       "packageUri": "lib/",
@@ -96,6 +102,12 @@
       "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.1.8",
       "packageUri": "lib/",
       "languageVersion": "1.12"
+    },
+    {
+      "name": "nested",
+      "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/nested-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
     },
     {
       "name": "path",
@@ -116,8 +128,38 @@
       "languageVersion": "2.4"
     },
     {
+      "name": "provider",
+      "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "quiver",
       "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "shared_preferences",
+      "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.6+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "shared_preferences_macos",
+      "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "shared_preferences_platform_interface",
+      "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_platform_interface-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "shared_preferences_web",
+      "rootUri": "file:///C:/Users/DELL/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+3",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -194,7 +236,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-02-11T21:54:49.740386Z",
+  "generated": "2020-02-12T13:52:59.002309Z",
   "generator": "pub",
   "generatorVersion": "2.7.0"
 }

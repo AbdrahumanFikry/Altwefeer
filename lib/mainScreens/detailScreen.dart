@@ -33,10 +33,10 @@ class DetailScreen extends StatelessWidget {
   Future<void> _addToCart(BuildContext context) async {
     await Provider.of<Cart>(context, listen: false).addItemToCart(
       CartItemModel(
-        id: 10,
+        id: 11,
         name: 'Samsung S10+',
         image: 'assets/images/iphoneTest.png',
-        amount: 3,
+        amount: 1,
         price: 425,
       ),
     );

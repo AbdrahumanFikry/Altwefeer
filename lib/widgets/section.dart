@@ -6,7 +6,10 @@ class Section extends StatelessWidget {
   final String title;
   final int index;
 
-  Section({@required this.title, this.index});
+  Section({
+    @required this.title,
+    this.index,
+  });
 
   @override
   Widget build(BuildContext context) {

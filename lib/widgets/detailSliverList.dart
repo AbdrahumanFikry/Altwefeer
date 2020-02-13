@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/widgets/reviewItem.dart';
 import '../widgets/detailSlider.dart';
 import '../widgets/features.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import '../widgets/section.dart';
 
 class DetailSliverList extends StatefulWidget {
   final String title;
@@ -26,6 +28,13 @@ class DetailSliverList extends StatefulWidget {
 
 class _DetailSliverListState extends State<DetailSliverList> {
   var rating = 4.5;
+  bool _isMore = false;
+
+  void _viewMoreOrLess() {
+    setState(() {
+      _isMore = !_isMore;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,6 +183,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
             height: 10.0,
             color: Color(0xffF0F4F9),
           ),
+          //-------------------------- Features --------------------------------
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
@@ -205,6 +215,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
             height: 10.0,
             color: Color(0xffF0F4F9),
           ),
+          //------------------------ Description -------------------------------
           Padding(
             padding: const EdgeInsets.all(
               16.0,
@@ -230,6 +241,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
               ),
             ),
           ),
+          //------------------------ Images Slider -----------------------------
           Padding(
             padding: const EdgeInsets.only(right: 8.0, left: 8.0),
             child: Container(
@@ -245,22 +257,93 @@ class _DetailSliverListState extends State<DetailSliverList> {
             height: 10.0,
             color: Color(0xffF0F4F9),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
+          //--------------------------- Reviews --------------------------------
+
+          Container(
+            child: Column(
               children: <Widget>[
-                Text(
-                  'Reviews',
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        'Reviews ',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        widget.reviews == null ? '0' : widget.reviews,
+                      ),
+                    ],
                   ),
                 ),
-                Text(
-                  widget.reviews == null ? '0' : widget.reviews,
+                GestureDetector(
+                  onTap: _viewMoreOrLess,
+                  child: Container(
+                    height: _isMore
+                        ? MediaQuery.of(context).size.height * 0.4
+                        : 220.0,
+                    child: Column(
+                      children: <Widget>[
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: _isMore ? 5 : 2,
+                            physics: _isMore
+                                ? ScrollPhysics()
+                                : NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return ReviewItem(
+                                user: 'Mohamed Mostafa',
+                                rate: 4.5,
+                                date: '4 months',
+                                review: 'Not too bad ',
+                              );
+                            },
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            vertical: 10.0,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 7.0,
+                            horizontal: 25.0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                30.0,
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            _isMore ? 'View less' : 'View more',
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 10.0,
+            color: Color(0xffF0F4F9),
+          ),
+          //------------------------ Recommended -------------------------------
+          Section(
+            title: 'Recommended',
           ),
           SizedBox(
             height: 70.0,
