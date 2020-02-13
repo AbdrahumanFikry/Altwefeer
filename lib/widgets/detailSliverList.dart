@@ -194,8 +194,8 @@ class _DetailSliverListState extends State<DetailSliverList> {
               itemCount: 3,
               itemBuilder: (context, index) {
                 return Features(
+                  key: ValueKey(index),
                   feature: 'fast shipping',
-                  containerColor: Color(0xffEA9307),
                 );
               },
             ),

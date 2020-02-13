@@ -1,16 +1,27 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Features extends StatelessWidget {
-  final Color containerColor;
   final String feature;
 
   Features({
-    this.containerColor,
+    Key key,
     this.feature,
   });
 
   @override
   Widget build(BuildContext context) {
+    const colors = [
+      Colors.red,
+      Colors.blue,
+      Colors.yellow,
+      Colors.deepPurple,
+      Colors.white,
+      Colors.pink,
+    ];
+    Color iconColor = colors[Random().nextInt(6)];
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 10.0,
@@ -30,7 +41,7 @@ class Features extends StatelessWidget {
             child: Center(
               child: Icon(
                 Icons.scatter_plot,
-                color: containerColor,
+                color: iconColor,
               ),
             ),
           ),
