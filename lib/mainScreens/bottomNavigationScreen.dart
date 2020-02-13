@@ -43,14 +43,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             icon: Icon(
               Icons.home,
               size: 28,
-              color: index != 0 ? Colors.black : Colors.red,
+              color: index != 0 ? Colors.black : Color(0xff008BFF),
             ),
             title: Text(
               "Home",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 0 ? Colors.black : Colors.red,
+                color: index != 0 ? Colors.black : Color(0xff008BFF),
               ),
             ),
           ),
@@ -58,14 +58,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             icon: Icon(
               Icons.library_books,
               size: 28,
-              color: index != 1 ? Colors.black : Colors.red,
+              color: index != 1 ? Colors.black : Color(0xff008BFF),
             ),
             title: Text(
               "Categories",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 1 ? Colors.black : Colors.red,
+                color: index != 1 ? Colors.black : Color(0xff008BFF),
               ),
             ),
           ),
@@ -73,14 +73,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             icon: Icon(
               Icons.perm_identity,
               size: 28,
-              color: index != 2 ? Colors.black : Colors.red,
+              color: index != 2 ? Colors.black : Color(0xff008BFF),
             ),
             title: Text(
               "Profile",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 2 ? Colors.black : Colors.red,
+                color: index != 2 ? Colors.black : Color(0xff008BFF),
               ),
             ),
           ),

@@ -19,7 +19,7 @@ class SignButton extends StatelessWidget {
           height: 42,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Colors.red,
+            color: Color(0xff008BFF),
             borderRadius: BorderRadius.circular(100.0),
           ),
           child: Center(

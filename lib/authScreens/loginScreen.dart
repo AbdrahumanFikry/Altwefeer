@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/authScreens/forgotPasswordScreen.dart';
 import '../authScreens/SignUpScreen.dart';
 import '../widgets/AuthTextFormField.dart';
 import '../widgets/SignButton.dart';
@@ -52,7 +53,12 @@ class _LogInScreenState extends State<LogInScreen> {
   }
 
   void _forgotPassword() {
-    //TODO ---------
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: ForgotPasswordScreen(),
+      ),
+    );
   }
 
   Future<void> _login() async {
@@ -187,7 +193,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   child: Text(
                     'Sign Up',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color(0xff008BFF),
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
                     ),
