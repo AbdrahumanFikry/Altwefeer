@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/incrementalWidget.dart';
 import '../models/cartItemModel.dart';
+import '../Providers/cartProvider.dart';
 
 class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
     final item = Provider.of<CartItemModel>(context);
+    final cart = Provider.of<Cart>(context);
     return Container(
       height: deviceWidth < 400 ? 110 : 90.0,
       width: double.infinity,
@@ -164,7 +166,7 @@ class CartItem extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      (item.amount * item.price).toString() +
+                                      cart.returnAllPrice(item).toString() +
                                           ' EGP',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -179,7 +181,9 @@ class CartItem extends StatelessWidget {
                               ],
                             ),
                             Spacer(),
-                            IncrementalWidget(),
+                            IncrementalWidget(
+                              amount: item.amount,
+                            ),
                           ],
                         ),
                       ],

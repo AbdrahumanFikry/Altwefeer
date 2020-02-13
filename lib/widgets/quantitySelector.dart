@@ -1,32 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/cartItemModel.dart';
-import '../Providers/cartProvider.dart';
 
-class IncrementalWidget extends StatefulWidget {
-  final int amount;
-
-  IncrementalWidget({
-    this.amount,
-  });
-
+class QuantitySelector extends StatefulWidget {
   @override
-  _IncrementalWidgetState createState() => _IncrementalWidgetState();
+  _QuantitySelectorState createState() => _QuantitySelectorState();
 }
 
-class _IncrementalWidgetState extends State<IncrementalWidget> {
-  bool changed = false;
-  int num;
+class _QuantitySelectorState extends State<QuantitySelector> {
+  int amount = 0;
 
   @override
   Widget build(BuildContext context) {
-    if (!changed) {
-      num = widget.amount;
-    }
-
-    final cart = Provider.of<Cart>(context);
-    final item = Provider.of<CartItemModel>(context);
-
     return Row(
       children: <Widget>[
         Container(
@@ -51,12 +34,9 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
           ),
           child: GestureDetector(
             onTap: () {
-              if (num > 1) {
-                cart.removeAmount(item.id);
-                cart.fetchData();
+              if (amount > 1) {
                 setState(() {
-                  changed = true;
-                  num--;
+                  amount--;
                 });
               }
             },
@@ -81,7 +61,7 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
           child: Center(
             child: FittedBox(
               child: Text(
-                num.toString(),
+                amount.toString(),
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -111,11 +91,8 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
           ),
           child: GestureDetector(
             onTap: () {
-              cart.addItemToCart(item);
-              cart.fetchData();
               setState(() {
-                changed = true;
-                num++;
+                amount++;
               });
             },
             child: Icon(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/incrementalWidget.dart';
+import '../widgets/quantitySelector.dart';
 import '../widgets/featuresSelector.dart';
 
 class BottomSheetAction extends StatelessWidget {
@@ -109,7 +109,7 @@ class BottomSheetAction extends StatelessWidget {
                       fontSize: 15.0,
                     ),
                   ),
-                  IncrementalWidget(),
+                  QuantitySelector(),
                 ],
               ),
             ),

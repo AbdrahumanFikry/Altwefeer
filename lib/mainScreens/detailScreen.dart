@@ -33,11 +33,11 @@ class DetailScreen extends StatelessWidget {
   Future<void> _addToCart(BuildContext context) async {
     await Provider.of<Cart>(context, listen: false).addItemToCart(
       CartItemModel(
-        id: 6,
-        name: 'sasdsd',
+        id: 2,
+        name: 'Samsung S10+',
         image: 'assets/images/iphoneTest.png',
         amount: 1,
-        price: 500,
+        price: 425,
       ),
     );
     //TODO ------
@@ -85,33 +85,40 @@ class DetailScreen extends StatelessWidget {
                           builder: (context, cartItem, child) => CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             radius: 18.0,
-                            child: IconButton(
-                              icon: Badge(
-                                animationType: BadgeAnimationType.scale,
-                                badgeColor: Colors.red,
-                                shape: BadgeShape.circle,
-                                animationDuration: Duration(microseconds: 200),
-                                toAnimate: true,
-                                elevation: 5.0,
-                                position: BadgePosition.topLeft(
-                                  left: 5.0,
-                                ),
-                                badgeContent: Text(
-                                  cartItem.cartList.length.toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10.0,
-                                    fontFamily: 'Roboto',
+                            child: cartItem.cartList.length == 0
+                                ? Icon(
+                                    Icons.shopping_cart,
+                                    color: Colors.black,
+                                    size: 28.0,
+                                  )
+                                : IconButton(
+                                    icon: Badge(
+                                      animationType: BadgeAnimationType.scale,
+                                      badgeColor: Colors.red,
+                                      shape: BadgeShape.circle,
+                                      animationDuration:
+                                          Duration(microseconds: 200),
+                                      toAnimate: true,
+                                      elevation: 5.0,
+                                      position: BadgePosition.topLeft(
+                                        left: 5.0,
+                                      ),
+                                      badgeContent: Text(
+                                        cartItem.cartList.length.toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10.0,
+                                          fontFamily: 'Roboto',
+                                        ),
+                                      ),
+                                      child: Icon(
+                                        Icons.shopping_cart,
+                                        color: Colors.black,
+                                        size: 28.0,
+                                      ),
+                                    ),
+                                    onPressed: () => _goToCart(context),
                                   ),
-                                ),
-                                child: Icon(
-                                  Icons.shopping_cart,
-                                  color: Colors.black,
-                                  size: 28.0,
-                                ),
-                              ),
-                              onPressed: () => _goToCart(context),
-                            ),
                           ),
                         ),
                       ),

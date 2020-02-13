@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import '../models/cartItemModel.dart';
@@ -54,6 +54,7 @@ class Cart with ChangeNotifier {
       },
     );
     prefs.setString('cartItems', userData);
+    returnTotal();
     notifyListeners();
   }
 
@@ -76,6 +77,7 @@ class Cart with ChangeNotifier {
       ));
     });
     _cartList = loadedItems;
+    returnTotal();
     notifyListeners();
     return _cartList;
   }
@@ -109,6 +111,7 @@ class Cart with ChangeNotifier {
       },
     );
     prefs.setString('cartItems', userData);
+    returnTotal();
     notifyListeners();
   }
 
@@ -138,7 +141,24 @@ class Cart with ChangeNotifier {
       },
     );
     prefs.setString('cartItems', userData);
+    returnTotal();
     notifyListeners();
+  }
+
+  //-------------------------------Total cart-----------------------------------
+  double returnTotal() {
+    double sum = 0;
+    cartList.forEach((item) {
+      sum = sum + (item.price * item.amount);
+    });
+    return sum;
+  }
+
+  double returnAllPrice(CartItemModel item) {
+    double total = 0;
+    final index = cartList.indexWhere((i) => i.id == item.id);
+    total = _cartList[index].price * _cartList[index].amount;
+    return total;
   }
 
   //-------------------------------Empty cart-----------------------------------

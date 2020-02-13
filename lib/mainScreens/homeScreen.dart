@@ -79,35 +79,41 @@ class HomeScreen extends StatelessWidget {
           onPressed: _goToProfile,
         ),
         actions: <Widget>[
-          IconButton(
-            icon: Badge(
-              animationType: BadgeAnimationType.scale,
-              badgeColor: Colors.red,
-              shape: BadgeShape.circle,
-              animationDuration: Duration(microseconds: 200),
-              toAnimate: true,
-              elevation: 5.0,
-              position: BadgePosition.topRight(
-                right: 5.0,
-              ),
-              badgeContent: Consumer<Cart>(
-                builder: (context, cartItems, child) => Text(
-                  cartItems.cartList.length.toString(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10.0,
-                    fontFamily: 'Roboto',
-                  ),
-                ),
-              ),
-              child: Icon(
-                Icons.shopping_cart,
-                color: Colors.grey,
-                size: 30.0,
-              ),
+          Consumer<Cart>(
+            builder: (context, cartItems, child) => IconButton(
+              icon: cartItems.cartList.length == 0
+                  ? Icon(
+                      Icons.shopping_cart,
+                      color: Colors.grey,
+                      size: 30.0,
+                    )
+                  : Badge(
+                      animationType: BadgeAnimationType.scale,
+                      badgeColor: Colors.red,
+                      shape: BadgeShape.circle,
+                      animationDuration: Duration(microseconds: 200),
+                      toAnimate: true,
+                      elevation: 5.0,
+                      position: BadgePosition.topRight(
+                        right: 5.0,
+                      ),
+                      badgeContent: Text(
+                        cartItems.cartList.length.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10.0,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.shopping_cart,
+                        color: Colors.grey,
+                        size: 30.0,
+                      ),
+                    ),
+              onPressed: () => _goToCart(context),
             ),
-            onPressed: () => _goToCart(context),
-          )
+          ),
         ],
       ),
       body: Container(
