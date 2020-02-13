@@ -9,6 +9,52 @@ class CartScreen extends StatelessWidget {
     //TODO -----------
   }
 
+  void _emptyCart(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          'Are you sure ?',
+          style: TextStyle(
+            color: Colors.blue,
+            fontFamily: 'Roboto',
+          ),
+        ),
+        content: Text(
+          'Do you want to empty Cart?',
+          style: TextStyle(
+            fontFamily: 'Roboto',
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+            child: Text(
+              'No',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+              ),
+            ),
+          ),
+          FlatButton(
+            onPressed: () async {
+              await Provider.of<Cart>(context, listen: false).emptyCart();
+              Navigator.of(context).pop(true);
+            },
+            child: Text(
+              'Yes',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -32,6 +78,29 @@ class CartScreen extends StatelessWidget {
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
+        actions: <Widget>[
+          cart.cartList.length == 0
+              ? Container()
+              : Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 17.0,
+                    horizontal: 5.0,
+                  ),
+                  child: InkWell(
+                    splashColor: Colors.redAccent,
+                    onTap: () => _emptyCart(context),
+                    child: Text(
+                      'Clear',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.blue,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+        ],
       ),
       body: cart.cartList.length == 0
           ? Center(

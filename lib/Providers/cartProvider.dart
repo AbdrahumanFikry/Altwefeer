@@ -117,38 +117,42 @@ class Cart with ChangeNotifier {
 
   //--------------------------Remove item from cart-----------------------------
   Future<void> removeItem(int i) async {
-    final prefs = await SharedPreferences.getInstance();
-    if (!prefs.containsKey('cartItems')) {
-      return null;
+    try {
+      _cartList.removeAt(i);
+      final prefs = await SharedPreferences.getInstance();
+      if (!prefs.containsKey('cartItems')) {
+        return null;
+      }
+      final userData = json.encode(
+        {
+          'data': _cartList,
+        },
+      );
+      prefs.setString('cartItems', userData);
+      final responseData =
+          json.decode(prefs.getString('cartItems')) as Map<String, dynamic>;
+      final List<CartItemModel> loadedItems = [];
+      responseData['data'].forEach((itemData) {
+        loadedItems.add(CartItemModel(
+          id: itemData['id'],
+          name: itemData['name'],
+          image: itemData['image'],
+          amount: itemData['amount'],
+          price: itemData['price'],
+        ));
+      });
+      _cartList = loadedItems;
+      returnTotal();
+      notifyListeners();
+    } catch (error) {
+      print('::::::::::::' + error.toString());
     }
-    final responseData =
-        json.decode(prefs.getString('cartItems')) as Map<String, dynamic>;
-    final List<CartItemModel> loadedItems = [];
-    responseData['data'].forEach((itemData) {
-      loadedItems.add(CartItemModel(
-        id: itemData['id'],
-        name: itemData['name'],
-        image: itemData['image'],
-        amount: itemData['amount'],
-        price: itemData['price'],
-      ));
-    });
-    _cartList = loadedItems;
-    _cartList.removeAt(i);
-    final userData = json.encode(
-      {
-        'data': _cartList,
-      },
-    );
-    prefs.setString('cartItems', userData);
-    returnTotal();
-    notifyListeners();
   }
 
   //-------------------------------Total cart-----------------------------------
   double returnTotal() {
     double sum = 0;
-    cartList.forEach((item) {
+    _cartList.forEach((item) {
       sum = sum + (item.price * item.amount);
     });
     return sum;
@@ -156,7 +160,10 @@ class Cart with ChangeNotifier {
 
   double returnAllPrice(CartItemModel item) {
     double total = 0;
-    final index = cartList.indexWhere((i) => i.id == item.id);
+    final index = _cartList.indexWhere((i) => i.id == item.id);
+    if (index == -1) {
+      return null;
+    }
     total = _cartList[index].price * _cartList[index].amount;
     return total;
   }
