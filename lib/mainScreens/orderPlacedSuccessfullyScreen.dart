@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-class OrderPlacedSucessfulyScreen extends StatelessWidget {
+class OrderPlacedSuccessfullyScreen extends StatelessWidget {
+  void _trackOrder(BuildContext context) {
+    //TODO ------------
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,7 +14,7 @@ class OrderPlacedSucessfulyScreen extends StatelessWidget {
             children: <Widget>[
               Center(
                 child: Text(
-                  'Check your Email',
+                  'Oeder is Placed Successfully',
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: 'Roboto',
@@ -20,24 +23,29 @@ class OrderPlacedSucessfulyScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 5.0,),
+              SizedBox(
+                height: 5.0,
+              ),
               Center(
                 child: Text(
-                  'We sent you link to reset your password',
+                  'Now you can track your order',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black,
                     fontFamily: 'Roboto',
                     fontSize: 12.0,
                   ),
                 ),
               ),
-              SizedBox(height: 20.0,),
+              SizedBox(
+                height: 20.0,
+              ),
               Padding(
-                padding: const EdgeInsets.only(right:16.0,left: 16.0),
+                padding: const EdgeInsets.only(
+                  right: 16.0,
+                  left: 16.0,
+                ),
                 child: GestureDetector(
-                  onTap: (){
-                    //Todo------------
-                  },
+                  onTap: () => _trackOrder(context),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 48,
@@ -46,15 +54,17 @@ class OrderPlacedSucessfulyScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(40.0),
                     ),
                     child: Center(
-                      child: Text('Sign In',style: TextStyle(
+                      child: Text(
+                        'Track order',
+                        style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Roboto',
                           fontSize: 16.0,
-                          fontWeight: FontWeight.bold
-                      ),),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
-
                 ),
               )
             ],

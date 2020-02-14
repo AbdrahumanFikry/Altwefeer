@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../authScreens/loginScreen.dart';
 import '../widgets/AuthTextFormField.dart';
-import '../widgets/SignButton.dart';
+import '../widgets/globalButton.dart';
 import '../widgets/facebookSigning.dart';
 import '../widgets/pageRoute.dart';
 
@@ -136,7 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               validator: passwordValidator,
               isPassword: true,
             ),
-            SignButton(
+            GlobalButton(
               buttonTitle: 'Sign Up',
               onTab: () {
                 FocusScope.of(context).requestFocus(new FocusNode());

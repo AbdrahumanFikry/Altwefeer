@@ -27,12 +27,19 @@ class _AuthTextFormFieldState extends State<AuthTextFormField> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+          padding: const EdgeInsets.only(
+            right: 16.0,
+            left: 16.0,
+          ),
           child: TextFormField(
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: EdgeInsets.all(
+                16.0,
+              ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(40.0),
+                borderRadius: BorderRadius.circular(
+                  40.0,
+                ),
               ),
               hintText: widget.hintText,
               suffixIcon: widget.isPassword

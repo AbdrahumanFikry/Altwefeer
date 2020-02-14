@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SignButton extends StatelessWidget {
+class GlobalButton extends StatelessWidget {
   final String buttonTitle;
   final Function onTab;
 
-  SignButton({
+  GlobalButton({
     @required this.buttonTitle,
     @required this.onTab,
   });
@@ -12,11 +12,14 @@ class SignButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 43, left: 43),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 10.0,
+      ),
       child: GestureDetector(
         onTap: onTab,
         child: Container(
-          height: 42,
+          height: 50,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Color(0xff008BFF),

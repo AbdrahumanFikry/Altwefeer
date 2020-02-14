@@ -78,9 +78,10 @@ class PaymentMethodScreen extends StatelessWidget {
                     child: Text(
                       'Payment Method',
                       style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15.0,
-                          fontFamily: 'Roboto'),
+                        color: Colors.black,
+                        fontSize: 15.0,
+                        fontFamily: 'Roboto',
+                      ),
                     ),
                   ),
                   Icon(

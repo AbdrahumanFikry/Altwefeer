@@ -104,7 +104,7 @@ class CartScreen extends StatelessWidget {
         ],
       ),
       body: cart.cartList.length == 0
-          ? cartEmpty(context)
+          ? EmptyCart()
           : Stack(
               children: <Widget>[
                 Container(

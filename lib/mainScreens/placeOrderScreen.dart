@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/widgets/globalButton.dart';
 import '../widgets/placeOrderInfo.dart';
 
 class PlaceOrderScreen extends StatelessWidget {
+  void _placeOrder(BuildContext context) {
+    //TODO --------
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,52 +29,28 @@ class PlaceOrderScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          ListView(
-            children: <Widget>[
-              SizedBox(height: 20.0,),
-              PlaceOrderInfo(
-                title: 'Subtotal',
-                prise: '435',
-              ),
-              PlaceOrderInfo(
-                title: 'Delivery fees',
-                prise: '15',
-              ),
-              Divider(),
-              PlaceOrderInfo(
-                title: 'Grand total',
-                prise: '450',
-              )
-            ],
+          SizedBox(
+            height: 20.0,
           ),
-          Padding(
-            padding: const EdgeInsets.only(right:16.0,left: 16.0,bottom: 2.0),
-            child: GestureDetector(
-              onTap: (){
-                //Todo
-              },
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    color: Color(0xff008BFF),
-                    borderRadius: BorderRadius.circular(40.0),
-                  ),
-                  child: Center(
-                    child: Text('Place order',style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Roboto',
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold
-                    ),),
-                  ),
-                ),
-              ),
-            ),
+          PlaceOrderInfo(
+            title: 'Subtotal',
+            price: '435',
+          ),
+          PlaceOrderInfo(
+            title: 'Delivery fees',
+            price: '15',
+          ),
+          Divider(),
+          PlaceOrderInfo(
+            title: 'Grand total',
+            price: '450',
+          ),
+          Spacer(),
+          GlobalButton(
+            buttonTitle: 'Place order',
+            onTab: () => _placeOrder(context),
           )
         ],
       ),

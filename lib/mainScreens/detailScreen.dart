@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
-import 'package:infinity/models/cartItemModel.dart';
+import '../models/cartItemModel.dart';
 import '../widgets/detailSliverList.dart';
 import '../widgets/BottomSheet.dart';
 import '../widgets/pageRoute.dart';

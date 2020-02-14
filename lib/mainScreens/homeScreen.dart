@@ -41,11 +41,15 @@ class HomeScreen extends StatelessWidget {
             width: double.infinity,
             height: 40.0,
             decoration: BoxDecoration(
-              color: Color(0xffF0F4F9),
+              color: Colors.white,
               borderRadius: BorderRadius.all(
                 Radius.circular(
                   25.0,
                 ),
+              ),
+              border: Border.all(
+                color: Color(0xffF0F4F9),
+                width: 1.0,
               ),
             ),
             child: Row(
@@ -55,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                   child: Icon(
                     Icons.search,
                     size: 20.0,
-                    color: Colors.grey[500],
+                    color: Color(0xffF0F4F9),
                   ),
                 ),
                 Text(
@@ -69,14 +73,6 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.perm_identity,
-            color: Colors.grey[500],
-            size: 30.0,
-          ),
-          onPressed: _goToProfile,
         ),
         actions: <Widget>[
           Consumer<Cart>(

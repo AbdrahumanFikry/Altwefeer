@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:infinity/authScreens/forgotPasswordScreen.dart';
 import '../authScreens/SignUpScreen.dart';
 import '../widgets/AuthTextFormField.dart';
-import '../widgets/SignButton.dart';
+import '../widgets/globalButton.dart';
 import '../widgets/facebookSigning.dart';
 import '../widgets/pageRoute.dart';
 
@@ -146,7 +146,7 @@ class _LogInScreenState extends State<LogInScreen> {
               validator: passwordValidator,
               isPassword: true,
             ),
-            SignButton(
+            GlobalButton(
               buttonTitle: 'Sign in',
               onTab: () {
                 FocusScope.of(context).requestFocus(new FocusNode());
