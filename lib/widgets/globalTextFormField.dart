@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-class AuthTextFormField extends StatefulWidget {
+class GlobalTextFormField extends StatefulWidget {
   final String hintText;
   final FormFieldSetter<String> onSaved;
   final FormFieldValidator<String> validator;
   final bool isPassword;
 
-  const AuthTextFormField({
+  const GlobalTextFormField({
     this.hintText,
     this.onSaved,
     this.validator,
-    this.isPassword,
+    this.isPassword = false,
   });
 
   @override
-  _AuthTextFormFieldState createState() => _AuthTextFormFieldState();
+  _GlobalTextFormFieldState createState() => _GlobalTextFormFieldState();
 }
 
-class _AuthTextFormFieldState extends State<AuthTextFormField> {
+class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
   //--------------------------------variables-----------------------------------
   bool _obscureText = true;
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/AuthTextFormField.dart';
+import '../widgets/globalTextFormField.dart';
 import '../widgets/globalButton.dart';
 import '../authScreens/checkEmailScreen.dart';
 import '../widgets/pageRoute.dart';
@@ -74,7 +74,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             SizedBox(
               height: 20.0,
             ),
-            AuthTextFormField(
+            GlobalTextFormField(
               hintText: 'Email Address',
               isPassword: false,
               validator: emailValidator,

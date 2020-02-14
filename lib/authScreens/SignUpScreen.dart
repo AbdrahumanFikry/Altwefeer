@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../authScreens/loginScreen.dart';
-import '../widgets/AuthTextFormField.dart';
+import '../widgets/globalTextFormField.dart';
 import '../widgets/globalButton.dart';
 import '../widgets/facebookSigning.dart';
 import '../widgets/pageRoute.dart';
@@ -124,13 +124,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(
               height: 30.0,
             ),
-            AuthTextFormField(
+            GlobalTextFormField(
               hintText: 'Email Address',
               onSaved: onSavedEmail,
               validator: emailValidator,
               isPassword: false,
             ),
-            AuthTextFormField(
+            GlobalTextFormField(
               hintText: 'Password',
               onSaved: onSavedPassword,
               validator: passwordValidator,
