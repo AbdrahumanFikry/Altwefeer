@@ -19,10 +19,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  void _goToProfile() {
-    //TODO -------
-  }
-
   void _goToSearch() {
     //TODO -------
   }

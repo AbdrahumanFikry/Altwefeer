@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/paymentMethodScreen.dart';
-import 'package:infinity/widgets/globalButton.dart';
-import 'package:infinity/widgets/pageRoute.dart';
+import '../mainScreens/addAddressScreen.dart';
+import '../mainScreens/paymentMethodScreen.dart';
+import '../widgets/globalButton.dart';
+import '../widgets/pageRoute.dart';
 import '../widgets/addressBookItem.dart';
 
 class AddressBookScreen extends StatelessWidget {
+  void _goToAddress(BuildContext context) {
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: PaymentMethodScreen(),
+      ),
+    );
+  }
+
+  void _addAddress(BuildContext context) {
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: AddAddressScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,30 +52,21 @@ class AddressBookScreen extends StatelessWidget {
             itemCount: 2,
             itemBuilder: (context, index) {
               return AddressBookItem(
-                whereToGo: (){
-                  Navigator.push(
-                    context,
-                    FadeRoute(
-                      page: PaymentMethodScreen(),
-                    ),
-                  );
-                },
+                whereToGo: () => _goToAddress(context),
               );
             },
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              child: GlobalButton(
-                  buttonTitle: 'Add Address',
-                  onTab: (){
-                    //ToDo----------
-                  }
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              GlobalButton(
+                buttonTitle: 'Add Address',
+                onTab: () => _addAddress(context),
               ),
-            ),
-          )
+            ],
+          ),
         ],
-      )
+      ),
     );
   }
 }
