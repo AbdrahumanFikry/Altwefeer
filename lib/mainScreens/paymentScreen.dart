@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/placeOrderScreen.dart';
-import 'package:infinity/widgets/pageRoute.dart';
 import '../widgets/paymentForm.dart';
 
 class PaymentScreen extends StatelessWidget {
@@ -62,12 +60,7 @@ class PaymentScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right:16.0,left: 16.0,bottom: 2.0),
             child: GestureDetector(
               onTap: (){
-                Navigator.push(
-                  context,
-                  FadeRoute(
-                    page: PlaceOrderScreen(),
-                  ),
-                );
+                //Todo
               },
               child: Align(
                 alignment: Alignment.bottomCenter,

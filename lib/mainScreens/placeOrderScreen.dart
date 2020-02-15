@@ -44,7 +44,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           PlaceOrderInfo(
             title: 'Subtotal',
