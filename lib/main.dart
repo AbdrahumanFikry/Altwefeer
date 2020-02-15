@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import './mainScreens/categoriesScreen.dart';
 import './authScreens/forgotPasswordScreen.dart';
 import './mainScreens/paymentScreen.dart';
 import './Providers/cartProvider.dart';
