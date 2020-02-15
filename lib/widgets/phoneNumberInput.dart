@@ -67,6 +67,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                     iconEnabledColor: Colors.grey,
                     icon: Icon(
                       Icons.keyboard_arrow_down,
+                      size: 20,
                       color: Colors.grey,
                     ),
                     items: widget.codes.map(

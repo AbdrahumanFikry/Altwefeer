@@ -143,6 +143,20 @@ class _DetailSliverListState extends State<DetailSliverList> {
               left: 16.0,
             ),
             child: Text(
+              'Samsung Galaxy Note10 - 6.3-inch 256GB/8GB Dual SIM 4G Mobile Phone - Aura Black',
+              style: TextStyle(
+                color: Colors.black,
+                fontFamily: 'Roboto',
+              ),
+            ),
+          ),
+          SizedBox(height: 10.0,),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+            ),
+            child: Text(
               'All prices include VAT',
               style: TextStyle(
                 color: Color(0xff007AFF),

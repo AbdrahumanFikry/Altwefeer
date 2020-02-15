@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter/rendering.dart';
 import '../models/cartItemModel.dart';
 import '../widgets/detailSliverList.dart';
 import '../widgets/BottomSheet.dart';
@@ -8,12 +10,18 @@ import '../mainScreens/cartScreen.dart';
 import '../Providers/cartProvider.dart';
 import 'package:provider/provider.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   //------------------------------variables------------------------------------
 
+  @override
+  _DetailScreenState createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
   final bool _isFavourite = false;
 
-  //-------------------------------methods-------------------------------------
+  bool _isAppbar = true;
+  ScrollController _scrollController = new ScrollController();
 
   void _switchFavorite() {
 //    setState(() {
@@ -48,6 +56,25 @@ class DetailScreen extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        appBarStatus(false);
+      }
+      if (_scrollController.position.pixels==0.0) {
+        appBarStatus(true);
+      }
+    });
+  }
+
+  void appBarStatus(bool status) {
+    setState(() {
+      _isAppbar = status;
+    });
+  }
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -55,6 +82,7 @@ class DetailScreen extends StatelessWidget {
           children: <Widget>[
             Builder(
               builder: (context) => CustomScrollView(
+                controller: _scrollController,
                 slivers: <Widget>[
                   SliverAppBar(
                     leading: GestureDetector(
@@ -147,42 +175,22 @@ class DetailScreen extends StatelessWidget {
                       ),
                     ],
                     backgroundColor: Colors.white,
-                    expandedHeight: 260.0,
+                      expandedHeight: _isAppbar?260.0:40.0,
                     pinned: true,
                     floating: false,
-                    flexibleSpace: new FlexibleSpaceBar(
+                    flexibleSpace:  _isAppbar?FlexibleSpaceBar(
                       collapseMode: CollapseMode.pin,
-                      titlePadding: EdgeInsets.only(
-                        left: 20.0,
-                        bottom: 5.0,
-                        right: 20.0,
-                        top: 5.0,
-                      ),
                       centerTitle: true,
-                      title: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 40.0,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            right: 10.0,
-                            left: 10.0,
-                          ),
-                          child: new Text(
-                            'Samsung S10+ - asdxd bvnhvn jaaa,  50sdfdfcd afvfvf fvfvffvfv dcscascda asasqwdwsxzsxs',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12.0,
-                            ),
-                            //overflow: TextOverflow.ellipsis,
-                            softWrap: true,
-                          ),
-                        ),
-                      ),
                       background: Image.asset(
                         'assets/images/iphoneTest.png',
                       ),
-                    ),
+                    ):FlexibleSpaceBar(
+                      collapseMode: CollapseMode.pin,
+                      centerTitle: true,
+                      title: Container(
+                        width: MediaQuery.of(context).size.width*0.4,
+                          child: Text('Samsung S10+ - asdxd bvnhvn jaaa, mkcmsckmsk 50',overflow: TextOverflow.ellipsis,maxLines: 1,)),
+                    )
                   ),
                   DetailSliverList(
                     title: 'Samsung S10+ - asdxd bvnhvn jaaa, mkcmsckmsk 50',

@@ -73,138 +73,140 @@ class _LogInScreenState extends State<LogInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          children: <Widget>[
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.12,
-            ),
-            FaceBookSigning(
-              onTab: () {
-                FocusScope.of(context).requestFocus(new FocusNode());
-                _facebookSignUp();
-              },
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            //----------------------------Divider-------------------------------
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  height: 1.0,
-                  color: Color(0xffCFCFCF),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: 8.0,
-                    left: 8.0,
+    return SafeArea(
+      child: Scaffold(
+        body: Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.12,
+              ),
+              FaceBookSigning(
+                onTab: () {
+                  FocusScope.of(context).requestFocus(new FocusNode());
+                  _facebookSignUp();
+                },
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              //----------------------------Divider-------------------------------
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    height: 1.0,
+                    color: Color(0xffCFCFCF),
                   ),
-                  child: Text(
-                    'Or',
-                    style: TextStyle(
-                      color: Color(0xffCFCFCF),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      right: 8.0,
+                      left: 8.0,
+                    ),
+                    child: Text(
+                      'Or',
+                      style: TextStyle(
+                        color: Color(0xffCFCFCF),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  height: 1.0,
-                  color: Color(0xffCFCFCF),
-                ),
-              ],
-            ),
-            //------------------------------------------------------------------
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.06,
-            ),
-            Center(
-              child: Text(
-                'Login to your Account',
-                style: TextStyle(
-                  color: Color(0xff707070),
-                  fontSize: 18.0,
-                ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    height: 1.0,
+                    color: Color(0xffCFCFCF),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            GlobalTextFormField(
-              hintText: 'Email Address',
-              onSaved: onSavedEmail,
-              validator: emailValidator,
-              isPassword: false,
-            ),
-            GlobalTextFormField(
-              hintText: 'Password',
-              onSaved: onSavedPassword,
-              validator: passwordValidator,
-              isPassword: true,
-            ),
-            GlobalButton(
-              buttonTitle: 'Sign in',
-              onTab: () {
-                FocusScope.of(context).requestFocus(new FocusNode());
-                _login();
-              },
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            GestureDetector(
-              onTap: _forgotPassword,
-              child: Center(
+              //------------------------------------------------------------------
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.06,
+              ),
+              Center(
                 child: Text(
-                  "Forgot Password?",
+                  'Login to your Account',
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
+                    color: Color(0xff707070),
+                    fontSize: 18.0,
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.15,
-            ),
-            Center(
-              child: Text(
-                "Don't have an account?",
-                style: TextStyle(
-                  color: Color(0xff707070),
-                  fontSize: 16.0,
-                ),
+              SizedBox(
+                height: 30.0,
               ),
-            ),
-            SizedBox(
-              height: 4.0,
-            ),
-            GestureDetector(
-              onTap: () {
-                FocusScope.of(context).requestFocus(new FocusNode());
-                _doNotHaveAccount();
-              },
-              child: Container(
+              GlobalTextFormField(
+                hintText: 'Email Address',
+                onSaved: onSavedEmail,
+                validator: emailValidator,
+                isPassword: false,
+              ),
+              GlobalTextFormField(
+                hintText: 'Password',
+                onSaved: onSavedPassword,
+                validator: passwordValidator,
+                isPassword: true,
+              ),
+              GlobalButton(
+                buttonTitle: 'Sign in',
+                onTab: () {
+                  FocusScope.of(context).requestFocus(new FocusNode());
+                  _login();
+                },
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              GestureDetector(
+                onTap: _forgotPassword,
                 child: Center(
                   child: Text(
-                    'Sign Up',
+                    "Forgot Password?",
                     style: TextStyle(
-                      color: Color(0xff008BFF),
-                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                       fontSize: 16.0,
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-          ],
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.15,
+              ),
+              Center(
+                child: Text(
+                  "Don't have an account?",
+                  style: TextStyle(
+                    color: Color(0xff707070),
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 4.0,
+              ),
+              GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).requestFocus(new FocusNode());
+                  _doNotHaveAccount();
+                },
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        color: Color(0xff008BFF),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+            ],
+          ),
         ),
       ),
     );

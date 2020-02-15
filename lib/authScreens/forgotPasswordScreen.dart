@@ -44,47 +44,49 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   //------------------------------------build----------------------------------
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.4,
-        title: Text(
-          'Forgot Password',
-          style: TextStyle(
-            fontFamily: 'Roboto',
-            fontSize: 18.0,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.4,
+          title: Text(
+            'Forgot Password',
+            style: TextStyle(
+              fontFamily: 'Roboto',
+              fontSize: 18.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
+        body: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 20.0,
+              ),
+              GlobalTextFormField(
+                hintText: 'Email Address',
+                isPassword: false,
+                validator: emailValidator,
+                onSaved: onSavedEmail,
+              ),
+              GlobalButton(
+                buttonTitle: 'Continue',
+                onTab: _forgotPassword,
+              )
+            ],
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 20.0,
-            ),
-            GlobalTextFormField(
-              hintText: 'Email Address',
-              isPassword: false,
-              validator: emailValidator,
-              onSaved: onSavedEmail,
-            ),
-            GlobalButton(
-              buttonTitle: 'Continue',
-              onTab: _forgotPassword,
-            )
-          ],
         ),
       ),
     );

@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: Colors.grey,
         ),
-        home: AddAddressScreen(),
+        home: BottomNavigationScreen(),
       ),
     );
   }
