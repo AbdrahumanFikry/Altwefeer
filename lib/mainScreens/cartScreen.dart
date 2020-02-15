@@ -3,7 +3,7 @@ import '../models/cartItemModel.dart';
 import 'package:provider/provider.dart';
 import '../widgets/cartItem.dart';
 import '../Providers/cartProvider.dart';
-import '../widgets/cartEmptyWidget.dart';
+import '../widgets/EmptyScreen.dart';
 
 class CartScreen extends StatelessWidget {
   void _checkOut() {
@@ -104,7 +104,10 @@ class CartScreen extends StatelessWidget {
         ],
       ),
       body: cart.cartList.length == 0
-          ? EmptyCart()
+          ? EmptyScreen(
+              title: 'Empty cart',
+              subTitle: 'Continue shopping and add to cart',
+            )
           : Stack(
               children: <Widget>[
                 Container(

@@ -1,16 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
-import 'package:infinity/widgets/pageRoute.dart';
+import '../mainScreens/bottomNavigationScreen.dart';
+import '../widgets/pageRoute.dart';
 import '../widgets/globalButton.dart';
 
-class EmptyCart extends StatelessWidget {
+class EmptyScreen extends StatelessWidget {
+  final String title;
+  final String subTitle;
+
+  EmptyScreen({
+    this.title,
+    this.subTitle,
+  });
+
+  void _continueShopping(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      FadeRoute(
+        page: BottomNavigationScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          'Empty cart',
+          title,
           style: TextStyle(
             color: Colors.black,
             fontFamily: 'Roboto',
@@ -23,7 +40,7 @@ class EmptyCart extends StatelessWidget {
         ),
         Center(
           child: Text(
-            'Continue shopping and add to cart',
+            subTitle,
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'Roboto',
@@ -36,14 +53,7 @@ class EmptyCart extends StatelessWidget {
         ),
         GlobalButton(
           buttonTitle: 'Continue shopping',
-          onTab: () {
-            Navigator.pushReplacement(
-              context,
-              FadeRoute(
-                page: BottomNavigationScreen(),
-              ),
-            );
-          },
+          onTab: () => _continueShopping(context),
         )
       ],
     );
