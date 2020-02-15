@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/addressBookScreen.dart';
-import 'package:infinity/widgets/pageRoute.dart';
 import '../widgets/quantitySelector.dart';
 import '../widgets/featuresSelector.dart';
 
@@ -118,12 +116,7 @@ class BottomSheetAction extends StatelessWidget {
             //------------------------- Footer ---------------------------------
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  FadeRoute(
-                    page: AddressBookScreen(),
-                  ),
-                );
+                Navigator.of(context).pop();
                 onTab();
               },
               child: Container(

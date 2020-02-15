@@ -41,7 +41,7 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 
-  Future<void> _addToCart(BuildContext context) async {
+  Future<void> _addToCart() async {
     await Provider.of<Cart>(context, listen: false).addItemToCart(
       CartItemModel(
         id: 11,
@@ -230,7 +230,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     children: <Widget>[
                       BottomSheetAction(
                         buttonTitle: 'Buy Now',
-                        onTab: () => _buyNow,
+                        onTab: _buyNow,
                         child: Container(
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 60.0,
@@ -256,7 +256,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       BottomSheetAction(
                         buttonTitle: 'Add TO Cart',
-                        onTab: () => _addToCart(context),
+                        onTab: _addToCart,
                         child: Container(
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 50.0,
