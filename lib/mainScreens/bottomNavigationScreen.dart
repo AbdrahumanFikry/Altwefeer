@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../mainScreens/categoriesScreen.dart';
 import '../mainScreens/homeScreen.dart';
 import '../mainScreens/profileScreen.dart';
+import '../Providers/cartProvider.dart';
+import '../Providers/wishListProvider.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   @override
@@ -22,6 +24,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       CategoriesScreen(),
       ProfileScreen(),
     ];
+    Provider.of<Cart>(context, listen: false).fetchData();
+    Provider.of<WishList>(context, listen: false).fetchData();
     super.initState();
   }
 

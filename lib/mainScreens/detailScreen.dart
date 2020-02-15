@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/rendering.dart';
-import 'package:infinity/mainScreens/addressBookScreen.dart';
+import '../mainScreens/addressBookScreen.dart';
 import '../models/cartItemModel.dart';
 import '../widgets/detailSliverList.dart';
 import '../widgets/BottomSheet.dart';
@@ -10,8 +10,23 @@ import '../widgets/pageRoute.dart';
 import '../mainScreens/cartScreen.dart';
 import '../Providers/cartProvider.dart';
 import 'package:provider/provider.dart';
+import '../Providers/wishListProvider.dart';
 
 class DetailScreen extends StatefulWidget {
+  final int id;
+  final String title;
+  final String image;
+  final String price;
+  final String offer;
+
+  DetailScreen({
+    this.id,
+    this.title,
+    this.image,
+    this.price,
+    this.offer,
+  });
+
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
@@ -19,18 +34,29 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   //----------------------------- variables -----------------------------------
 
-  final bool _isFavourite = false;
-
+  bool _isFavourite = false;
   bool _isAppbar = true;
   ScrollController _scrollController = new ScrollController();
 
   //------------------------------ methods ------------------------------------
 
-  void _switchFavorite() {
-//    setState(() {
-//      _isFavourite = !_isFavourite;
-//    });
-    //TODO ------
+  void _switchFavorite(int index) async {
+    setState(() {
+      _isFavourite = !_isFavourite;
+    });
+    if (_isFavourite) {
+      await Provider.of<WishList>(context, listen: false).addItemToWishList(
+        CartItemModel(
+          id: widget.id,
+          name: widget.title,
+          image: widget.image,
+          amount: 1,
+          price: double.tryParse(widget.price),
+        ),
+      );
+    } else if (!_isFavourite) {
+      await Provider.of<WishList>(context, listen: false).removeItem(index);
+    }
   }
 
   void _goToCart(BuildContext context) {
@@ -77,13 +103,27 @@ class _DetailScreenState extends State<DetailScreen> {
     });
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   void appBarStatus(bool status) {
     setState(() {
       _isAppbar = status;
     });
   }
 
+  @override
   Widget build(BuildContext context) {
+    final wishList = Provider.of<WishList>(context);
+    int index = wishList.wishList.indexWhere((i) => i.id == widget.id);
+    if (index != -1) {
+      setState(() {
+        _isFavourite = true;
+      });
+    }
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -159,7 +199,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: _switchFavorite,
+                          onTap: () => _switchFavorite(index),
                           child: Padding(
                             padding: const EdgeInsets.all(
                               8.0,

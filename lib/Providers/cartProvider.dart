@@ -158,6 +158,7 @@ class Cart with ChangeNotifier {
     return sum;
   }
 
+  //------------------------------ AllPrice ------------------------------------
   double returnAllPrice(CartItemModel item) {
     double total = 0;
     final index = _cartList.indexWhere((i) => i.id == item.id);
@@ -172,7 +173,15 @@ class Cart with ChangeNotifier {
   Future<void> emptyCart() async {
     _cartList = [];
     final prefs = await SharedPreferences.getInstance();
-    prefs.clear();
+    if (!prefs.containsKey('cartItems')) {
+      return null;
+    }
+    final userData = json.encode(
+      {
+        'data': _cartList,
+      },
+    );
+    prefs.setString('cartItems', userData);
     notifyListeners();
   }
 }

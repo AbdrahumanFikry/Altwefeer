@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/cartItemModel.dart';
+import '../widgets/WishListItem.dart';
 import 'package:provider/provider.dart';
-import '../widgets/cartItem.dart';
-import '../Providers/cartProvider.dart';
+import '../Providers/wishListProvider.dart';
 import '../widgets/EmptyScreen.dart';
 
 class WishListScreen extends StatelessWidget {
@@ -37,8 +36,8 @@ class WishListScreen extends StatelessWidget {
           ),
           FlatButton(
             onPressed: () async {
-              //TODO --------------
-//              await Provider.of<Cart>(context, listen: false).emptyCart();
+              await Provider.of<WishList>(context, listen: false)
+                  .emptyWishList();
               Navigator.of(context).pop(true);
             },
             child: Text(
@@ -55,7 +54,7 @@ class WishListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(context);
+    final wishList = Provider.of<WishList>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -77,7 +76,7 @@ class WishListScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: <Widget>[
-          cart.cartList.length == 0
+          wishList.wishList.length == 0
               ? Container()
               : Padding(
                   padding: const EdgeInsets.symmetric(
@@ -100,7 +99,7 @@ class WishListScreen extends StatelessWidget {
                 ),
         ],
       ),
-      body: cart.cartList.length == 0
+      body: wishList.wishList.length == 0
           ? EmptyScreen(
               title: 'Empty WishList',
               subTitle: 'Add items to wishList and watched later',
@@ -109,11 +108,10 @@ class WishListScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
-                itemCount: cart.cartList.length,
+                itemCount: wishList.wishList.length,
                 itemBuilder: (context, index) {
-                  return ChangeNotifierProvider<CartItemModel>(
-                    create: (context) => cart.cartList[index],
-                    child: CartItem(),
+                  return WishListItem(
+                    item: wishList.wishList[index],
                   );
                 },
               ),

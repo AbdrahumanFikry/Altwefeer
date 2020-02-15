@@ -1,10 +1,19 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 class ProfileItems extends StatelessWidget {
   final IconData icon;
   final String title;
   final Function onTap;
-  ProfileItems({this.title, this.icon,this.onTap});
+  final String notifications;
+
+  ProfileItems({
+    this.title,
+    this.icon,
+    this.onTap,
+    this.notifications,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,6 +38,30 @@ class ProfileItems extends StatelessWidget {
                       fontFamily: 'Roboto',
                     ),
                   ),
+                  Spacer(),
+                  notifications != null
+                      ? notifications == '0'
+                          ? SizedBox()
+                          : Badge(
+                              elevation: 2.0,
+                              badgeContent: Padding(
+                                padding: const EdgeInsets.all(
+                                  2.0,
+                                ),
+                                child: Text(
+                                  notifications,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Roboto',
+                                  ),
+                                ),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 2.5,
+                                horizontal: 8.0,
+                              ),
+                            )
+                      : SizedBox(),
                 ],
               ),
             ),

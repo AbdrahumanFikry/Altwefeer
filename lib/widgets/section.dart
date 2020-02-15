@@ -59,6 +59,7 @@ class Section extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ItemViewer(
+                      id: index,
                       title:
                           'Apple Iphone X With Facetime - 64 GB, 4G LTE, Space Grey ',
                       price: '5000',

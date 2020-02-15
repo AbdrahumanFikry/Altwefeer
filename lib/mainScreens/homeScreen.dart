@@ -25,7 +25,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Cart>(context, listen: false).fetchData();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

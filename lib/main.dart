@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:infinity/Providers/wishListProvider.dart';
+import 'package:infinity/mainScreens/wishListScreen.dart';
 import './mainScreens/categoriesScreen.dart';
 import './authScreens/forgotPasswordScreen.dart';
 import './mainScreens/paymentScreen.dart';
@@ -19,6 +21,7 @@ import './mainScreens/paymentMethodScreen.dart';
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -27,8 +30,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Cart(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => Cart(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WishList(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'infinity',

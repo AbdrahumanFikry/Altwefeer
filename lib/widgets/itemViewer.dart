@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import '../mainScreens/detailScreen.dart';
 import '../widgets/pageRoute.dart';
+import '../Providers/wishListProvider.dart';
+import 'package:provider/provider.dart';
+import '../models/cartItemModel.dart';
 
 class ItemViewer extends StatefulWidget {
+  final int id;
   final String title;
   final String image;
   final String price;
   final String offer;
 
   ItemViewer({
+    this.id,
     this.title,
     this.image,
     this.price,
@@ -25,19 +30,36 @@ class _ItemViewerState extends State<ItemViewer> {
 
   //------------------------------methods--------------------------------------
 
-  void _switchFavorite() {
+  void _switchFavorite(int index) async {
     setState(() {
       _isFavourite = !_isFavourite;
     });
-    //TODO ------
+    if (_isFavourite) {
+      await Provider.of<WishList>(context, listen: false).addItemToWishList(
+        CartItemModel(
+          id: widget.id,
+          name: widget.title,
+          image: widget.image,
+          amount: 1,
+          price: double.tryParse(widget.price),
+        ),
+      );
+    } else if (!_isFavourite) {
+      await Provider.of<WishList>(context, listen: false).removeItem(index);
+    }
   }
 
   void _goToDetails() {
-    //TODO ------
     Navigator.push(
       context,
       ScaleRoute(
-        page: DetailScreen(),
+        page: DetailScreen(
+          id: widget.id,
+          title: widget.title,
+          price: widget.price,
+          image: widget.image,
+          offer: widget.offer,
+        ),
       ),
     );
   }
@@ -47,6 +69,13 @@ class _ItemViewerState extends State<ItemViewer> {
     double offerNum = double.parse(widget.offer);
     double percent =
         100 - ((double.parse(widget.offer) / double.parse(widget.price)) * 100);
+    final wishList = Provider.of<WishList>(context);
+    int index = wishList.wishList.indexWhere((i) => i.id == widget.id);
+    if (index != -1) {
+      setState(() {
+        _isFavourite = true;
+      });
+    }
     return GestureDetector(
       onTap: _goToDetails,
       child: Container(
@@ -88,7 +117,7 @@ class _ItemViewerState extends State<ItemViewer> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: _switchFavorite,
+                    onTap: () => _switchFavorite(index),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
