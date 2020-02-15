@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/paymentScreen.dart';
+import 'package:infinity/mainScreens/placeOrderScreen.dart';
+import 'package:infinity/widgets/pageRoute.dart';
 
-class PaymentMethodScreen extends StatelessWidget {
+class PaymentMethodScreen extends StatefulWidget {
+  @override
+  _PaymentMethodScreenState createState() => _PaymentMethodScreenState();
+}
+
+class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   void _cashOnDelivery() {
-    //TODO -------
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: PlaceOrderScreen(),
+      ),
+    );
   }
 
   void _paymentMethod() {
-    //TODO -------
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: PaymentScreen(),
+      ),
+    );
   }
 
   @override
@@ -16,7 +34,7 @@ class PaymentMethodScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.4,
         title: Text(
-          'Address book',
+          'Payment Method',
           style: TextStyle(
             fontFamily: 'Roboto',
             fontSize: 18.0,

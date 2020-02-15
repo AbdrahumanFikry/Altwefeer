@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/orderPlacedSuccessfullyScreen.dart';
 import 'package:infinity/widgets/globalButton.dart';
+import 'package:infinity/widgets/pageRoute.dart';
 import '../widgets/placeOrderInfo.dart';
 
-class PlaceOrderScreen extends StatelessWidget {
+class PlaceOrderScreen extends StatefulWidget {
+  @override
+  _PlaceOrderScreenState createState() => _PlaceOrderScreenState();
+}
+
+class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   void _placeOrder(BuildContext context) {
-    //TODO --------
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: OrderPlacedSuccessfullyScreen(),
+      ),
+    );
   }
 
   @override

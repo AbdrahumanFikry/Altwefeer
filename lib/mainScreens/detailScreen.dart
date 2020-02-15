@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/rendering.dart';
+import 'package:infinity/mainScreens/addressBookScreen.dart';
 import '../models/cartItemModel.dart';
 import '../widgets/detailSliverList.dart';
 import '../widgets/BottomSheet.dart';
@@ -52,7 +53,12 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   void _buyNow() {
-    //TODO ------
+    Navigator.push(
+      context,
+      FadeRoute(
+        page: AddressBookScreen(),
+      ),
+    );
   }
 
   @override
@@ -216,7 +222,12 @@ class _DetailScreenState extends State<DetailScreen> {
                     children: <Widget>[
                       BottomSheetAction(
                         buttonTitle: 'Buy Now',
-                        onTab: () => _buyNow,
+                        onTab: () => Navigator.push(
+                          context,
+                          FadeRoute(
+                            page: AddressBookScreen(),
+                          ),
+                        ),
                         child: Container(
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 60.0,

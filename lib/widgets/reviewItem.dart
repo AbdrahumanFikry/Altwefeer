@@ -66,10 +66,13 @@ class ReviewItem extends StatelessWidget {
             softWrap: true,
             maxLines: 2,
           ),
-          Divider(
-            height: 5.0,
-            color: Colors.grey,
-            indent: 90.0,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(
+              height: 5.0,
+              color: Colors.grey,
+              indent: 90.0,
+            ),
           ),
         ],
       ),

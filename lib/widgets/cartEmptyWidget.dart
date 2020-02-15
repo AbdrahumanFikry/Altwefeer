@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
+import 'package:infinity/widgets/pageRoute.dart';
 import '../widgets/globalButton.dart';
 
 class EmptyCart extends StatelessWidget {
@@ -34,7 +36,14 @@ class EmptyCart extends StatelessWidget {
         ),
         GlobalButton(
           buttonTitle: 'Continue shopping',
-          onTab: () {},
+          onTab: () {
+            Navigator.pushReplacement(
+              context,
+              FadeRoute(
+                page: BottomNavigationScreen(),
+              ),
+            );
+          },
         )
       ],
     );

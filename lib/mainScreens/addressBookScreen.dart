@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/paymentMethodScreen.dart';
+import 'package:infinity/widgets/globalButton.dart';
+import 'package:infinity/widgets/pageRoute.dart';
 import '../widgets/addressBookItem.dart';
 
 class AddressBookScreen extends StatelessWidget {
@@ -24,12 +27,36 @@ class AddressBookScreen extends StatelessWidget {
           },
         ),
       ),
-      body: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (context, index) {
-          return AddressBookItem();
-        },
-      ),
+      body: Stack(
+        children: <Widget>[
+          ListView.builder(
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return AddressBookItem(
+                whereToGo: (){
+                  Navigator.push(
+                    context,
+                    FadeRoute(
+                      page: PaymentMethodScreen(),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              child: GlobalButton(
+                  buttonTitle: 'Add Address',
+                  onTab: (){
+                    //ToDo----------
+                  }
+              ),
+            ),
+          )
+        ],
+      )
     );
   }
 }
