@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './authScreens/forgotPasswordScreen.dart';
+import './mainScreens/paymentScreen.dart';
 import './Providers/cartProvider.dart';
 import './authScreens/checkEmailScreen.dart';
 import './authScreens/loginScreen.dart';
