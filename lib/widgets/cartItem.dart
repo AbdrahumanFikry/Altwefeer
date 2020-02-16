@@ -194,7 +194,10 @@ class CartItem extends StatelessWidget {
                               Spacer(),
                             ],
                           ),
-                          IncrementalWidget(),
+                          Expanded(
+                              child: IncrementalWidget(
+                            amount: 0,
+                          )),
                         ],
                       )
                     : Column(

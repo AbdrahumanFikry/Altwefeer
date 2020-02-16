@@ -4,8 +4,6 @@ import 'dart:convert';
 import '../models/cartItemModel.dart';
 
 class Cart with ChangeNotifier {
-  bool _isEmpty;
-
   List<CartItemModel> _cartList = [];
 
   List<CartItemModel> get cartList {

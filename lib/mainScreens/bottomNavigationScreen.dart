@@ -80,7 +80,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               color: index != 2 ? Colors.black : Color(0xff008BFF),
             ),
             title: Text(
-              "Profile",
+              "Account",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',

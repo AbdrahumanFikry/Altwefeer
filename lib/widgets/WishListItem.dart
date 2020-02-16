@@ -55,8 +55,9 @@ class WishListItem extends StatelessWidget {
     );
   }
 
-  void _addToCart(BuildContext context, CartItemModel item) async {
+  void _addToCart(BuildContext context, CartItemModel item, int index) async {
     await Provider.of<Cart>(context, listen: false).addItemToCart(item);
+    await Provider.of<WishList>(context, listen: false).removeItem(index);
     Scaffold.of(context).hideCurrentSnackBar();
     Scaffold.of(context).showSnackBar(
       SnackBar(
@@ -191,7 +192,7 @@ class WishListItem extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => _addToCart(context, item),
+                        onTap: () => _addToCart(context, item, index),
                         child: Padding(
                           padding: const EdgeInsets.all(
                             5.0,
