@@ -191,7 +191,11 @@ class WishListItem extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => _addToCart(context, item),
+                        onTap: () async{
+                          _addToCart(context, item);
+                          await Provider.of<WishList>(context, listen: false)
+                              .removeItem(index);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(
                             5.0,
