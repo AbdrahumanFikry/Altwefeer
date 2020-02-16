@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/addressBookScreen.dart';
+import 'package:infinity/mainScreens/settingScreen.dart';
 import 'package:provider/provider.dart';
 import '../mainScreens/wishListScreen.dart';
 import '../widgets/pageRoute.dart';
@@ -19,7 +21,11 @@ class ProfileScreen extends StatelessWidget {
   }
 
   void _goToAddressBook(BuildContext context) {
-    //ToDo--------
+    Navigator.of(context).push(
+      ScaleRoute(
+        page: AddressBookScreen(),
+      ),
+    );
   }
 
   void _goToPayment(BuildContext context) {
@@ -31,7 +37,11 @@ class ProfileScreen extends StatelessWidget {
   }
 
   void _goToSettings(BuildContext context) {
-    //ToDo--------
+    Navigator.of(context).push(
+      ScaleRoute(
+        page: SettingScreen(),
+      ),
+    );
   }
 
   @override

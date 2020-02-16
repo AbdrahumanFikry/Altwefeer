@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
 import './Providers/wishListProvider.dart';
 import './mainScreens/bottomNavigationScreen.dart';
+import './mainScreens/accountInfo.dart';
 import 'package:flutter/services.dart';
 import './mainScreens/wishListScreen.dart';
 import './mainScreens/categoriesScreen.dart';
