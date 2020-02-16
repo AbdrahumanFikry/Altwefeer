@@ -12,7 +12,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
   //----------------------------- variables ------------------------------------
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   String _name, _cardNumber, _expiryDate = 'Expiry date', _cvvNumber;
 
   //------------------------------ methods -------------------------------------
@@ -110,7 +109,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
         key: _formKey,
         child: ListView(
           children: <Widget>[
-            SizedBox(height: 20.0,),
+            SizedBox(
+              height: 20.0,
+            ),
             GlobalTextFormField(
               hintText: 'Name on card',
               onSaved: onSavedName,
