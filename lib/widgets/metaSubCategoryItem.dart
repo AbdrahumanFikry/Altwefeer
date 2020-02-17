@@ -26,7 +26,7 @@ class MetaSubCategoryItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
-                    10.0,
+                    4.0,
                   ),
                 ),
                 image: DecorationImage(

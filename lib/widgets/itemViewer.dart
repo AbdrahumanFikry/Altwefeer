@@ -41,7 +41,9 @@ class _ItemViewerState extends State<ItemViewer> {
           name: widget.title,
           image: widget.image,
           amount: 1,
-          price: double.tryParse(widget.price),
+          price: widget.offer == '0'
+              ? double.tryParse(widget.price)
+              : double.tryParse(widget.offer),
         ),
       );
     } else if (!_isFavourite) {

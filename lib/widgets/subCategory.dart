@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../mainScreens/CategoryElementsScreen.dart';
+import '../widgets/pageRoute.dart';
 import '../widgets/metaSubCategoryItem.dart';
 
 class SubCategory extends StatelessWidget {
@@ -97,9 +99,20 @@ class SubCategory extends StatelessWidget {
               itemCount: 3,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return MetaSubCategoryItem(
-                  title: 'Perfume',
-                  image: 'assets/images/iphoneTest.png',
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      ScaleRoute(
+                        page: CategoryElementsScreen(
+                          title: 'Perfume',
+                        ),
+                      ),
+                    );
+                  },
+                  child: MetaSubCategoryItem(
+                    title: 'Perfume',
+                    image: 'assets/images/iphoneTest.png',
+                  ),
                 );
               },
             ),
