@@ -16,7 +16,7 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   //----------------------------- variables ------------------------------------
   int _selected = 0;
-  Duration _duration = Duration(milliseconds: 200);
+  Duration _duration = Duration(milliseconds: 100);
 
   List<String> _categories = ["1", "2", "3", "4"];
 
@@ -46,7 +46,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 1.0,
+        elevation: 0.5,
         title: GestureDetector(
           onTap: _goToSearch,
           child: Container(
@@ -146,12 +146,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           ),
           Expanded(
             child: Container(
-              color: Colors.grey[250],
+              color: Colors.grey[400],
               child: ListViewEffect(
                 duration: _duration,
                 children: _categories
                     .map(
-                      (item) => SubCategory(),
+                      (item) => SubCategory(
+                        title: 'Make up',
+                      ),
                     )
                     .toList(),
               ),
