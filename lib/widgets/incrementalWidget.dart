@@ -4,10 +4,10 @@ import '../models/cartItemModel.dart';
 import '../Providers/cartProvider.dart';
 
 class IncrementalWidget extends StatefulWidget {
-  final int amount;
+  final CartItemModel item;
 
   IncrementalWidget({
-    this.amount,
+    this.item,
   });
 
   @override
@@ -21,12 +21,10 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
   @override
   Widget build(BuildContext context) {
     if (!changed) {
-      num = widget.amount;
+      num = widget.item.amount;
     }
-
     final cart = Provider.of<Cart>(context);
-    final item = Provider.of<CartItemModel>(context);
-
+//    final item = Provider.of<CartItemModel>(context);
     return Row(
       children: <Widget>[
         Container(
@@ -52,7 +50,7 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
           child: GestureDetector(
             onTap: () {
               if (num > 1) {
-                cart.removeAmount(item.id);
+                cart.removeAmount(widget.item.id);
                 cart.fetchData();
                 setState(() {
                   changed = true;
@@ -111,7 +109,7 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
           ),
           child: GestureDetector(
             onTap: () {
-              cart.addItemToCart(item);
+              cart.addItemToCart(widget.item);
               cart.fetchData();
               setState(() {
                 changed = true;

@@ -5,45 +5,25 @@ import '../models/cartItemModel.dart';
 import '../Providers/cartProvider.dart';
 
 class CartItem extends StatelessWidget {
+  final CartItemModel item;
+
+  CartItem({
+    this.item,
+  });
+
+  Future<bool> _removeItem() async {
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
-    final item = Provider.of<CartItemModel>(context);
     final cart = Provider.of<Cart>(context);
-    int index = cart.cartList.indexWhere((i) => i.id == item.id);
     return Dismissible(
-      key: ValueKey(index),
+      key: ValueKey(item.id),
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) {
-        return showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(
-              'Are you sure ?',
-              style: TextStyle(color: Colors.blue),
-            ),
-            content: Text(
-              'Do you want to remove this item from Cart?',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-              ),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-                child: Text('No'),
-              ),
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-                child: Text('Yes'),
-              ),
-            ],
-          ),
-        );
+        return _removeItem();
       },
       background: Container(
         color: Theme.of(context).errorColor,
@@ -83,7 +63,7 @@ class CartItem extends StatelessWidget {
       ),
       onDismissed: (direction) async {
         try {
-          await Provider.of<Cart>(context, listen: false).removeItem(index);
+          await Provider.of<Cart>(context, listen: false).removeItem(item);
         } catch (error) {
           print(':::::::::::::::::::' + error.toString());
         }
@@ -195,9 +175,10 @@ class CartItem extends StatelessWidget {
                             ],
                           ),
                           Expanded(
-                              child: IncrementalWidget(
-                            amount: 0,
-                          )),
+                            child: IncrementalWidget(
+                              item: item,
+                            ),
+                          ),
                         ],
                       )
                     : Column(
@@ -265,7 +246,7 @@ class CartItem extends StatelessWidget {
                               ),
                               Spacer(),
                               IncrementalWidget(
-                                amount: item.amount,
+                                item: item,
                               ),
                             ],
                           ),

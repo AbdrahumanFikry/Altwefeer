@@ -122,6 +122,12 @@ class _ItemEffect extends State<ItemEffect> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new StreamBuilder(
       stream: new ListBloc().listenAnimation,

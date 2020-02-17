@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './mainScreens/profileScreen.dart';
-import './mainScreens/settingScreen.dart';
 import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
 import './Providers/wishListProvider.dart';
+import './mainScreens/profileScreen.dart';
+import './mainScreens/settingScreen.dart';
 import './mainScreens/bottomNavigationScreen.dart';
 import './mainScreens/accountInfo.dart';
 import 'package:flutter/services.dart';

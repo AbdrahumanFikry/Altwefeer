@@ -70,11 +70,13 @@ class _DetailScreenState extends State<DetailScreen> {
   Future<void> _addToCart() async {
     await Provider.of<Cart>(context, listen: false).addItemToCart(
       CartItemModel(
-        id: 11,
-        name: 'Samsung S10+',
-        image: 'assets/images/iphoneTest.png',
+        id: widget.id,
+        name: widget.title,
+        image: widget.image,
         amount: 1,
-        price: 425,
+        price: widget.offer != '0'
+            ? double.tryParse(widget.offer)
+            : double.tryParse(widget.price),
       ),
     );
     //TODO ------

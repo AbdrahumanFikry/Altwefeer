@@ -75,8 +75,17 @@ class WishListItem extends StatelessWidget {
             Icon(
               Icons.done,
               color: Colors.white,
-              size: 18.0,
             ),
+//            InkWell(
+//              onTap: () {},
+//              child: Text(
+//                'Undo',
+//                style: TextStyle(
+//                  color: Colors.white,
+//                  fontFamily: 'Roboto',
+//                ),
+//              ),
+//            ),
           ],
         ),
         duration: Duration(seconds: 1),

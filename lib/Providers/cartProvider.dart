@@ -5,9 +5,14 @@ import '../models/cartItemModel.dart';
 
 class Cart with ChangeNotifier {
   List<CartItemModel> _cartList = [];
+  List<CartItemModel> _deletedItems = [];
 
   List<CartItemModel> get cartList {
     return [..._cartList];
+  }
+
+  List<CartItemModel> get deletedItems {
+    return [..._deletedItems];
   }
 
   //---------------------Add to SharedPreferences-------------------------------
@@ -114,9 +119,11 @@ class Cart with ChangeNotifier {
   }
 
   //--------------------------Remove item from cart-----------------------------
-  Future<void> removeItem(int i) async {
+  Future<void> removeItem(CartItemModel item) async {
     try {
-      _cartList.removeAt(i);
+      _deletedItems.add(item);
+      int index = _cartList.indexWhere((i) => item.id == i.id);
+      _cartList.removeAt(index);
       final prefs = await SharedPreferences.getInstance();
       if (!prefs.containsKey('cartItems')) {
         return null;
@@ -170,6 +177,7 @@ class Cart with ChangeNotifier {
   //-------------------------------Empty cart-----------------------------------
   Future<void> emptyCart() async {
     _cartList = [];
+    _deletedItems = [];
     final prefs = await SharedPreferences.getInstance();
     if (!prefs.containsKey('cartItems')) {
       return null;
@@ -180,6 +188,15 @@ class Cart with ChangeNotifier {
       },
     );
     prefs.setString('cartItems', userData);
+    notifyListeners();
+  }
+
+  //------------------------------- Undo All -----------------------------------
+  Future<void> undoAll() async {
+    _deletedItems.forEach((item) {
+      addItemToCart(item);
+    });
+    _deletedItems = [];
     notifyListeners();
   }
 }

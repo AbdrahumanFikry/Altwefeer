@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../models/cartItemModel.dart';
 import 'package:provider/provider.dart';
 import '../widgets/cartItem.dart';
 import '../Providers/cartProvider.dart';
@@ -116,9 +115,8 @@ class CartScreen extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: cart.cartList.length,
                     itemBuilder: (context, index) {
-                      return ChangeNotifierProvider<CartItemModel>(
-                        create: (context) => cart.cartList[index],
-                        child: CartItem(),
+                      return CartItem(
+                        item: cart.cartList[index],
                       );
                     },
                   ),
@@ -126,6 +124,65 @@ class CartScreen extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
+                    cart.deletedItems.isEmpty
+                        ? Container()
+                        : Container(
+                            height: 50.0,
+                            width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.symmetric(
+                              vertical: 5.0,
+                              horizontal: 10.0,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 5.0,
+                              horizontal: 20.0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.teal[800],
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey[400],
+                                  blurRadius: 2.0,
+                                  offset: Offset(
+                                    2.0,
+                                    2.0,
+                                  ),
+                                  spreadRadius: 2.0,
+                                )
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(
+                                  7.0,
+                                ),
+                              ),
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  '${cart.deletedItems.length} items removed from Cart',
+                                  style: TextStyle(
+                                    fontFamily: 'Roboto',
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Spacer(),
+                                InkWell(
+                                  onTap: () async {
+                                    await Provider.of<Cart>(context,
+                                            listen: false)
+                                        .undoAll();
+                                  },
+                                  child: Text(
+                                    'Undo',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontFamily: 'Roboto',
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20.0,
