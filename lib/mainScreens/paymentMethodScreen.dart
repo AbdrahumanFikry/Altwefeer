@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/paymentScreen.dart';
+import 'package:infinity/mainScreens/paymentFormScreen.dart';
 import 'package:infinity/mainScreens/placeOrderScreen.dart';
 import 'package:infinity/widgets/pageRoute.dart';
 
@@ -22,7 +22,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
     Navigator.push(
       context,
       FadeRoute(
-        page: PaymentScreen(),
+        page: PaymentFormScreen(),
       ),
     );
   }

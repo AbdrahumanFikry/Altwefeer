@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/mainScreens/addressBookScreen.dart';
+import 'package:infinity/mainScreens/paymentFormScreen.dart';
 import 'package:infinity/mainScreens/settingScreen.dart';
 import 'package:provider/provider.dart';
 import '../mainScreens/wishListScreen.dart';
 import '../widgets/pageRoute.dart';
 import '../widgets/profileItems.dart';
 import '../Providers/wishListProvider.dart';
-
+import '../mainScreens/paymentScreen.dart';
+import '../mainScreens/tabBarScreen.dart';
 class ProfileScreen extends StatelessWidget {
   void _goToOrders(BuildContext context) {
-    //ToDo--------
+    Navigator.of(context).push(
+      ScaleRoute(
+        page: TabBarScreen(),
+      ),
+    );
   }
 
   void _goToWishList(BuildContext context) {
@@ -29,7 +35,11 @@ class ProfileScreen extends StatelessWidget {
   }
 
   void _goToPayment(BuildContext context) {
-    //ToDo--------
+    Navigator.of(context).push(
+      ScaleRoute(
+        page: PaymentScreen(),
+      ),
+    );
   }
 
   void _goToSupport(BuildContext context) {

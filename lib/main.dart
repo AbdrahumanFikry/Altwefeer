@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import './mainScreens/wishListScreen.dart';
 import './mainScreens/categoriesScreen.dart';
 import './authScreens/forgotPasswordScreen.dart';
-import './mainScreens/paymentScreen.dart';
+import './mainScreens/paymentFormScreen.dart';
 import './authScreens/checkEmailScreen.dart';
 import './authScreens/loginScreen.dart';
 import './mainScreens/homeScreen.dart';
