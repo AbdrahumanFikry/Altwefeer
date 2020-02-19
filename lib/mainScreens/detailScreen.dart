@@ -162,9 +162,12 @@ class _DetailScreenState extends State<DetailScreen> {
                           child: Consumer<Cart>(
                             builder: (context, cartItem, child) => CircleAvatar(
                               backgroundColor: Colors.grey[200],
-                              radius: 18.0,
+                              radius: 19.0,
                               child: cartItem.cartList.length == 0
-                                  ? Tab(icon: new Image.asset('assets/icons/cart.png'))
+                                  ? Tab(
+                                      icon: new Image.asset(
+                                          'assets/icons/cart.png'),
+                                    )
                                   : IconButton(
                                       icon: Badge(
                                         animationType: BadgeAnimationType.scale,
@@ -175,7 +178,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                         toAnimate: true,
                                         elevation: 5.0,
                                         position: BadgePosition.topLeft(
-                                          left: 5.0,
+                                          left: 4.0,
                                         ),
                                         badgeContent: Text(
                                           cartItem.cartList.length.toString(),
@@ -185,7 +188,10 @@ class _DetailScreenState extends State<DetailScreen> {
                                             fontFamily: 'Roboto',
                                           ),
                                         ),
-                                        child: Tab(icon: new Image.asset('assets/icons/cart.png')),
+                                        child: Tab(
+                                          icon: new Image.asset(
+                                              'assets/icons/cart.png'),
+                                        ),
                                       ),
                                       onPressed: () => _goToCart(context),
                                     ),

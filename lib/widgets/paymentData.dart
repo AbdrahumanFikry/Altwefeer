@@ -23,7 +23,11 @@ class PaymentData extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Icon(Icons.credit_card),
+                      Tab(
+                        icon: new Image.asset(
+                          'assets/icons/payment.png',
+                        ),
+                      ),
                       SizedBox(
                         width: 5.0,
                       ),
@@ -31,18 +35,7 @@ class PaymentData extends StatelessWidget {
                         numberOfCard.substring(0, 4) + '************',
                         style: TextStyle(
                           fontFamily: 'Roboto',
-                          fontSize: 18.0,
-                        ),
-                      ),
-                      Tab(icon: new Image.asset('assets/icons/payment.png')),
-                      SizedBox(
-                        width: 5.0,
-                      ),
-                      Text(
-                        numberOfCard,
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 18.0,
+                          fontSize: 20.0,
                         ),
                       ),
                     ],

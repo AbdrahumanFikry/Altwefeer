@@ -178,7 +178,7 @@ class _PaymentFormScreenState extends State<PaymentFormScreen> {
               ],
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.45,
             ),
             GlobalButton(
               buttonTitle: 'Add payment',

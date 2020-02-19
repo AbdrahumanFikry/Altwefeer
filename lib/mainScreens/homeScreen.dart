@@ -73,7 +73,9 @@ class HomeScreen extends StatelessWidget {
           Consumer<Cart>(
             builder: (context, cartItems, child) => IconButton(
               icon: cartItems.cartList.length == 0
-                  ?  Tab(icon: new Image.asset('assets/icons/cart.png'))
+                  ? Tab(
+                      icon: new Image.asset('assets/icons/cart.png'),
+                    )
                   : Badge(
                       animationType: BadgeAnimationType.scale,
                       badgeColor: Colors.red,
@@ -82,7 +84,8 @@ class HomeScreen extends StatelessWidget {
                       toAnimate: true,
                       elevation: 5.0,
                       position: BadgePosition.topRight(
-                        right: 5.0,
+                        right: 3.0,
+                        top: 0.0,
                       ),
                       badgeContent: Text(
                         cartItems.cartList.length.toString(),
@@ -92,7 +95,8 @@ class HomeScreen extends StatelessWidget {
                           fontFamily: 'Roboto',
                         ),
                       ),
-                      child:Tab(icon: new Image.asset('assets/icons/cart.png')),
+                      child:
+                          Tab(icon: new Image.asset('assets/icons/cart.png')),
                     ),
               onPressed: () => _goToCart(context),
             ),

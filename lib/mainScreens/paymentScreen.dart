@@ -38,7 +38,7 @@ class PaymentScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             //TODO ---------------------
-            height: 2 * 50.0,
+            height: 2 * 70.0,
             width: MediaQuery.of(context).size.width,
             child: ListView.builder(
               itemCount: 2,

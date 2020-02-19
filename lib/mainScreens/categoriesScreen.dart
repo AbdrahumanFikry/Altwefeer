@@ -99,7 +99,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       toAnimate: true,
                       elevation: 5.0,
                       position: BadgePosition.topRight(
-                        right: 5.0,
+                        right: 3.0,
+                        top: 0.0,
                       ),
                       badgeContent: Text(
                         cartItems.cartList.length.toString(),
@@ -109,7 +110,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           fontFamily: 'Roboto',
                         ),
                       ),
-                      child: Tab(icon: new Image.asset('assets/icons/cart.png')),
+                      child:
+                          Tab(icon: new Image.asset('assets/icons/cart.png')),
                     ),
               onPressed: () => _goToCart(context),
             ),
