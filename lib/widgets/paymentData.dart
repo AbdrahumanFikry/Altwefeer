@@ -18,7 +18,7 @@ class PaymentData extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Icon(Icons.credit_card),
+                      Tab(icon: new Image.asset('assets/icons/payment.png')),
                       SizedBox(width: 5.0,),
                       Text(numberOfCard,style: TextStyle(
                         fontFamily: 'Roboto',
@@ -36,7 +36,6 @@ class PaymentData extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 10.0,),
       ],
     );
   }

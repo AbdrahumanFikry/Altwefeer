@@ -44,11 +44,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         onTap: _changeScreen,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 28,
-              color: index != 0 ? Colors.black : Color(0xff008BFF),
-            ),
+            icon: Tab(icon: new Image.asset('assets/icons/home.png')),
+            activeIcon: Tab(icon: new Image.asset('assets/icons/homeActive.png')),
             title: Text(
               "Home",
               style: TextStyle(
@@ -59,11 +56,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.library_books,
-              size: 28,
-              color: index != 1 ? Colors.black : Color(0xff008BFF),
-            ),
+            icon: Tab(icon: new Image.asset('assets/icons/category.png')),
+            activeIcon: Tab(icon: new Image.asset('assets/icons/categoryActive.png')),
             title: Text(
               "Categories",
               style: TextStyle(
@@ -74,11 +68,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.perm_identity,
-              size: 28,
-              color: index != 2 ? Colors.black : Color(0xff008BFF),
-            ),
+            icon: Tab(icon: new Image.asset('assets/icons/account.png')),
+            activeIcon: Tab(icon: new Image.asset('assets/icons/accountActive.png')),
             title: Text(
               "Account",
               style: TextStyle(

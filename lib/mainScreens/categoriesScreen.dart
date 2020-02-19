@@ -90,11 +90,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           Consumer<Cart>(
             builder: (context, cartItems, child) => IconButton(
               icon: cartItems.cartList.length == 0
-                  ? Icon(
-                      Icons.shopping_cart,
-                      color: Colors.grey,
-                      size: 30.0,
-                    )
+                  ? Tab(icon: new Image.asset('assets/icons/cart.png'))
                   : Badge(
                       animationType: BadgeAnimationType.scale,
                       badgeColor: Colors.red,
@@ -113,11 +109,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           fontFamily: 'Roboto',
                         ),
                       ),
-                      child: Icon(
-                        Icons.shopping_cart,
-                        color: Colors.grey,
-                        size: 30.0,
-                      ),
+                      child: Tab(icon: new Image.asset('assets/icons/cart.png')),
                     ),
               onPressed: () => _goToCart(context),
             ),

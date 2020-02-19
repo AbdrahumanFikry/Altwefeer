@@ -2,7 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 class ProfileItems extends StatelessWidget {
-  final IconData icon;
+  final Tab icon;
   final String title;
   final Function onTap;
   final String notifications;
@@ -25,7 +25,7 @@ class ProfileItems extends StatelessWidget {
             child: Container(
               child: Row(
                 children: <Widget>[
-                  Icon(icon),
+                  icon,
                   SizedBox(
                     width: 20.0,
                   ),
@@ -66,9 +66,6 @@ class ProfileItems extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 20.0,
         ),
       ],
     );

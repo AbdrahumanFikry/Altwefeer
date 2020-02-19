@@ -78,24 +78,24 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ProfileItems(
-            icon: Icons.history,
+            icon: Tab(icon: new Image.asset('assets/icons/orders.png')),
             title: 'Orders',
             onTap: () => _goToOrders(context),
           ),
           ProfileItems(
-            icon: Icons.favorite_border,
+            icon: Tab(icon: new Image.asset('assets/icons/heart.png')),
             title: 'Wishlist',
             onTap: () => _goToWishList(context),
             notifications:
                 Provider.of<WishList>(context).wishList.length.toString(),
           ),
           ProfileItems(
-            icon: Icons.library_books,
+            icon: Tab(icon: new Image.asset('assets/icons/addressBook.png')),
             title: 'Address Book',
             onTap: () => _goToAddressBook(context),
           ),
           ProfileItems(
-            icon: Icons.credit_card,
+            icon: Tab(icon: new Image.asset('assets/icons/payment.png')),
             title: 'Payment',
             onTap: () => _goToPayment(context),
           ),
@@ -120,12 +120,12 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           ProfileItems(
-            icon: Icons.headset,
+            icon: Tab(icon: new Image.asset('assets/icons/support.png')),
             title: 'Support',
             onTap: () => _goToSupport(context),
           ),
           ProfileItems(
-            icon: Icons.settings,
+            icon: Tab(icon: new Image.asset('assets/icons/setting.png')),
             title: 'Settings',
             onTap: () => _goToSettings(context),
           ),
@@ -138,7 +138,7 @@ class ProfileScreen extends StatelessWidget {
             height: 10.0,
           ),
           ProfileItems(
-            icon: Icons.exit_to_app,
+            icon: Tab(icon: new Image.asset('assets/icons/signOut.png')),
             title: 'Sign out',
             onTap: () => _signOut(context),
           ),
