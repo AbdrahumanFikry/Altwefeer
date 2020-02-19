@@ -64,13 +64,16 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(
+                      left: 8.0,
+                    ),
                     child: Text(
                       'Cash On Delivery',
                       style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15.0,
-                          fontFamily: 'Roboto'),
+                        color: Colors.black,
+                        fontSize: 15.0,
+                        fontFamily: 'Roboto',
+                      ),
                     ),
                   ),
                   Icon(

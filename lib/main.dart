@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/FilterScreen.dart';
+import 'package:infinity/mainScreens/paymentScreen.dart';
+import 'package:infinity/mainScreens/tabBarScreen.dart';
+import './mainScreens/FilterScreen.dart';
 import './mainScreens/CategoryElementsScreen.dart';
 import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
@@ -50,7 +52,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: Colors.grey,
         ),
-        home: BottomNavigationScreen(),
+        home: TabBarScreen(),
       ),
     );
   }

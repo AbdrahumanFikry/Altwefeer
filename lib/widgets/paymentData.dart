@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class PaymentData extends StatelessWidget {
   final String numberOfCard;
   final Function onTap;
-  PaymentData({this.onTap,this.numberOfCard});
+
+  PaymentData({
+    this.onTap,
+    this.numberOfCard,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,16 +24,24 @@ class PaymentData extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Icon(Icons.credit_card),
-                      SizedBox(width: 5.0,),
-                      Text(numberOfCard,style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 18.0,
-                      ),),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        numberOfCard.substring(0, 4) + '************',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 18.0,
+                        ),
+                      ),
                     ],
                   ),
                   Row(
                     children: <Widget>[
-                      Icon(Icons.arrow_forward_ios,color: Colors.grey,),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey,
+                      ),
                     ],
                   )
                 ],
@@ -36,7 +49,9 @@ class PaymentData extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 10.0,),
+        SizedBox(
+          height: 10.0,
+        ),
       ],
     );
   }
