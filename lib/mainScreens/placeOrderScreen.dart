@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/addressBookScreen.dart';
 import 'package:infinity/mainScreens/orderPlacedSuccessfullyScreen.dart';
 import 'package:infinity/widgets/globalButton.dart';
 import 'package:infinity/widgets/pageRoute.dart';
 import '../widgets/placeOrderInfo.dart';
 
-class PlaceOrderScreen extends StatefulWidget {
-  @override
-  _PlaceOrderScreenState createState() => _PlaceOrderScreenState();
-}
-
-class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
+class PlaceOrderScreen extends StatelessWidget {
   void _placeOrder(BuildContext context) {
     Navigator.push(
       context,
       FadeRoute(
         page: OrderPlacedSuccessfullyScreen(),
       ),
+    );
+  }
+
+  void _changePaymentMethod(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
+  void _changeAddress(BuildContext context) {
+    Navigator.of(context).pushAndRemoveUntil(
+      FadeRoute(
+        page: AddressBookScreen(),
+      ),
+      (Route<dynamic> route) => false,
     );
   }
 
@@ -59,7 +68,146 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
             title: 'Grand total',
             price: '450',
           ),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.all(
+              10.0,
+            ),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'Cash On Deleviry',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Roboto',
+                    fontSize: 17.0,
+                  ),
+                ),
+                Spacer(),
+                InkWell(
+                  onTap: () => _changePaymentMethod(context),
+                  child: Text(
+                    'Change',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontFamily: 'Roboto',
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.all(
+              10.0,
+            ),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Mohamed Zeyad',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Roboto',
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    InkWell(
+                      onTap: () => _changeAddress(context),
+                      child: Text(
+                        'Change',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontFamily: 'Roboto',
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10.0,
+                    horizontal: 0.0,
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.outlined_flag,
+                      ),
+                      Text(
+                        'Almaadi, Ahmed Saad 21',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: true,
+                        maxLines: 2,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                height: 7.0,
+                width: 7.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      10.0,
+                    ),
+                  ),
+                ),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 2.5,
+                ),
+              ),
+              Container(
+                height: 7.0,
+                width: 7.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      10.0,
+                    ),
+                  ),
+                ),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 2.5,
+                ),
+              ),
+              Container(
+                height: 7.0,
+                width: 20.0,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      10.0,
+                    ),
+                  ),
+                ),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 2.5,
+                ),
+              ),
+            ],
+          ),
           GlobalButton(
             buttonTitle: 'Place order',
             onTab: () => _placeOrder(context),

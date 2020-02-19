@@ -23,8 +23,7 @@ class PlaceOrderInfo extends StatelessWidget {
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'Roboto',
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
+              fontSize: 17.0,
             ),
           ),
           Spacer(),
@@ -33,7 +32,7 @@ class PlaceOrderInfo extends StatelessWidget {
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'Roboto',
-              fontSize: 14.0,
+              fontSize: 16.0,
               fontWeight: FontWeight.bold,
             ),
           ),

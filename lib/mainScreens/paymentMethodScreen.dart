@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/mainScreens/paymentFormScreen.dart';
 import 'package:infinity/mainScreens/placeOrderScreen.dart';
+import 'package:infinity/widgets/globalButton.dart';
 import 'package:infinity/widgets/pageRoute.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
@@ -9,6 +10,18 @@ class PaymentMethodScreen extends StatefulWidget {
 }
 
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
+  //----------------------------- variables ------------------------------------
+  int groupValue = 0;
+
+  //------------------------------ methods -------------------------------------
+
+  void onChanged(int value) {
+    setState(() {
+      groupValue = value;
+      print(groupValue.toString());
+    });
+  }
+
   void _cashOnDelivery() {
     Navigator.push(
       context,
@@ -25,6 +38,20 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
         page: PaymentFormScreen(),
       ),
     );
+  }
+
+  void _continue() {
+    switch (groupValue) {
+      case 0:
+        _cashOnDelivery();
+        break;
+      case 1:
+        _paymentMethod();
+        break;
+      default:
+        print('Invaild choice!');
+        break;
+    }
   }
 
   @override
@@ -49,25 +76,25 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
           },
         ),
       ),
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          SizedBox(
-            height: 10.0,
-          ),
-          GestureDetector(
-            onTap: _cashOnDelivery,
-            child: Container(
-              padding: EdgeInsets.all(
-                5.0,
+          Column(
+            children: <Widget>[
+              SizedBox(
+                height: 10.0,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 8.0,
+              Container(
+                padding: EdgeInsets.all(
+                  5.0,
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Radio(
+                      value: 0,
+                      groupValue: groupValue,
+                      onChanged: onChanged,
                     ),
-                    child: Text(
+                    Text(
                       'Cash On Delivery',
                       style: TextStyle(
                         color: Colors.black,
@@ -75,28 +102,24 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                         fontFamily: 'Roboto',
                       ),
                     ),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.grey,
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ),
-          Divider(),
-          GestureDetector(
-            onTap: _paymentMethod,
-            child: Container(
-              padding: EdgeInsets.all(
-                5.0,
+              Divider(
+                height: 1.0,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
+              Container(
+                padding: EdgeInsets.all(
+                  5.0,
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Radio(
+                      value: 1,
+                      groupValue: groupValue,
+                      onChanged: onChanged,
+                    ),
+                    Text(
                       'Payment Method',
                       style: TextStyle(
                         color: Colors.black,
@@ -104,14 +127,69 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                         fontFamily: 'Roboto',
                       ),
                     ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    height: 7.0,
+                    width: 7.0,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          10.0,
+                        ),
+                      ),
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 2.5,
+                    ),
                   ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.grey,
+                  Container(
+                    height: 7.0,
+                    width: 20.0,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          10.0,
+                        ),
+                      ),
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 2.5,
+                    ),
+                  ),
+                  Container(
+                    height: 7.0,
+                    width: 7.0,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          10.0,
+                        ),
+                      ),
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 2.5,
+                    ),
                   ),
                 ],
               ),
-            ),
+              GlobalButton(
+                buttonTitle: 'Continue',
+                onTab: _continue,
+              ),
+            ],
           ),
         ],
       ),
