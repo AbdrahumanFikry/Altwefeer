@@ -34,6 +34,17 @@ class PaymentData extends StatelessWidget {
                           fontSize: 18.0,
                         ),
                       ),
+                      Tab(icon: new Image.asset('assets/icons/payment.png')),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        numberOfCard,
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 18.0,
+                        ),
+                      ),
                     ],
                   ),
                   Row(
