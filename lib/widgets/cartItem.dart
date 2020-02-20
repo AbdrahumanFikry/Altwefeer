@@ -29,8 +29,8 @@ class CartItem extends StatelessWidget {
         color: Theme.of(context).errorColor,
         alignment: Alignment.centerRight,
         margin: const EdgeInsets.only(
-          bottom: 7.0,
-          top: 7.0,
+          bottom: 12.0,
+          top: 12.0,
           right: 0.0,
           left: 7.0,
         ),
@@ -69,7 +69,7 @@ class CartItem extends StatelessWidget {
         }
       },
       child: Container(
-        height: deviceWidth < 400 ? 110 : 90.0,
+        height: deviceWidth < 400 ? 120 : 90.0,
         width: double.infinity,
         margin: EdgeInsets.only(
           left: 10.0,
@@ -131,7 +131,7 @@ class CartItem extends StatelessWidget {
                                       Text(
                                         'Item Price: ',
                                         style: TextStyle(
-                                          color: Colors.teal[400],
+                                          color: Color(0xff505050),
                                           fontFamily: 'Roboto',
                                         ),
                                       ),
@@ -152,7 +152,7 @@ class CartItem extends StatelessWidget {
                                       Text(
                                         'Total: ',
                                         style: TextStyle(
-                                          color: Colors.teal[400],
+                                          color: Color(0xff505050),
                                           fontFamily: 'Roboto',
                                         ),
                                       ),
@@ -174,11 +174,10 @@ class CartItem extends StatelessWidget {
                               Spacer(),
                             ],
                           ),
-                          Expanded(
-                            child: IncrementalWidget(
+                             IncrementalWidget(
                               item: item,
                             ),
-                          ),
+
                         ],
                       )
                     : Column(
@@ -204,7 +203,7 @@ class CartItem extends StatelessWidget {
                                       Text(
                                         'Item Price: ',
                                         style: TextStyle(
-                                          color: Colors.teal[400],
+                                          color: Color(0xff505050),
                                           fontFamily: 'Roboto',
                                         ),
                                       ),
@@ -225,7 +224,7 @@ class CartItem extends StatelessWidget {
                                       Text(
                                         'Total: ',
                                         style: TextStyle(
-                                          color: Colors.teal[400],
+                                          color: Color(0xff505050),
                                           fontFamily: 'Roboto',
                                         ),
                                       ),

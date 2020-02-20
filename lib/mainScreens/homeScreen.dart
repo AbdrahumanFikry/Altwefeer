@@ -84,9 +84,8 @@ class HomeScreen extends StatelessWidget {
           Consumer<Cart>(
             builder: (context, cartItems, child) => IconButton(
               icon: cartItems.cartList.length == 0
-                  ? Tab(
-                      icon: new Image.asset('assets/icons/cart.png'),
-                    )
+                  ?
+                       Image.asset('assets/icons/cart.png')
                   : Badge(
                       animationType: BadgeAnimationType.scale,
                       badgeColor: Colors.red,

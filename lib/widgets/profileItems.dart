@@ -2,14 +2,14 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 class ProfileItems extends StatelessWidget {
-  final Tab icon;
+  final Image image;
   final String title;
   final Function onTap;
   final String notifications;
 
   ProfileItems({
     this.title,
-    this.icon,
+    this.image,
     this.onTap,
     this.notifications,
   });
@@ -19,13 +19,16 @@ class ProfileItems extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10.0,
+            vertical: 13.0,
+          ),
           child: GestureDetector(
             onTap: onTap,
             child: Container(
               child: Row(
                 children: <Widget>[
-                  icon,
+                  image,
                   SizedBox(
                     width: 20.0,
                   ),

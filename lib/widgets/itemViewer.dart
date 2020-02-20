@@ -153,7 +153,7 @@ class _ItemViewerState extends State<ItemViewer> {
                                 7.0,
                               ),
                             ),
-                            color: Colors.white70,
+                            color: Color(0xffFFE1E0),
                           ),
                           child: Center(
                             child: FittedBox(

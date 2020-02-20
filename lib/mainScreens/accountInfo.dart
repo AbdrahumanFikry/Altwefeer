@@ -103,17 +103,13 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                     ),
                   ),
                 )
-              : IconButton(
-                  icon: Icon(
-                    Icons.edit,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _edit = true;
-                    });
-                  },
-                ),
+              : GestureDetector(
+            onTap: (){
+                setState(() {
+                  _edit = true;
+                });
+            },
+              child: Container(child: Image.asset('assets/icons/edit.png'))),
         ],
       ),
       body: Form(

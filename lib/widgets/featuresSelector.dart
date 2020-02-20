@@ -10,9 +10,9 @@ class FeatureSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        child: ListView.builder(
+    return ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           itemCount: 3,
           itemBuilder: (context, index) {
             return Container(
@@ -59,8 +59,6 @@ class FeatureSelector extends StatelessWidget {
               ),
             );
           },
-        ),
-      ),
-    );
+        );
   }
 }

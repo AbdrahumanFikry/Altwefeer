@@ -20,7 +20,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
           ),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.teal[800],
+              color: Color(0xff505050),
               width: 2.0,
             ),
             borderRadius: BorderRadius.only(
@@ -42,7 +42,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
             },
             child: Icon(
               Icons.remove,
-              color: Colors.teal[800],
+              color: Color(0xff505050),
             ),
           ),
         ),
@@ -51,7 +51,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
           width: 50.0,
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.teal[800],
+              color: Color(0xff505050),
               width: 2.0,
             ),
           ),
@@ -63,7 +63,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
               child: Text(
                 amount.toString(),
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Color(0xff505050),
                 ),
               ),
             ),
@@ -77,7 +77,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
           ),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.teal[800],
+              color: Color(0xff505050),
               width: 2.0,
             ),
             borderRadius: BorderRadius.only(
@@ -97,7 +97,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
             },
             child: Icon(
               Icons.add,
-              color: Colors.teal[800],
+              color: Color(0xff505050),
             ),
           ),
         ),

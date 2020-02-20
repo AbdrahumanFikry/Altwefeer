@@ -58,11 +58,7 @@ class AddressBookItem extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: Colors.grey[200],
                     radius: 18.0,
-                    child: Icon(
-                      Icons.edit,
-                      color: Colors.black,
-                      size: 20.0,
-                    ),
+                    child: Image.asset('assets/icons/edit.png'),
                   ),
                 ),
               ),

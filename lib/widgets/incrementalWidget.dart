@@ -35,7 +35,7 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
           ),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.teal[800],
+              color:Color(0xff505050),
               width: 2.0,
             ),
             borderRadius: BorderRadius.only(
@@ -60,7 +60,7 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
             },
             child: Icon(
               Icons.remove,
-              color: Colors.teal[800],
+              color: Color(0xff505050),
             ),
           ),
         ),
@@ -69,7 +69,7 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
           width: 50.0,
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.teal[800],
+              color: Color(0xff505050),
               width: 2.0,
             ),
           ),
@@ -95,7 +95,7 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
           ),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.teal[800],
+              color: Color(0xff505050),
               width: 2.0,
             ),
             borderRadius: BorderRadius.only(
@@ -118,7 +118,7 @@ class _IncrementalWidgetState extends State<IncrementalWidget> {
             },
             child: Icon(
               Icons.add,
-              color: Colors.teal[800],
+              color: Color(0xff505050),
             ),
           ),
         ),

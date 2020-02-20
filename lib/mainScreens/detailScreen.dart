@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/rendering.dart';
+import 'package:infinity/widgets/detailSlider.dart';
 import '../mainScreens/addressBookScreen.dart';
 import '../models/cartItemModel.dart';
 import '../widgets/detailSliverList.dart';
@@ -164,10 +165,10 @@ class _DetailScreenState extends State<DetailScreen> {
                               backgroundColor: Colors.grey[200],
                               radius: 19.0,
                               child: cartItem.cartList.length == 0
-                                  ? Tab(
-                                      icon: new Image.asset(
-                                          'assets/icons/cart.png'),
-                                    )
+                                  ?
+                                  Image.asset(
+                                          'assets/icons/cart.png')
+
                                   : IconButton(
                                       icon: Badge(
                                         animationType: BadgeAnimationType.scale,
@@ -188,10 +189,10 @@ class _DetailScreenState extends State<DetailScreen> {
                                             fontFamily: 'Roboto',
                                           ),
                                         ),
-                                        child: Tab(
-                                          icon: new Image.asset(
+                                        child:
+                                           Image.asset(
                                               'assets/icons/cart.png'),
-                                        ),
+
                                       ),
                                       onPressed: () => _goToCart(context),
                                     ),
@@ -230,9 +231,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ? FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,
                               centerTitle: true,
-                              background: Image.asset(
-                                'assets/images/iphoneTest.png',
-                              ),
+                              background: DetailSlider(),
                             )
                           : FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,

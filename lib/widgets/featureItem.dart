@@ -36,7 +36,7 @@ class _FeatureItemState extends State<FeatureItem> {
         ),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.teal[800],
+            color: Color(0xff505050),
             width: 2.0,
           ),
           borderRadius: BorderRadius.all(
@@ -44,14 +44,14 @@ class _FeatureItemState extends State<FeatureItem> {
               20.0,
             ),
           ),
-          color: _selected == widget.index ? Colors.teal[800] : Colors.white,
+          color: _selected == widget.index ? Color(0xff505050) : Colors.white,
         ),
         child: FittedBox(
           child: Text(
             widget.content,
             style: TextStyle(
               color:
-                  _selected == widget.index ? Colors.white : Colors.teal[800],
+                  _selected == widget.index ? Colors.white : Color(0xff505050),
             ),
           ),
         ),

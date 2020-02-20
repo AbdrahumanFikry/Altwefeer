@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #Thu Feb 20 12:59:53 EET 2020
 base.0=F\:\\Flutter_Projects\\infinity\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+=======
+#Thu Feb 20 14:03:49 EET 2020
+base.0=H\:\\EradaApps\\infinity\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+>>>>>>> origin/master
 path.0=classes.dex
 renamed.0=classes.dex
