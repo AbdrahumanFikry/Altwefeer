@@ -118,7 +118,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
                               7.0,
                             ),
                           ),
-                          color: Colors.grey[200],
+                          color: Color(0xffFFE1E0),
                         ),
                         child: Center(
                           child: FittedBox(
@@ -175,7 +175,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
                   starCount: 5,
                   rating: rating,
                   size: 23.0,
-                  color: Colors.yellow,
+                  color: Color(0xffEA9307),
                   borderColor: Colors.grey,
                   spacing: 0.0,
                 ),
@@ -263,7 +263,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40.0),
               ),
-              child: DetailSlider(),
+              child: Image.asset('assets/images/iphoneTest.png'),
             ),
           ),
           Container(

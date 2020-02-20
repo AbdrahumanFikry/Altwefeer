@@ -251,7 +251,7 @@ class _SubElementState extends State<SubElement> {
                     children: <Widget>[
                       Icon(
                         Icons.star,
-                        color: Colors.yellow,
+                        color: Color(0xffEA9307),
                         size: 20.0,
                       ),
                       Text(

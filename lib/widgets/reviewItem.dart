@@ -43,7 +43,7 @@ class ReviewItem extends StatelessWidget {
                   starCount: 5,
                   rating: rate,
                   size: 16.0,
-                  color: Colors.yellow,
+                  color: Color(0xffEA9307),
                   borderColor: Colors.grey,
                   spacing: 0.0,
                 ),

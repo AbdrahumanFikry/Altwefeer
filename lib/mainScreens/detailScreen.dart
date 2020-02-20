@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/rendering.dart';
+import 'package:infinity/widgets/detailSlider.dart';
 import '../mainScreens/addressBookScreen.dart';
 import '../models/cartItemModel.dart';
 import '../widgets/detailSliverList.dart';
@@ -230,9 +231,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ? FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,
                               centerTitle: true,
-                              background: Image.asset(
-                                'assets/images/iphoneTest.png',
-                              ),
+                              background: DetailSlider(),
                             )
                           : FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,

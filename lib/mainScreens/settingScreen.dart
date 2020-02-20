@@ -201,11 +201,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                     child: CircleAvatar(
                                       backgroundColor: Colors.white,
                                       radius: 10.0,
-                                      child: Icon(
-                                        Icons.done_all,
-                                        color: Colors.blue,
-                                        size: 14.0,
-                                      ),
+                                      child: Center(child: Icon(Icons.done,size: 15.0,)),
                                     ),
                                   )
                                 : SizedBox(
@@ -252,10 +248,12 @@ class _SettingScreenState extends State<SettingScreen> {
                                     child: CircleAvatar(
                                       backgroundColor: Colors.white,
                                       radius: 10.0,
-                                      child: Icon(
-                                        Icons.done_all,
-                                        color: Colors.blue,
-                                        size: 14.0,
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.done,
+                                          color: Colors.blue,
+                                          size: 15.0,
+                                        ),
                                       ),
                                     ),
                                   )
