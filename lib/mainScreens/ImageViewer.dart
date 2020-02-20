@@ -13,32 +13,45 @@ class ImageViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PageController _pageController = new PageController(
-      initialPage: (id - 1),
-      keepPage: false,
-    );
+    PageController _pageController = new PageController();
+
+    if (images != null) {
+      _pageController = new PageController(
+        initialPage: (id - 1),
+        keepPage: false,
+      );
+    }
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0.0,
       ),
-      body: PageView.builder(
-        controller: _pageController,
-        itemCount: images.length,
-        scrollDirection: Axis.horizontal,
-        reverse: true,
-        itemBuilder: (context, index) {
-          return index != (id - 1)
-              ? Image.asset(
-                  images[index],
-                )
-              : Hero(
-                  tag: id.toString(),
-                  child: Image.asset(
-                    images[index],
-                  ),
-                );
-        },
-      ),
+      body: images == null
+          ? Center(
+              child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+              ),
+            )
+          : PageView.builder(
+              controller: _pageController,
+              itemCount: images.length,
+              scrollDirection: Axis.horizontal,
+              reverse: true,
+              itemBuilder: (context, index) {
+                return index != (id - 1)
+                    ? Image.asset(
+                        images[index],
+                      )
+                    : Hero(
+                        tag: id.toString(),
+                        child: Image.asset(
+                          images[index],
+                        ),
+                      );
+              },
+            ),
     );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/paymentScreen.dart';
-import 'package:infinity/mainScreens/searchScreen.dart';
-import 'package:infinity/mainScreens/tabBarScreen.dart';
+import './mainScreens/paymentScreen.dart';
+import './mainScreens/searchScreen.dart';
+import './mainScreens/supportScreen.dart';
+import './mainScreens/tabBarScreen.dart';
 import './mainScreens/FilterScreen.dart';
 import './mainScreens/CategoryElementsScreen.dart';
 import 'package:provider/provider.dart';
