@@ -4,7 +4,6 @@ import '../widgets/GlobalDialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import '../widgets/messageViewer.dart';
-import '../Providers/support.dart';
 
 class SupportScreen extends StatefulWidget {
   @override
@@ -37,18 +36,18 @@ class _SupportScreenState extends State<SupportScreen> {
   //-------------------------------- methods -----------------------------------
 
   void _fetchMessages() {
-    Provider.of<Support>(context).messages;
-    _messages = [];
-    final messages = Provider.of<Support>(context, listen: false).messages;
-    print(messages.length.toString());
-    for (var message in messages) {
-      final newMessage = MessageViewer(
-        type: 'me',
-        content: message,
-        date: '20/2/2020',
-      );
-      _messages.insert(0, newMessage);
-    }
+//    Provider.of<Support>(context).messages;
+//    _messages = [];
+//    final messages = Provider.of<Support>(context, listen: false).messages;
+//    print(messages.length.toString());
+//    for (var message in messages) {
+//      final newMessage = MessageViewer(
+//        type: 'me',
+//        content: message,
+//        date: '20/2/2020',
+//      );
+//      _messages.add(newMessage);
+//    }
   }
 
   void _action() {
@@ -139,7 +138,7 @@ class _SupportScreenState extends State<SupportScreen> {
     if (formData.validate()) {
       formData.save();
       print('message :::: ' + message);
-      Provider.of<Support>(context, listen: false).sendMessage(message);
+//      Provider.of<Support>(context, listen: false).sendMessage(message);
     }
   }
 
