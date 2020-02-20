@@ -5,9 +5,17 @@ import '../widgets/pageRoute.dart';
 import '../mainScreens/cartScreen.dart';
 import 'package:provider/provider.dart';
 import '../Providers/cartProvider.dart';
+import '../mainScreens/searchScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   //-----------------------------variables----------------------------------
+  final SearchScreen _searchItems = SearchScreen(
+    [
+      'aaaaa',
+      'bbbbbbbbbbbb',
+      'ccccccccccccc',
+    ],
+  );
 
   //-----------------------------methods------------------------------------
 
@@ -19,8 +27,11 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  void _goToSearch() {
-    //TODO -------
+  void _goToSearch(BuildContext context) async {
+    await showSearch<String>(
+      context: context,
+      delegate: _searchItems,
+    );
   }
 
   @override
@@ -31,7 +42,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         title: GestureDetector(
-          onTap: _goToSearch,
+          onTap: () => _goToSearch(context),
           child: Container(
             width: double.infinity,
             height: 40.0,

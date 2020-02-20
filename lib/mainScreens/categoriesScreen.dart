@@ -7,6 +7,7 @@ import '../Providers/cartProvider.dart';
 import '../mainScreens/cartScreen.dart';
 import 'package:badges/badges.dart';
 import '../widgets/animatedList.dart';
+import '../mainScreens/searchScreen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -19,6 +20,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Duration _duration = Duration(milliseconds: 100);
 
   List<String> _categories = ["1", "2", "3", "4"];
+
+  final SearchScreen _searchItems = SearchScreen(
+    [
+      'aaaaa',
+      'bbbbbbbbbbbb',
+      'ccccccccccccc',
+    ],
+  );
 
   //------------------------------ methods -------------------------------------
 
@@ -36,8 +45,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     );
   }
 
-  void _goToSearch() {
-    //TODO -------
+  void _goToSearch() async {
+    await showSearch<String>(
+      context: context,
+      delegate: _searchItems,
+    );
   }
 
   @override
