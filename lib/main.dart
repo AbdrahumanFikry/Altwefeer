@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: Colors.grey,
         ),
-        home: AddressBookScreen(),
+        home: BottomNavigationScreen(),
       ),
     );
   }

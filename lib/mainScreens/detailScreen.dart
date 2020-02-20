@@ -164,10 +164,10 @@ class _DetailScreenState extends State<DetailScreen> {
                               backgroundColor: Colors.grey[200],
                               radius: 19.0,
                               child: cartItem.cartList.length == 0
-                                  ? Tab(
-                                      icon: new Image.asset(
-                                          'assets/icons/cart.png'),
-                                    )
+                                  ?
+                                  Image.asset(
+                                          'assets/icons/cart.png')
+
                                   : IconButton(
                                       icon: Badge(
                                         animationType: BadgeAnimationType.scale,
@@ -188,10 +188,10 @@ class _DetailScreenState extends State<DetailScreen> {
                                             fontFamily: 'Roboto',
                                           ),
                                         ),
-                                        child: Tab(
-                                          icon: new Image.asset(
+                                        child:
+                                           Image.asset(
                                               'assets/icons/cart.png'),
-                                        ),
+
                                       ),
                                       onPressed: () => _goToCart(context),
                                     ),

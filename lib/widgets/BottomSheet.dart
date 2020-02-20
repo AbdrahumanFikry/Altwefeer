@@ -23,8 +23,8 @@ class BottomSheetAction extends StatelessWidget {
       ),
       context: context,
       builder: (builder) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        return ListView(
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             //------------------------- Header ---------------------------------
             Container(

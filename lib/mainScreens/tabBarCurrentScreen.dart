@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:infinity/widgets/pageRoute.dart';
+import '../mainScreens/orderDetailsScreen.dart';
 class TabBarCurrentScreen extends StatelessWidget {
   void _goToOrderDetails(BuildContext context) {
-    //TODO --------------
+    Navigator.push(
+      context,
+      ScaleRoute(
+        page: OrderDetailScreen(),
+      ),
+    );
   }
 
   @override

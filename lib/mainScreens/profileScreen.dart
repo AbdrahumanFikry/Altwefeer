@@ -78,24 +78,24 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ProfileItems(
-            icon: Tab(icon: new Image.asset('assets/icons/orders.png')),
+            image:  Image.asset('assets/icons/orders.png'),
             title: 'Orders',
             onTap: () => _goToOrders(context),
           ),
           ProfileItems(
-            icon: Tab(icon: new Image.asset('assets/icons/heart.png')),
+            image: Image.asset('assets/icons/heart.png'),
             title: 'Wishlist',
             onTap: () => _goToWishList(context),
             notifications:
                 Provider.of<WishList>(context).wishList.length.toString(),
           ),
           ProfileItems(
-            icon: Tab(icon: new Image.asset('assets/icons/addressBook.png')),
+            image: Image.asset('assets/icons/addressBook.png'),
             title: 'Address Book',
             onTap: () => _goToAddressBook(context),
           ),
           ProfileItems(
-            icon: Tab(icon: new Image.asset('assets/icons/payment.png')),
+            image: Image.asset('assets/icons/payment.png'),
             title: 'Payment',
             onTap: () => _goToPayment(context),
           ),
@@ -120,12 +120,12 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           ProfileItems(
-            icon: Tab(icon: new Image.asset('assets/icons/support.png')),
+            image:Image.asset('assets/icons/support.png'),
             title: 'Support',
             onTap: () => _goToSupport(context),
           ),
           ProfileItems(
-            icon: Tab(icon: new Image.asset('assets/icons/setting.png')),
+            image:Image.asset('assets/icons/setting.png'),
             title: 'Settings',
             onTap: () => _goToSettings(context),
           ),
@@ -138,7 +138,7 @@ class ProfileScreen extends StatelessWidget {
             height: 10.0,
           ),
           ProfileItems(
-            icon: Tab(icon: new Image.asset('assets/icons/signOut.png')),
+            image: Image.asset('assets/icons/signOut.png'),
             title: 'Sign out',
             onTap: () => _signOut(context),
           ),
