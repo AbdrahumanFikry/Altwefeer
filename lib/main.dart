@@ -26,10 +26,12 @@ import './mainScreens/detailScreen.dart';
 import './mainScreens/addAddressScreen.dart';
 import './mainScreens/addressBookScreen.dart';
 import './mainScreens/paymentMethodScreen.dart';
+import './Providers/support.dart';
 
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -45,6 +47,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (context) => WishList(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Support(),
         ),
       ],
       child: MaterialApp(
