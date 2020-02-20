@@ -6,11 +6,13 @@ class AddressBookItem extends StatelessWidget {
   final int index;
   final int groupValue;
   final Function onChanged;
+  final bool showOnly;
 
   AddressBookItem({
     this.index,
     this.groupValue,
     this.onChanged,
+    this.showOnly,
   });
 
   void _edit(BuildContext context) {
@@ -34,11 +36,15 @@ class AddressBookItem extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              Radio(
-                value: index,
-                groupValue: groupValue,
-                onChanged: onChanged,
-              ),
+              showOnly
+                  ? SizedBox(
+                      width: 45.0,
+                    )
+                  : Radio(
+                      value: index,
+                      groupValue: groupValue,
+                      onChanged: onChanged,
+                    ),
               Text(
                 'Mohammed Essam',
                 style: TextStyle(

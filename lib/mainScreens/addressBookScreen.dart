@@ -5,6 +5,12 @@ import '../widgets/pageRoute.dart';
 import '../widgets/addressBookItem.dart';
 
 class AddressBookScreen extends StatefulWidget {
+  final bool showOnly;
+
+  AddressBookScreen({
+    this.showOnly = false,
+  });
+
   @override
   _AddressBookScreenState createState() => _AddressBookScreenState();
 }
@@ -62,68 +68,71 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                 index: index,
                 groupValue: groupValue,
                 onChanged: onChanged,
+                showOnly: widget.showOnly,
               );
             },
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    height: 7.0,
-                    width: 20.0,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          10.0,
+          widget.showOnly
+              ? Container()
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          height: 7.0,
+                          width: 20.0,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                10.0,
+                              ),
+                            ),
+                          ),
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 2.5,
+                          ),
                         ),
-                      ),
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 2.5,
-                    ),
-                  ),
-                  Container(
-                    height: 7.0,
-                    width: 7.0,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          10.0,
+                        Container(
+                          height: 7.0,
+                          width: 7.0,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                10.0,
+                              ),
+                            ),
+                          ),
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 2.5,
+                          ),
                         ),
-                      ),
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 2.5,
-                    ),
-                  ),
-                  Container(
-                    height: 7.0,
-                    width: 7.0,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          10.0,
+                        Container(
+                          height: 7.0,
+                          width: 7.0,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                10.0,
+                              ),
+                            ),
+                          ),
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 2.5,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 2.5,
+                    GlobalButton(
+                      buttonTitle: 'Continue to payment',
+                      onTab: () => _continueToPayment(context),
                     ),
-                  ),
-                ],
-              ),
-              GlobalButton(
-                buttonTitle: 'Continue to payment',
-                onTab: () => _continueToPayment(context),
-              ),
-            ],
-          ),
+                  ],
+                ),
         ],
       ),
     );

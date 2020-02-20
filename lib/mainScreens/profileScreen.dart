@@ -30,7 +30,9 @@ class ProfileScreen extends StatelessWidget {
   void _goToAddressBook(BuildContext context) {
     Navigator.of(context).push(
       ScaleRoute(
-        page: AddressBookScreen(),
+        page: AddressBookScreen(
+          showOnly: true,
+        ),
       ),
     );
   }
@@ -83,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ProfileItems(
-            image:  Image.asset('assets/icons/orders.png'),
+            image: Image.asset('assets/icons/orders.png'),
             title: 'Orders',
             onTap: () => _goToOrders(context),
           ),
@@ -125,12 +127,12 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           ProfileItems(
-            image:Image.asset('assets/icons/support.png'),
+            image: Image.asset('assets/icons/support.png'),
             title: 'Support',
             onTap: () => _goToSupport(context),
           ),
           ProfileItems(
-            image:Image.asset('assets/icons/setting.png'),
+            image: Image.asset('assets/icons/setting.png'),
             title: 'Settings',
             onTap: () => _goToSettings(context),
           ),

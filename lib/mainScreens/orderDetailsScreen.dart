@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/widgets/placeOrderInfo.dart';
+import '../widgets/placeOrderInfo.dart';
 import '../widgets/orderDetailProducts.dart';
+
 class OrderDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.4,
         title: Text(
@@ -25,29 +27,45 @@ class OrderDetailScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 6.0,
+        ),
         children: <Widget>[
-          SizedBox(height: 10.0,),
+          SizedBox(
+            height: 10.0,
+          ),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('address',style: TextStyle(
-                  color: Colors.grey,
-                  fontFamily: 'Roboto',
-                  fontSize: 12.0,
-                ),),
-                Text('Mohamed Zayed',style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.bold,
-                ),),
+                Text(
+                  'address',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: 'Roboto',
+                    fontSize: 14.0,
+                  ),
+                ),
+                Text(
+                  'Mohamed Zayed',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Icon(Icons.outlined_flag,size: 20,),
-                    SizedBox(width: 5.0,),
+                    Icon(
+                      Icons.outlined_flag,
+                      size: 20,
+                    ),
+                    SizedBox(
+                      width: 5.0,
+                    ),
                     Expanded(
                       child: Text(
                         'Mansoura, Elgomhuria street, Elnekiby building, above dar elmaarefa library',
@@ -69,11 +87,14 @@ class OrderDetailScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('Payment',style: TextStyle(
-                  color: Colors.grey,
-                  fontFamily: 'Roboto',
-                  fontSize: 13.0,
-                ),),
+                Text(
+                  'Payment',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: 'Roboto',
+                    fontSize: 13.0,
+                  ),
+                ),
                 Text(
                   'Cash on delivery',
                   style: TextStyle(
@@ -91,16 +112,22 @@ class OrderDetailScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('Products',style: TextStyle(
-                  color: Colors.grey,
-                  fontFamily: 'Roboto',
-                  fontSize: 12.0,
-                ),),
-                Text('6 items',style: TextStyle(
-                  color: Colors.grey,
-                  fontFamily: 'Roboto',
-                  fontSize: 12.0,
-                ),),
+                Text(
+                  'Products',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: 'Roboto',
+                    fontSize: 12.0,
+                  ),
+                ),
+                Text(
+                  '2' + ' items',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: 'Roboto',
+                    fontSize: 12.0,
+                  ),
+                ),
               ],
             ),
           ),
@@ -108,26 +135,38 @@ class OrderDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.all(4.0),
             child: Row(
               children: <Widget>[
-                Text('deliverd at : ',style: TextStyle(
+                Text(
+                  'deliverd at : ',
+                  style: TextStyle(
                     color: Colors.grey,
                     fontFamily: 'Roboto',
                     fontSize: 14.0,
-                ),),
-                Text('25/10/2020',style: TextStyle(
+                  ),
+                ),
+                Text(
+                  '25/10/2020',
+                  style: TextStyle(
                       color: Colors.black,
                       fontFamily: 'Roboto',
                       fontSize: 14.0,
-                      fontWeight: FontWeight.bold
-                  ),),
-
+                      fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ),
-          OrderDetailProducts(
-            image: 'assets/images/iphoneTest.png',
-            title: 'The Scent By Hugo Boss For Men - Eau De Toilette, 50 ml',
-            prise: '450',
-            qty: '3',
+          ListView.builder(
+            itemCount: 2,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return OrderedItem(
+                image: 'assets/images/iphoneTest.png',
+                title:
+                    'The Scent By Hugo Boss For Men - Eau De Toilette, 50 ml',
+                prise: '450',
+                qty: '3',
+              );
+            },
           ),
           PlaceOrderInfo(
             title: 'Subtotal',
