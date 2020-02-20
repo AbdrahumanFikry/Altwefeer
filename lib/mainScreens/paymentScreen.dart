@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/widgets/pageRoute.dart';
+import '../mainScreens/placeOrderScreen.dart';
+import '../widgets/pageRoute.dart';
 import '../widgets/paymentData.dart';
 import '../mainScreens/paymentFormScreen.dart';
 
 class PaymentScreen extends StatelessWidget {
+  final bool showOnly;
+
+  PaymentScreen({
+    this.showOnly = false,
+  });
+
   void _addPaymentMethod(BuildContext context) {
     Navigator.of(context).push(
       ScaleRoute(
         page: PaymentFormScreen(),
+      ),
+    );
+  }
+
+  void _showDetails(BuildContext context) {
+    //TODO -------------
+  }
+
+  void _continuePayment(BuildContext context) {
+    Navigator.of(context).push(
+      FadeRoute(
+        page: PlaceOrderScreen(),
       ),
     );
   }
@@ -36,19 +55,18 @@ class PaymentScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Container(
-            //TODO ---------------------
-            height: 2 * 70.0,
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-              itemCount: 2,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return PaymentData(
-                  numberOfCard: '5423168547952333',
-                );
-              },
-            ),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: 2,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return PaymentData(
+                numberOfCard: '5423168547952333',
+                onTap: () {
+                  showOnly ? _showDetails(context) : _continuePayment(context);
+                },
+              );
+            },
           ),
           GestureDetector(
             onTap: () => _addPaymentMethod(context),

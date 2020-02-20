@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/paymentFormScreen.dart';
-import 'package:infinity/mainScreens/placeOrderScreen.dart';
-import 'package:infinity/widgets/globalButton.dart';
-import 'package:infinity/widgets/pageRoute.dart';
+import '../mainScreens/paymentScreen.dart';
+import '../mainScreens/placeOrderScreen.dart';
+import '../widgets/globalButton.dart';
+import '../widgets/pageRoute.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   @override
@@ -35,7 +35,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
     Navigator.push(
       context,
       FadeRoute(
-        page: PaymentFormScreen(),
+        page: PaymentScreen(),
       ),
     );
   }

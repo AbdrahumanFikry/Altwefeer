@@ -40,7 +40,9 @@ class ProfileScreen extends StatelessWidget {
   void _goToPayment(BuildContext context) {
     Navigator.of(context).push(
       ScaleRoute(
-        page: PaymentScreen(),
+        page: PaymentScreen(
+          showOnly: true,
+        ),
       ),
     );
   }

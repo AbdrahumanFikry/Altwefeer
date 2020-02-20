@@ -30,7 +30,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width * 0.25,
+              width: MediaQuery.of(context).size.width * 0.28,
               margin: const EdgeInsets.only(
                 left: 16.0,
               ),
@@ -91,7 +91,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
             ),
             Spacer(),
             Container(
-              width: MediaQuery.of(context).size.width * 0.68,
+              width: MediaQuery.of(context).size.width * 0.65,
               child: Padding(
                 padding: const EdgeInsets.only(
                   right: 16.0,

@@ -91,15 +91,6 @@ class SearchScreen extends SearchDelegate<String> {
         this.query = suggestion;
         this._history.add(suggestion);
         addToHistory(_history);
-//        final prefs = await SharedPreferences.getInstance();
-//        if (!prefs.containsKey('searchHistory')) {
-//          final historyData = json.encode(
-//            {
-//              'data': _history,
-//            },
-//          );
-//          prefs.setString('searchHistory', historyData);
-//        }
         showResults(context);
       },
     );
