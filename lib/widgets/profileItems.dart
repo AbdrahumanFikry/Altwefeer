@@ -16,15 +16,15 @@ class ProfileItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 10.0,
-            vertical: 13.0,
-          ),
-          child: GestureDetector(
-            onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 13.0,
+            ),
             child: Container(
               child: Row(
                 children: <Widget>[
@@ -69,8 +69,8 @@ class ProfileItems extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -61,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _signOut(BuildContext context) {
+  Future<void> _signOut(BuildContext context) async {
     //TODO ----------
   }
 
