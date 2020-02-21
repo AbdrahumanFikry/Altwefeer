@@ -16,21 +16,21 @@ class _SupportScreenState extends State<SupportScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   File _image;
   List<Widget> _messages = [
-//    MessageViewer(
-//      type: 'me',
-//      date: '12/5/2020',
-//      content: 'http-assets/images/iphoneTest.png',
-//    ),
-//    MessageViewer(
-//      type: 'else',
-//      date: '12/5/2020',
-//      content: 'Hello from the other side ',
-//    ),
-//    MessageViewer(
-//      type: 'me',
-//      date: '12/5/2020',
-//      content: 'Hello',
-//    ),
+    MessageViewer(
+      type: 'me',
+      date: '12/5/2020',
+      content: 'http-assets/images/iphoneTest.png',
+    ),
+    MessageViewer(
+      type: 'else',
+      date: '12/5/2020',
+      content: 'Hello from the other side ',
+    ),
+    MessageViewer(
+      type: 'me',
+      date: '12/5/2020',
+      content: 'Hello',
+    ),
   ];
 
   //-------------------------------- methods -----------------------------------
@@ -180,7 +180,7 @@ class _SupportScreenState extends State<SupportScreen> {
           key: _formKey,
           child: _messages.isEmpty
               ? Container(
-                  height: MediaQuery.of(context).size.height - 90,
+                  height: MediaQuery.of(context).size.height - 105,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
