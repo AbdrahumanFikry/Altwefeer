@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/splashScreen.dart';
 import './mainScreens/paymentScreen.dart';
 import './mainScreens/searchScreen.dart';
 import './mainScreens/supportScreen.dart';
@@ -54,7 +55,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: Colors.grey,
         ),
-        home: BottomNavigationScreen(),
+        home: SplashScreen(),
       ),
     );
   }
