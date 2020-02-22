@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/orderDetailsScreen.dart';
+import 'package:infinity/mainScreens/tabBarScreen.dart';
+import 'package:infinity/widgets/pageRoute.dart';
 
 class OrderPlacedSuccessfullyScreen extends StatelessWidget {
   void _trackOrder(BuildContext context) {
-    //TODO ------------
+    Navigator.of(context).push(
+      ScaleRoute(
+        page: TabBarScreen(),
+      ),
+    );
   }
   @override
   Widget build(BuildContext context) {

@@ -182,7 +182,7 @@ class WishListItem extends StatelessWidget {
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             radius: 18.0,
-                            child:Image.asset('assets/icons/delete.png'),
+                            child:Image.asset('assets/icons/delete.png',),
                           ),
                         ),
                       ),
@@ -195,7 +195,7 @@ class WishListItem extends StatelessWidget {
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             radius: 18.0,
-                            child:Image.asset('assets/icons/cart.png'),
+                            child:Image.asset('assets/icons/addToCart.png'),
                           ),
                         ),
                       ),

@@ -166,8 +166,13 @@ class _DetailScreenState extends State<DetailScreen> {
                               radius: 19.0,
                               child: cartItem.cartList.length == 0
                                   ?
-                                  Image.asset(
-                                          'assets/icons/cart.png')
+                                  GestureDetector(
+                                    onTap: (){_goToCart(context);},
+                                    child: Container(
+                                      child: Image.asset(
+                                              'assets/icons/cart.png'),
+                                    ),
+                                  )
 
                                   : IconButton(
                                       icon: Badge(

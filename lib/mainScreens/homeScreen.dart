@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               border: Border.all(
-                color: Color(0xffF0F4F9),
+                color: Colors.grey[500],
                 width: 1.0,
               ),
             ),
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   child: Icon(
                     Icons.search,
                     size: 20.0,
-                    color: Color(0xffF0F4F9),
+                    color: Colors.grey[500],
                   ),
                 ),
                 Text(

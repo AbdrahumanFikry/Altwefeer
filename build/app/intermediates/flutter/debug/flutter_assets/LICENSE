@@ -4422,6 +4422,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 --------------------------------------------------------------------------------
 charcode
+http
+http_parser
 matcher
 path
 source_span
