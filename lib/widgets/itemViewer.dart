@@ -38,7 +38,15 @@ class ItemViewer extends StatelessWidget {
         ),
       );
     } else if (!isFavourite) {
-      await Provider.of<WishList>(context, listen: false).removeItem(index);
+      await Provider.of<WishList>(context, listen: false).removeItem(
+        CartItemModel(
+          id: id,
+          name: title,
+          image: image,
+          amount: 1,
+          price: offer == '0' ? double.tryParse(price) : double.tryParse(offer),
+        ),
+      );
     }
   }
 

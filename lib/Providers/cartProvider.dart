@@ -194,10 +194,16 @@ class Cart with ChangeNotifier {
   }
 
   //------------------------------- Undo All -----------------------------------
-  Future<void> undoAll() async {
+  void undoAll() {
     _deletedItems.forEach((item) {
       addItemToCart(item);
     });
+    _deletedItems = [];
+    notifyListeners();
+  }
+
+  //----------------------------- clearCache -----------------------------------
+  void clearCache() {
     _deletedItems = [];
     notifyListeners();
   }

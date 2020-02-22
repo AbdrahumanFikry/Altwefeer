@@ -77,6 +77,7 @@ class CartScreen extends StatelessWidget {
             color: Colors.black,
           ),
           onPressed: () {
+            cart.clearCache();
             Navigator.of(context).pop();
           },
         ),
@@ -169,10 +170,8 @@ class CartScreen extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 InkWell(
-                                  onTap: () async {
-                                    await Provider.of<Cart>(context,
-                                            listen: false)
-                                        .undoAll();
+                                  onTap: () {
+                                    cart.undoAll();
                                   },
                                   child: Text(
                                     'Undo',

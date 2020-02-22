@@ -54,7 +54,17 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
       );
     } else if (!_isFavourite) {
-      await Provider.of<WishList>(context, listen: false).removeItem(index);
+      await Provider.of<WishList>(context, listen: false).removeItem(
+        CartItemModel(
+          id: widget.id,
+          name: widget.title,
+          image: widget.image,
+          amount: 1,
+          price: widget.offer != '0'
+              ? double.tryParse(widget.offer)
+              : double.tryParse(widget.price),
+        ),
+      );
     }
   }
 

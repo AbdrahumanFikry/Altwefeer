@@ -12,52 +12,12 @@ class WishListItem extends StatelessWidget {
   });
 
   void _removeFromWishList(BuildContext context, int index) async {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          'Are you sure ?',
-          style: TextStyle(color: Colors.blue),
-        ),
-        content: Text(
-          'Do you want to remove this item from WishList?',
-          style: TextStyle(
-            fontFamily: 'Roboto',
-          ),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-            child: Text(
-              'No',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-              ),
-            ),
-          ),
-          FlatButton(
-            onPressed: () async {
-              await Provider.of<WishList>(context, listen: false)
-                  .removeItem(index);
-              Navigator.of(context).pop(true);
-            },
-            child: Text(
-              'Yes',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+    await Provider.of<WishList>(context, listen: false).removeItem(item);
   }
 
   void _addToCart(BuildContext context, CartItemModel item, int index) async {
     await Provider.of<Cart>(context, listen: false).addItemToCart(item);
-    await Provider.of<WishList>(context, listen: false).removeItem(index);
+    await Provider.of<WishList>(context, listen: false).removeItem(item);
     Scaffold.of(context).hideCurrentSnackBar();
     Scaffold.of(context).showSnackBar(
       SnackBar(
@@ -182,7 +142,9 @@ class WishListItem extends StatelessWidget {
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             radius: 18.0,
-                            child:Image.asset('assets/icons/delete.png',),
+                            child: Image.asset(
+                              'assets/icons/delete.png',
+                            ),
                           ),
                         ),
                       ),
@@ -195,7 +157,7 @@ class WishListItem extends StatelessWidget {
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             radius: 18.0,
-                            child:Image.asset('assets/icons/addToCart.png'),
+                            child: Image.asset('assets/icons/addToCart.png'),
                           ),
                         ),
                       ),
