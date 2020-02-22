@@ -11,6 +11,7 @@ class OrderPlacedSuccessfullyScreen extends StatelessWidget {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +59,9 @@ class OrderPlacedSuccessfullyScreen extends StatelessWidget {
                     height: 48,
                     decoration: BoxDecoration(
                       color: Color(0xff008BFF),
-                      borderRadius: BorderRadius.circular(40.0),
+                      borderRadius: BorderRadius.circular(
+                        40.0,
+                      ),
                     ),
                     child: Center(
                       child: Text(
