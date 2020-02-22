@@ -4,7 +4,7 @@ import '../Providers/wishListProvider.dart';
 import '../models/cartItemModel.dart';
 import '../Providers/cartProvider.dart';
 
-class SubElement extends StatefulWidget {
+class SubElement extends StatelessWidget {
   final int id;
   final String title;
   final String image;
@@ -19,46 +19,31 @@ class SubElement extends StatefulWidget {
     this.offer,
   });
 
-  @override
-  _SubElementState createState() => _SubElementState();
-}
-
-class _SubElementState extends State<SubElement> {
-  //------------------------------variables------------------------------------
-  bool _isFavourite = false;
-
-  //------------------------------methods--------------------------------------
-
-  void _switchFavorite(int index) async {
-    setState(() {
-      _isFavourite = !_isFavourite;
-    });
-    if (_isFavourite) {
+  void _switchFavorite(
+      int index, BuildContext context, bool isFavourite) async {
+    isFavourite = !isFavourite;
+    if (isFavourite) {
       await Provider.of<WishList>(context, listen: false).addItemToWishList(
         CartItemModel(
-          id: widget.id,
-          name: widget.title,
-          image: widget.image,
+          id: id,
+          name: title,
+          image: image,
           amount: 1,
-          price: widget.offer == '0'
-              ? double.tryParse(widget.price)
-              : double.tryParse(widget.offer),
+          price: offer == '0' ? double.tryParse(price) : double.tryParse(offer),
         ),
       );
-    } else if (!_isFavourite) {
+    } else if (!isFavourite) {
       await Provider.of<WishList>(context, listen: false).removeItem(index);
     }
   }
 
-  void _addToCart() async {
+  void _addToCart(BuildContext context) async {
     await Provider.of<Cart>(context, listen: false).addItemToCart(
       CartItemModel(
-        id: widget.id,
-        name: widget.title,
-        price: widget.offer == '0'
-            ? double.tryParse(widget.price)
-            : double.tryParse(widget.offer),
-        image: widget.image,
+        id: id,
+        name: title,
+        price: offer == '0' ? double.tryParse(price) : double.tryParse(offer),
+        image: image,
         amount: 1,
       ),
     );
@@ -89,15 +74,13 @@ class _SubElementState extends State<SubElement> {
 
   @override
   Widget build(BuildContext context) {
-    double offerNum = double.tryParse(widget.offer);
-    double percent =
-        100 - ((double.parse(widget.offer) / double.parse(widget.price)) * 100);
+    bool _isFavourite = false;
+    double offerNum = double.tryParse(offer);
+    double percent = 100 - ((double.parse(offer) / double.parse(price)) * 100);
     final wishList = Provider.of<WishList>(context);
-    int index = wishList.wishList.indexWhere((i) => i.id == widget.id);
+    int index = wishList.wishList.indexWhere((i) => i.id == id);
     if (index != -1) {
-      setState(() {
-        _isFavourite = true;
-      });
+      _isFavourite = true;
     }
     return Container(
       height: 115.0,
@@ -181,7 +164,7 @@ class _SubElementState extends State<SubElement> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    widget.title,
+                    title,
                     style: TextStyle(
                       color: Colors.black,
                       fontFamily: 'Roboto',
@@ -195,7 +178,7 @@ class _SubElementState extends State<SubElement> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              widget.price,
+                              price,
                               style: TextStyle(
                                 fontFamily: 'Roboto',
                                 color: Colors.black,
@@ -214,7 +197,7 @@ class _SubElementState extends State<SubElement> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              widget.offer,
+                              offer,
                               style: TextStyle(
                                   fontFamily: 'Roboto',
                                   color: Colors.black,
@@ -231,7 +214,7 @@ class _SubElementState extends State<SubElement> {
                               width: 3.0,
                             ),
                             Text(
-                              widget.price,
+                              price,
                               style: TextStyle(
                                 fontFamily: 'Roboto',
                                 color: Colors.grey,
@@ -264,7 +247,8 @@ class _SubElementState extends State<SubElement> {
                       ),
                       Spacer(),
                       GestureDetector(
-                        onTap: () => _switchFavorite(index),
+                        onTap: () =>
+                            _switchFavorite(index, context, _isFavourite),
                         child: Padding(
                           padding: const EdgeInsets.all(
                             5.0,
@@ -287,7 +271,7 @@ class _SubElementState extends State<SubElement> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: _addToCart,
+                        onTap: () => _addToCart(context),
                         child: Padding(
                           padding: const EdgeInsets.all(
                             5.0,

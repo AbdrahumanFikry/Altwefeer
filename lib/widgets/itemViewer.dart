@@ -5,7 +5,7 @@ import '../Providers/wishListProvider.dart';
 import 'package:provider/provider.dart';
 import '../models/cartItemModel.dart';
 
-class ItemViewer extends StatefulWidget {
+class ItemViewer extends StatelessWidget {
   final int id;
   final String title;
   final String image;
@@ -20,47 +20,38 @@ class ItemViewer extends StatefulWidget {
     this.offer,
   });
 
-  @override
-  _ItemViewerState createState() => _ItemViewerState();
-}
-
-class _ItemViewerState extends State<ItemViewer> {
   //------------------------------variables------------------------------------
-  bool _isFavourite = false;
 
   //------------------------------methods--------------------------------------
 
-  void _switchFavorite(int index) async {
-    setState(() {
-      _isFavourite = !_isFavourite;
-    });
-    if (_isFavourite) {
+  void _switchFavorite(
+      int index, BuildContext context, bool isFavourite) async {
+    isFavourite = !isFavourite;
+    if (isFavourite) {
       await Provider.of<WishList>(context, listen: false).addItemToWishList(
         CartItemModel(
-          id: widget.id,
-          name: widget.title,
-          image: widget.image,
+          id: id,
+          name: title,
+          image: image,
           amount: 1,
-          price: widget.offer == '0'
-              ? double.tryParse(widget.price)
-              : double.tryParse(widget.offer),
+          price: offer == '0' ? double.tryParse(price) : double.tryParse(offer),
         ),
       );
-    } else if (!_isFavourite) {
+    } else if (!isFavourite) {
       await Provider.of<WishList>(context, listen: false).removeItem(index);
     }
   }
 
-  void _goToDetails() {
+  void _goToDetails(BuildContext context) {
     Navigator.push(
       context,
       ScaleRoute(
         page: DetailScreen(
-          id: widget.id,
-          title: widget.title,
-          price: widget.price,
-          image: widget.image,
-          offer: widget.offer,
+          id: id,
+          title: title,
+          price: price,
+          image: image,
+          offer: offer,
         ),
       ),
     );
@@ -68,18 +59,16 @@ class _ItemViewerState extends State<ItemViewer> {
 
   @override
   Widget build(BuildContext context) {
-    double offerNum = double.parse(widget.offer);
-    double percent =
-        100 - ((double.parse(widget.offer) / double.parse(widget.price)) * 100);
+    bool _isFavourite = false;
+    double offerNum = double.parse(offer);
+    double percent = 100 - ((double.parse(offer) / double.parse(price)) * 100);
     final wishList = Provider.of<WishList>(context);
-    int index = wishList.wishList.indexWhere((i) => i.id == widget.id);
+    int index = wishList.wishList.indexWhere((i) => i.id == id);
     if (index != -1) {
-      setState(() {
-        _isFavourite = true;
-      });
+      _isFavourite = true;
     }
     return GestureDetector(
-      onTap: _goToDetails,
+      onTap: () => _goToDetails(context),
       child: Container(
         height: 130,
         width: 130,
@@ -109,7 +98,7 @@ class _ItemViewerState extends State<ItemViewer> {
                 ),
                 image: DecorationImage(
                   image: AssetImage(
-                    widget.image,
+                    image,
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -119,7 +108,7 @@ class _ItemViewerState extends State<ItemViewer> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () => _switchFavorite(index),
+                    onTap: () => _switchFavorite(index, context, _isFavourite),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
@@ -177,7 +166,7 @@ class _ItemViewerState extends State<ItemViewer> {
               ),
             ),
             Text(
-              widget.title,
+              title,
               style: TextStyle(
                 fontFamily: 'Roboto',
                 color: Colors.black,
@@ -193,7 +182,7 @@ class _ItemViewerState extends State<ItemViewer> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        widget.price,
+                        price,
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           color: Colors.black,
@@ -212,7 +201,7 @@ class _ItemViewerState extends State<ItemViewer> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        widget.offer,
+                        offer,
                         style: TextStyle(
                             fontFamily: 'Roboto',
                             color: Colors.black,
@@ -229,7 +218,7 @@ class _ItemViewerState extends State<ItemViewer> {
                         width: 3.0,
                       ),
                       Text(
-                        widget.price,
+                        price,
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           color: Colors.grey,

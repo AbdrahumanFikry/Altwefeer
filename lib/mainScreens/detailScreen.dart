@@ -42,9 +42,7 @@ class _DetailScreenState extends State<DetailScreen> {
   //------------------------------ methods ------------------------------------
 
   void _switchFavorite(int index) async {
-    setState(() {
-      _isFavourite = !_isFavourite;
-    });
+    _isFavourite = !_isFavourite;
     if (_isFavourite) {
       await Provider.of<WishList>(context, listen: false).addItemToWishList(
         CartItemModel(
@@ -123,9 +121,7 @@ class _DetailScreenState extends State<DetailScreen> {
     final wishList = Provider.of<WishList>(context);
     int index = wishList.wishList.indexWhere((i) => i.id == widget.id);
     if (index != -1) {
-      setState(() {
-        _isFavourite = true;
-      });
+      _isFavourite = true;
     }
     return SafeArea(
       child: Scaffold(
