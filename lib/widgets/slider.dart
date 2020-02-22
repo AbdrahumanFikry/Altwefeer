@@ -21,8 +21,8 @@ class AdsSlider extends StatelessWidget {
       items: imgList.map(
         (imageTest) {
           return Container(
-            width: deviceWidth > 400
-                ? 400
+            width: deviceWidth > 512
+                ? 512
                 : MediaQuery.of(context).size.width * 0.9,
             margin: EdgeInsets.all(5.0),
             child: ClipRRect(

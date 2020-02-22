@@ -72,7 +72,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 ),
               ),
               border: Border.all(
-                color: Color(0xffF0F4F9),
+                color: Colors.grey[500],
                 width: 1.0,
               ),
             ),
@@ -83,7 +83,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   child: Icon(
                     Icons.search,
                     size: 20.0,
-                    color: Color(0xffF0F4F9),
+                    color: Colors.grey[500],
                   ),
                 ),
                 Text(
@@ -102,7 +102,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           Consumer<Cart>(
             builder: (context, cartItems, child) => IconButton(
               icon: cartItems.cartList.length == 0
-                  ?  Image.asset('assets/icons/cart.png')
+                  ? Image.asset('assets/icons/cart.png')
                   : Badge(
                       animationType: BadgeAnimationType.scale,
                       badgeColor: Colors.red,

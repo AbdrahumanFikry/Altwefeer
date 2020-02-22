@@ -13,11 +13,11 @@ class EmptyScreen extends StatelessWidget {
   });
 
   void _continueShopping(BuildContext context) {
-    Navigator.pushReplacement(
-      context,
+    Navigator.of(context).pushAndRemoveUntil(
       FadeRoute(
         page: BottomNavigationScreen(),
       ),
+      (Route<dynamic> route) => false,
     );
   }
 

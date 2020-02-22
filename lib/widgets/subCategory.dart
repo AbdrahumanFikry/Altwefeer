@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../mainScreens/CategoryElementsScreen.dart';
+import 'package:infinity/mainScreens/CategoryElementsScreen.dart';
+import 'package:infinity/mainScreens/detailScreen.dart';
 import '../widgets/pageRoute.dart';
 import '../widgets/metaSubCategoryItem.dart';
 
@@ -9,6 +10,32 @@ class SubCategory extends StatelessWidget {
   SubCategory({
     this.title,
   });
+
+  void _goToDetails(BuildContext context) {
+    Navigator.push(
+      context,
+      ScaleRoute(
+        page: DetailScreen(
+          title: 'Samsung S10+ - asdxd bvnhvn jaaa, mkcmsckmsk 50',
+          price: '5000',
+          offer: '4652',
+          image: '',
+          id: 100,
+        ),
+      ),
+    );
+  }
+
+  void _goToAll(BuildContext context) {
+    Navigator.push(
+      context,
+      ScaleRoute(
+        page: CategoryElementsScreen(
+          title: 'Make up',
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,45 +67,48 @@ class SubCategory extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          Container(
-            height: 35.0,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(
-                  5.0,
-                ),
-                topRight: Radius.circular(
-                  5.0,
+          GestureDetector(
+            onTap: () => _goToAll(context),
+            child: Container(
+              height: 35.0,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(
+                    5.0,
+                  ),
+                  topRight: Radius.circular(
+                    5.0,
+                  ),
                 ),
               ),
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: 8.0,
-            ),
-            child: Row(
-              children: <Widget>[
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Roboto',
+              padding: EdgeInsets.symmetric(
+                horizontal: 8.0,
+              ),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Roboto',
+                    ),
                   ),
-                ),
-                Spacer(),
-                Text(
-                  'All',
-                  style: TextStyle(
+                  Spacer(),
+                  Text(
+                    'All',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
                     color: Colors.blue,
-                    fontFamily: 'Roboto',
+                    size: 16.0,
                   ),
-                ),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.blue,
-                  size: 16.0,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Container(
@@ -100,15 +130,7 @@ class SubCategory extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      ScaleRoute(
-                        page: CategoryElementsScreen(
-                          title: 'Perfume',
-                        ),
-                      ),
-                    );
-                  },
+                  onTap: () => _goToDetails(context),
                   child: MetaSubCategoryItem(
                     title: 'Perfume',
                     image: 'assets/images/iphoneTest.png',

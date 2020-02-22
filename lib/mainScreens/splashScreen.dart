@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(
-      Duration(milliseconds: 500),
+      Duration(seconds: 1),
       () {
         setState(() {
           _opacity = 1.0;
@@ -37,12 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Container(
+    return Scaffold(
+      backgroundColor: Colors.blue,
+      body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: Colors.blue,
           image: DecorationImage(
             image: AssetImage(
               deviceWidth > 512

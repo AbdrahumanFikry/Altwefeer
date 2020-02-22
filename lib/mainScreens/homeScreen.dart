@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0.0,
+        elevation: 0.5,
         title: GestureDetector(
           onTap: () => _goToSearch(context),
           child: Container(
@@ -84,8 +84,7 @@ class HomeScreen extends StatelessWidget {
           Consumer<Cart>(
             builder: (context, cartItems, child) => IconButton(
               icon: cartItems.cartList.length == 0
-                  ?
-                       Image.asset('assets/icons/cart.png')
+                  ? Image.asset('assets/icons/cart.png')
                   : Badge(
                       animationType: BadgeAnimationType.scale,
                       badgeColor: Colors.red,
