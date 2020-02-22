@@ -62,9 +62,9 @@ class PaymentScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return PaymentData(
                 numberOfCard: '5423168547952333',
-                onTap: () {
-                  showOnly ? _showDetails(context) : _continuePayment(context);
-                },
+                onTap: () => showOnly
+                    ? _showDetails(context)
+                    : _continuePayment(context),
               );
             },
           ),

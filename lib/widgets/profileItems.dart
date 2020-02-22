@@ -18,58 +18,61 @@ class ProfileItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10.0,
-              vertical: 13.0,
-            ),
-            child: Container(
-              child: Row(
-                children: <Widget>[
-                  image,
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Roboto',
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10.0,
+                vertical: 13.0,
+              ),
+              child: Container(
+                child: Row(
+                  children: <Widget>[
+                    image,
+                    SizedBox(
+                      width: 20.0,
                     ),
-                  ),
-                  Spacer(),
-                  notifications != null
-                      ? notifications == '0'
-                          ? SizedBox()
-                          : Badge(
-                              elevation: 2.0,
-                              badgeContent: Padding(
-                                padding: const EdgeInsets.all(
-                                  2.0,
-                                ),
-                                child: Text(
-                                  notifications,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Roboto',
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                      ),
+                    ),
+                    Spacer(),
+                    notifications != null
+                        ? notifications == '0'
+                            ? SizedBox()
+                            : Badge(
+                                elevation: 2.0,
+                                badgeContent: Padding(
+                                  padding: const EdgeInsets.all(
+                                    2.0,
+                                  ),
+                                  child: Text(
+                                    notifications,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Roboto',
+                                    ),
                                   ),
                                 ),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 2.5,
-                                horizontal: 8.0,
-                              ),
-                            )
-                      : SizedBox(),
-                ],
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2.5,
+                                  horizontal: 8.0,
+                                ),
+                              )
+                        : SizedBox(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

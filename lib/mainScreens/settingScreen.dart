@@ -107,6 +107,7 @@ class _SettingScreenState extends State<SettingScreen> {
               GestureDetector(
                 onTap: _goToAccountInfo,
                 child: Container(
+                  color: Colors.white,
                   padding: EdgeInsets.all(
                     5.0,
                   ),
@@ -201,7 +202,11 @@ class _SettingScreenState extends State<SettingScreen> {
                                     child: CircleAvatar(
                                       backgroundColor: Colors.white,
                                       radius: 10.0,
-                                      child: Center(child: Icon(Icons.done,size: 15.0,)),
+                                      child: Center(
+                                          child: Icon(
+                                        Icons.done,
+                                        size: 15.0,
+                                      )),
                                     ),
                                   )
                                 : SizedBox(

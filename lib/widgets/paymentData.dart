@@ -16,6 +16,7 @@ class PaymentData extends StatelessWidget {
         GestureDetector(
           onTap: onTap,
           child: Container(
+            color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
