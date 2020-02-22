@@ -44,8 +44,12 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         onTap: _changeScreen,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset('assets/icons/home.png'),
-            activeIcon:  Image.asset('assets/icons/homeActive.png'),
+            icon: Image.asset(
+              'assets/icons/home.png',
+            ),
+            activeIcon: Image.asset(
+              'assets/icons/homeActive.png',
+            ),
             title: Text(
               "Home",
               style: TextStyle(
@@ -56,8 +60,12 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/icons/category.png'),
-            activeIcon:Image.asset('assets/icons/categoryActive.png'),
+            icon: Image.asset(
+              'assets/icons/category.png',
+            ),
+            activeIcon: Image.asset(
+              'assets/icons/categoryActive.png',
+            ),
             title: Text(
               "Categories",
               style: TextStyle(
@@ -68,8 +76,12 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/icons/account.png'),
-            activeIcon: Image.asset('assets/icons/accountActive.png'),
+            icon: Image.asset(
+              'assets/icons/account.png',
+            ),
+            activeIcon: Image.asset(
+              'assets/icons/accountActive.png',
+            ),
             title: Text(
               "Account",
               style: TextStyle(
