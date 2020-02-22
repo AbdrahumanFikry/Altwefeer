@@ -6,12 +6,6 @@ import './Providers/wishListProvider.dart';
 import './mainScreens/splashScreen.dart';
 
 void main() {
-  SystemChrome.setPreferredOrientations(
-    [
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitUp,
-    ],
-  );
   runApp(MyApp());
 }
 
@@ -23,6 +17,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitUp,
+      ],
+    );
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
