@@ -1,34 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/mainScreens/splashScreen.dart';
-import './mainScreens/paymentScreen.dart';
-import './mainScreens/searchScreen.dart';
-import './mainScreens/supportScreen.dart';
-import './mainScreens/tabBarScreen.dart';
-import './mainScreens/FilterScreen.dart';
-import './mainScreens/CategoryElementsScreen.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
 import './Providers/wishListProvider.dart';
-import './mainScreens/profileScreen.dart';
-import './mainScreens/settingScreen.dart';
-import './mainScreens/bottomNavigationScreen.dart';
-import './mainScreens/accountInfo.dart';
-import 'package:flutter/services.dart';
-import './mainScreens/wishListScreen.dart';
-import './mainScreens/categoriesScreen.dart';
-import './authScreens/forgotPasswordScreen.dart';
-import './mainScreens/paymentFormScreen.dart';
-import './authScreens/checkEmailScreen.dart';
-import './authScreens/loginScreen.dart';
-import './mainScreens/homeScreen.dart';
-import './mainScreens/orderPlacedSuccessfullyScreen.dart';
-import './mainScreens/placeOrderScreen.dart';
-import './mainScreens/detailScreen.dart';
-import './mainScreens/addAddressScreen.dart';
-import './mainScreens/addressBookScreen.dart';
-import './mainScreens/paymentMethodScreen.dart';
+import './mainScreens/splashScreen.dart';
 
 void main() {
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitUp,
+    ],
+  );
   runApp(MyApp());
 }
 

@@ -150,7 +150,9 @@ class _DetailSliverListState extends State<DetailSliverList> {
               ),
             ),
           ),
-          SizedBox(height: 10.0,),
+          SizedBox(
+            height: 10.0,
+          ),
           Padding(
             padding: const EdgeInsets.only(
               left: 16.0,
@@ -210,19 +212,16 @@ class _DetailSliverListState extends State<DetailSliverList> {
               ),
             ),
           ),
-          Container(
-            //TODO -------- Length ------
-            height: 3 * 42.0,
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return Features(
-                  key: ValueKey(index),
-                  feature: 'fast shipping',
-                );
-              },
-            ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return Features(
+                key: ValueKey(index),
+                feature: 'fast shipping',
+              );
+            },
           ),
           Container(
             width: MediaQuery.of(context).size.width,
@@ -272,7 +271,6 @@ class _DetailSliverListState extends State<DetailSliverList> {
             color: Color(0xffF0F4F9),
           ),
           //--------------------------- Reviews --------------------------------
-
           Container(
             child: Column(
               children: <Widget>[
@@ -295,10 +293,13 @@ class _DetailSliverListState extends State<DetailSliverList> {
                 ),
                 GestureDetector(
                   onTap: _viewMoreOrLess,
-                  child: Container(
+                  child: AnimatedContainer(
                     height: _isMore
-                        ? MediaQuery.of(context).size.height * 0.4
+                        ? MediaQuery.of(context).size.height * 0.6
                         : 220.0,
+                    duration: Duration(
+                      milliseconds: 500,
+                    ),
                     child: Column(
                       children: <Widget>[
                         Expanded(

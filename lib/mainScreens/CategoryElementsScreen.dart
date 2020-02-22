@@ -57,10 +57,7 @@ class CategoryElementsScreen extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
-              Icons.filter_list,
-              color: Colors.black,
-            ),
+            icon: Image.asset('assets/icons/filter.png'),
             onPressed: () => _filter(context),
           ),
         ],

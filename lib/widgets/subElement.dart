@@ -280,7 +280,7 @@ class _SubElementState extends State<SubElement> {
                                   )
                                 : Icon(
                                     Icons.favorite_border,
-                                    color: Colors.black,
+                                    color: Colors.grey,
                                     size: 20.0,
                                   ),
                           ),
@@ -295,11 +295,7 @@ class _SubElementState extends State<SubElement> {
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             radius: 18.0,
-                            child: Icon(
-                              Icons.add_shopping_cart,
-                              color: Colors.black,
-                              size: 20.0,
-                            ),
+                            child: Image.asset('assets/icons/addToCart.png'),
                           ),
                         ),
                       ),

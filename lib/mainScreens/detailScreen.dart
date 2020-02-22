@@ -136,115 +136,121 @@ class _DetailScreenState extends State<DetailScreen> {
                 controller: _scrollController,
                 slivers: <Widget>[
                   SliverAppBar(
-                      leading: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
+                    leading: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(
+                          8.0,
+                        ),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey[200],
+                          radius: 16.0,
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: Colors.black,
+                            size: 22.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    actions: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(
+                          8.0,
+                        ),
+                        child: Consumer<Cart>(
+                          builder: (context, cartItem, child) => CircleAvatar(
+                            backgroundColor: Colors.grey[200],
+                            radius: 19.0,
+                            child: cartItem.cartList.length == 0
+                                ? GestureDetector(
+                                    onTap: () {
+                                      _goToCart(context);
+                                    },
+                                    child: Container(
+                                      child: Image.asset(
+                                        'assets/icons/cart.png',
+                                      ),
+                                    ),
+                                  )
+                                : IconButton(
+                                    icon: Badge(
+                                      animationType: BadgeAnimationType.scale,
+                                      badgeColor: Colors.red,
+                                      shape: BadgeShape.circle,
+                                      animationDuration:
+                                          Duration(microseconds: 200),
+                                      toAnimate: true,
+                                      elevation: 5.0,
+                                      position: BadgePosition.topLeft(
+                                        left: 4.0,
+                                      ),
+                                      badgeContent: Text(
+                                        cartItem.cartList.length.toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10.0,
+                                          fontFamily: 'Roboto',
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        'assets/icons/cart.png',
+                                      ),
+                                    ),
+                                    onPressed: () => _goToCart(context),
+                                  ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => _switchFavorite(index),
                         child: Padding(
                           padding: const EdgeInsets.all(
                             8.0,
                           ),
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[200],
-                            radius: 16.0,
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: Colors.black,
-                              size: 22.0,
-                            ),
+                            radius: 18.0,
+                            child: _isFavourite
+                                ? Icon(
+                                    Icons.favorite,
+                                    color: Colors.red,
+                                    size: 20.0,
+                                  )
+                                : Icon(
+                                    Icons.favorite_border,
+                                    color: Colors.black,
+                                    size: 20.0,
+                                  ),
                           ),
                         ),
                       ),
-                      actions: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(
-                            8.0,
-                          ),
-                          child: Consumer<Cart>(
-                            builder: (context, cartItem, child) => CircleAvatar(
-                              backgroundColor: Colors.grey[200],
-                              radius: 19.0,
-                              child: cartItem.cartList.length == 0
-                                  ?
-                                  Image.asset(
-                                          'assets/icons/cart.png')
-
-                                  : IconButton(
-                                      icon: Badge(
-                                        animationType: BadgeAnimationType.scale,
-                                        badgeColor: Colors.red,
-                                        shape: BadgeShape.circle,
-                                        animationDuration:
-                                            Duration(microseconds: 200),
-                                        toAnimate: true,
-                                        elevation: 5.0,
-                                        position: BadgePosition.topLeft(
-                                          left: 4.0,
-                                        ),
-                                        badgeContent: Text(
-                                          cartItem.cartList.length.toString(),
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 10.0,
-                                            fontFamily: 'Roboto',
-                                          ),
-                                        ),
-                                        child:
-                                           Image.asset(
-                                              'assets/icons/cart.png'),
-
-                                      ),
-                                      onPressed: () => _goToCart(context),
-                                    ),
+                    ],
+                    backgroundColor: Colors.white,
+                    expandedHeight: _isAppbar ? 260.0 : 40.0,
+                    pinned: true,
+                    floating: false,
+                    flexibleSpace: _isAppbar
+                        ? FlexibleSpaceBar(
+                            collapseMode: CollapseMode.pin,
+                            centerTitle: true,
+                            background: DetailSlider(),
+                          )
+                        : FlexibleSpaceBar(
+                            collapseMode: CollapseMode.pin,
+                            centerTitle: true,
+                            title: Container(
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: Text(
+                                'Samsung S10+ - asdxd bvnhvn jaaa, mkcmsckmsk 50',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
                             ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () => _switchFavorite(index),
-                          child: Padding(
-                            padding: const EdgeInsets.all(
-                              8.0,
-                            ),
-                            child: CircleAvatar(
-                              backgroundColor: Colors.grey[200],
-                              radius: 18.0,
-                              child: _isFavourite
-                                  ? Icon(
-                                      Icons.favorite,
-                                      color: Colors.red,
-                                      size: 20.0,
-                                    )
-                                  : Icon(
-                                      Icons.favorite_border,
-                                      color: Colors.black,
-                                      size: 20.0,
-                                    ),
-                            ),
-                          ),
-                        ),
-                      ],
-                      backgroundColor: Colors.white,
-                      expandedHeight: _isAppbar ? 260.0 : 40.0,
-                      pinned: true,
-                      floating: false,
-                      flexibleSpace: _isAppbar
-                          ? FlexibleSpaceBar(
-                              collapseMode: CollapseMode.pin,
-                              centerTitle: true,
-                              background: DetailSlider(),
-                            )
-                          : FlexibleSpaceBar(
-                              collapseMode: CollapseMode.pin,
-                              centerTitle: true,
-                              title: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.4,
-                                  child: Text(
-                                    'Samsung S10+ - asdxd bvnhvn jaaa, mkcmsckmsk 50',
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                  )),
-                            )),
+                  ),
                   DetailSliverList(
                     title: 'Samsung S10+ - asdxd bvnhvn jaaa, mkcmsckmsk 50',
                     price: '5000',
