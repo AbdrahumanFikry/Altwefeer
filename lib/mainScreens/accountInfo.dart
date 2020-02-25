@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../widgets/accountInfoWidget.dart';
+import '../Providers/Auth.dart';
+import '../widgets/GlobalDialog.dart';
+import '../models/httpExceptionModel.dart';
 
 class AccountInfoScreen extends StatefulWidget {
   @override
@@ -10,7 +14,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
   //-------------------------------variables------------------------------------
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String _name, _email, _password;
-  bool _edit = false;
+  bool _edit = false, _isLoading = false;
 
   //--------------------------------methods-------------------------------------
   String nameValidator(value) {
@@ -50,14 +54,82 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
     final formData = _formKey.currentState;
     if (formData.validate()) {
       formData.save();
-      print(':::::::::::::' + _name);
-      print(':::::::::::::' + _email);
-      print(':::::::::::::' + _password);
-      //TODO ---------
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        await Provider.of<Auth>(context, listen: false)
+            .updateUserData(email: _email, password: _password, name: _name);
+        setState(() {
+          _isLoading = false;
+        });
+      } on HttpException catch (error) {
+        var errorMessage = 'check email and password and try again';
+        if (error.toString().contains('The email has already been taken.')) {
+          errorMessage = 'The email has already been taken';
+        }
+        _showErrorDialog(errorMessage);
+        setState(() {
+          _isLoading = false;
+        });
+      } catch (error) {
+        const errorMessage = 'check internet connection and try again';
+        _showErrorDialog(errorMessage);
+        setState(() {
+          _isLoading = false;
+        });
+      }
       setState(() {
         _edit = false;
       });
     }
+  }
+
+  void _showErrorDialog(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (ctx) => GlobalDialog(
+        header: 'Validation',
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              errorMessage,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+                fontFamily: 'Roboto',
+              ),
+              softWrap: true,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10.0,
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      'Ok',
+                      style: TextStyle(
+                        color: Colors.blue[800],
+                        fontSize: 18.0,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -104,42 +176,47 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                   ),
                 )
               : GestureDetector(
-            onTap: (){
-                setState(() {
-                  _edit = true;
-                });
-            },
-              child: Container(child: Image.asset('assets/icons/edit.png'))),
+                  onTap: () {
+                    setState(() {
+                      _edit = true;
+                    });
+                  },
+                  child: Container(
+                    child: Image.asset('assets/icons/edit.png'),
+                  ),
+                ),
         ],
       ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          children: <Widget>[
-            SizedBox(
-              height: 10.0,
-            ),
-            AccountInfoWidget(
-              title: 'Mohammed Esaam',
-              onSaved: onSavedName,
-              validator: nameValidator,
-              edit: _edit,
-            ),
-            AccountInfoWidget(
-              title: 'me6636366@gmail.com',
-              onSaved: onSavedEmail,
-              validator: emailValidator,
-              edit: _edit,
-            ),
-            AccountInfoWidget(
-              title: 'Change password',
-              onSaved: onSavedPassword,
-              validator: passwordValidator,
-              edit: _edit,
-              isPassword: true,
-              password: '123456789',
-            ),
-          ],
+      body: Consumer<Auth>(
+        builder: (context, auth, child) => Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              SizedBox(
+                height: 10.0,
+              ),
+              AccountInfoWidget(
+                title: auth.userData.name,
+                onSaved: onSavedName,
+                validator: nameValidator,
+                edit: _edit,
+              ),
+              AccountInfoWidget(
+                title: auth.userData.email,
+                onSaved: onSavedEmail,
+                validator: emailValidator,
+                edit: _edit,
+              ),
+              AccountInfoWidget(
+                title: 'Password (encrypted)',
+                onSaved: onSavedPassword,
+                validator: passwordValidator,
+                edit: _edit,
+                isPassword: true,
+                password: '',
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../mainScreens/splashScreen.dart';
+import '../mainScreens/bottomNavigationScreen.dart';
 import 'package:provider/provider.dart';
 import '../authScreens/forgotPasswordScreen.dart';
 import '../authScreens/SignUpScreen.dart';
@@ -24,6 +24,15 @@ class _LogInScreenState extends State<LogInScreen> {
   bool _isLoading = false;
 
   //--------------------------------methods-------------------------------------
+  void _skip() {
+    Navigator.pushReplacement(
+      context,
+      ScaleRoute(
+        page: BottomNavigationScreen(),
+      ),
+    );
+  }
+
   String emailValidator(value) {
     if (value.isEmpty || !value.contains('@')) {
       return 'Invalid email!';
@@ -72,8 +81,6 @@ class _LogInScreenState extends State<LogInScreen> {
     final formData = _formKey.currentState;
     if (formData.validate()) {
       formData.save();
-//      print(':::::::::::::' + _email);
-//      print(':::::::::::::' + _password);
       setState(() {
         _isLoading = true;
       });
@@ -83,9 +90,9 @@ class _LogInScreenState extends State<LogInScreen> {
         setState(() {
           _isLoading = false;
         });
-        Navigator.of(context).push(
+        Navigator.of(context).pushReplacement(
           FadeRoute(
-            page: SplashScreen(),
+            page: BottomNavigationScreen(),
           ),
         );
       } on HttpException catch (error) {
@@ -170,8 +177,29 @@ class _LogInScreenState extends State<LogInScreen> {
           key: _formKey,
           child: ListView(
             children: <Widget>[
-              SizedBox(
+              Container(
                 height: MediaQuery.of(context).size.height * 0.12,
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    InkWell(
+                      child: Text(
+                        'Skip',
+                        style: TextStyle(
+                          color: Colors.blue[900],
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                      onTap: _skip,
+                    ),
+                  ],
+                ),
               ),
               FaceBookSigning(
                 onTab: () {

@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../mainScreens/bottomNavigationScreen.dart';
+import 'package:infinity/Providers/Auth.dart';
+import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
+import 'package:provider/provider.dart';
+import '../authScreens/loginScreen.dart';
 import '../widgets/pageRoute.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,17 +24,24 @@ class _SplashScreenState extends State<SplashScreen> {
         });
       },
     );
-    Timer(
-      Duration(seconds: 3),
-      () {
-        Navigator.of(context).pushReplacement(
-          FadeRoute(
-            page: BottomNavigationScreen(),
-          ),
-        );
-      },
-    );
+    Timer(Duration(seconds: 3), _openApp);
     super.initState();
+  }
+
+  void _openApp() {
+    if (Provider.of<Auth>(context, listen: false).isAuth) {
+      Navigator.of(context).pushReplacement(
+        FadeRoute(
+          page: BottomNavigationScreen(),
+        ),
+      );
+    } else {
+      Navigator.of(context).pushReplacement(
+        FadeRoute(
+          page: LogInScreen(),
+        ),
+      );
+    }
   }
 
   @override
