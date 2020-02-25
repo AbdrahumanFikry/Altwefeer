@@ -9,6 +9,7 @@ import '../widgets/profileItems.dart';
 import '../Providers/wishListProvider.dart';
 import '../mainScreens/paymentScreen.dart';
 import '../mainScreens/tabBarScreen.dart';
+import '../Providers/Auth.dart';
 
 class ProfileScreen extends StatelessWidget {
   void _goToOrders(BuildContext context) {
@@ -64,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Future<void> _signOut(BuildContext context) async {
-    //TODO ----------
+    await Provider.of<Auth>(context, listen: false).logout();
   }
 
   @override

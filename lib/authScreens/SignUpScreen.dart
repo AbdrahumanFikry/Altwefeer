@@ -1,9 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:infinity/widgets/GlobalDialog.dart';
+import 'package:infinity/widgets/loader.dart';
+import 'package:provider/provider.dart';
 import '../authScreens/loginScreen.dart';
 import '../widgets/globalTextFormField.dart';
 import '../widgets/globalButton.dart';
 import '../widgets/facebookSigning.dart';
 import '../widgets/pageRoute.dart';
+import '../Providers/Auth.dart';
+import '../models/httpExceptionModel.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -14,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   //-------------------------------variables------------------------------------
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String _email, _password;
+  bool _isLoading = false;
 
   //--------------------------------methods-------------------------------------
   String emailValidator(value) {
@@ -24,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   String passwordValidator(value) {
-    if (value.isEmpty || value.length < 5) {
+    if (value.isEmpty || value.length < 6) {
       return 'password is too short!';
     }
     return null;
@@ -55,10 +63,87 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final formData = _formKey.currentState;
     if (formData.validate()) {
       formData.save();
-      print(':::::::::::::' + _email);
-      print(':::::::::::::' + _password);
-      //TODO ---------
+//      print(':::::::::::::' + _email);
+//      print(':::::::::::::' + _password);
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        await Provider.of<Auth>(context, listen: false)
+            .register(email: _email, password: _password);
+        setState(() {
+          _isLoading = false;
+        });
+      } on HttpException catch (error) {
+        var errorMessage = 'check email and password and try again';
+        if (error.toString().contains('The email has already been taken.')) {
+          errorMessage = 'The email has already been taken';
+        } else if (error
+            .toString()
+            .contains('The email must be a valid email address.')) {
+          errorMessage = 'The email must be a valid email address';
+        } else if (error.toString().contains('Done')) {
+          errorMessage = 'a verification code was sent to your email';
+        }
+        _showErrorDialog(errorMessage);
+        setState(() {
+          _isLoading = false;
+        });
+      } catch (error) {
+        const errorMessage = 'check email and password and try again';
+        _showErrorDialog(errorMessage);
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
+  }
+
+  void _showErrorDialog(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (ctx) => GlobalDialog(
+        header: 'Validation',
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              errorMessage,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+                fontFamily: 'Roboto',
+              ),
+              softWrap: true,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10.0,
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      'Ok',
+                      style: TextStyle(
+                        color: Colors.blue[800],
+                        fontSize: 18.0,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -137,13 +222,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 validator: passwordValidator,
                 isPassword: true,
               ),
-              GlobalButton(
-                buttonTitle: 'Sign Up',
-                onTab: () {
-                  FocusScope.of(context).requestFocus(new FocusNode());
-                  _signUp();
-                },
-              ),
+              _isLoading
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 10.0,
+                      ),
+                      child: Center(
+                        child: ColorLoader(),
+                      ),
+                    )
+                  : GlobalButton(
+                      buttonTitle: 'Sign Up',
+                      onTab: () {
+                        FocusScope.of(context).requestFocus(new FocusNode());
+                        _signUp();
+                      },
+                    ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.2,
               ),

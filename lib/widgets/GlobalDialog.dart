@@ -29,7 +29,7 @@ class GlobalDialog extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(vertical: 10.0),
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: Colors.blue[800],
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10.0),
                   topRight: Radius.circular(10.0),
@@ -39,7 +39,7 @@ class GlobalDialog extends StatelessWidget {
                 header,
                 style: TextStyle(
                   fontFamily: 'Roboto',
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
