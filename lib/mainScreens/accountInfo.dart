@@ -4,6 +4,7 @@ import '../widgets/accountInfoWidget.dart';
 import '../Providers/Auth.dart';
 import '../widgets/GlobalDialog.dart';
 import '../models/httpExceptionModel.dart';
+import '../widgets/EmptyScreen.dart';
 
 class AccountInfoScreen extends StatefulWidget {
   @override
@@ -134,6 +135,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<Auth>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -157,68 +159,71 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
           },
         ),
         actions: <Widget>[
-          _edit
-              ? InkWell(
-                  onTap: _update,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 15.0,
-                      horizontal: 10.0,
-                    ),
-                    child: Text(
-                      'Done',
-                      style: TextStyle(
-                        color: Color(0xffD89900),
-                        fontSize: 18.0,
-                        fontFamily: 'Roboto',
+          auth.isAuth
+              ? _edit
+                  ? InkWell(
+                      onTap: _update,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 15.0,
+                          horizontal: 10.0,
+                        ),
+                        child: Text(
+                          'Done',
+                          style: TextStyle(
+                            color: Color(0xffD89900),
+                            fontSize: 18.0,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                )
-              : GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _edit = true;
-                    });
-                  },
-                  child: Container(
-                    child: Image.asset('assets/icons/edit.png'),
-                  ),
-                ),
+                    )
+                  : GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _edit = true;
+                        });
+                      },
+                      child: Container(
+                        child: Image.asset('assets/icons/edit.png'),
+                      ),
+                    )
+              : Container(),
         ],
       ),
-      body: Consumer<Auth>(
-        builder: (context, auth, child) => Form(
-          key: _formKey,
-          child: ListView(
-            children: <Widget>[
-              SizedBox(
-                height: 10.0,
-              ),
-              AccountInfoWidget(
-                title: auth.userData.name,
-                onSaved: onSavedName,
-                validator: nameValidator,
-                edit: _edit,
-              ),
-              AccountInfoWidget(
-                title: auth.userData.email,
-                onSaved: onSavedEmail,
-                validator: emailValidator,
-                edit: _edit,
-              ),
-              AccountInfoWidget(
-                title: 'Password (encrypted)',
-                onSaved: onSavedPassword,
-                validator: passwordValidator,
-                edit: _edit,
-                isPassword: true,
-                password: '',
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: auth.isAuth
+          ? ListView(
+              children: <Widget>[
+                SizedBox(
+                  height: 10.0,
+                ),
+                AccountInfoWidget(
+                  title: auth.userData.name,
+                  onSaved: onSavedName,
+                  validator: nameValidator,
+                  edit: _edit,
+                ),
+                AccountInfoWidget(
+                  title: auth.userData.email,
+                  onSaved: onSavedEmail,
+                  validator: emailValidator,
+                  edit: _edit,
+                ),
+                AccountInfoWidget(
+                  title: 'Password (encrypted)',
+                  onSaved: onSavedPassword,
+                  validator: passwordValidator,
+                  edit: _edit,
+                  isPassword: true,
+                  password: '',
+                ),
+              ],
+            )
+          : EmptyScreen(
+              needSign: true,
+              title: 'Sign in Now!',
+              subTitle: 'you need to sign in to view this items',
+            ),
     );
   }
 }

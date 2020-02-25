@@ -268,8 +268,9 @@ class _SettingScreenState extends State<SettingScreen> {
                       onTap: _selectArabic,
                       child: Container(
                         decoration: BoxDecoration(
-                          color:
-                              selected == 'Arabic' ?  Color(0xffD89900) : Colors.grey,
+                          color: selected == 'Arabic'
+                              ? Color(0xffD89900)
+                              : Colors.grey,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         padding: const EdgeInsets.symmetric(
@@ -290,7 +291,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       child: Center(
                                           child: Icon(
                                         Icons.done,
-                                            color: Color(0xffD89900),
+                                        color: Color(0xffD89900),
                                         size: 15.0,
                                       )),
                                     ),
@@ -320,8 +321,9 @@ class _SettingScreenState extends State<SettingScreen> {
                       onTap: _selectEnglish,
                       child: Container(
                         decoration: BoxDecoration(
-                          color:
-                              selected == 'English' ? Color(0xffD89900) : Colors.grey,
+                          color: selected == 'English'
+                              ? Color(0xffD89900)
+                              : Colors.grey,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         padding: const EdgeInsets.symmetric(
@@ -371,42 +373,46 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
             ],
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _isLoading
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20.0,
-                          ),
-                          child: ColorLoader(
-                            color1: Colors.black,
-                          ),
-                        ),
-                      ],
-                    )
-                  : InkWell(
-                      onTap: _deleteAccount,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 15.0,
-                          horizontal: 10.0,
-                        ),
-                        child: Text(
-                          'Delete account',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontFamily: 'Roboto',
-                          ),
-                        ),
-                      ),
-                    ),
-            ],
+          Consumer<Auth>(
+            builder: (context, auth, child) => auth.isAuth
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _isLoading
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 20.0,
+                                  ),
+                                  child: ColorLoader(
+                                    color1: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : InkWell(
+                              onTap: _deleteAccount,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 15.0,
+                                  horizontal: 10.0,
+                                ),
+                                child: Text(
+                                  'Delete account',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontFamily: 'Roboto',
+                                  ),
+                                ),
+                              ),
+                            ),
+                    ],
+                  )
+                : Container(),
           ),
         ],
       ),

@@ -5,13 +5,16 @@ import './Providers/cartProvider.dart';
 import './Providers/wishListProvider.dart';
 import './mainScreens/splashScreen.dart';
 import './Providers/Auth.dart';
+
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
+
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {

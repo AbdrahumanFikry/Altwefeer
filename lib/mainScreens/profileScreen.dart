@@ -168,10 +168,21 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ],
             )
-          : EmptyScreen(
-              title: 'Sign in Now',
-              subTitle: 'you need to sign in to view this page',
-              needSign: true,
+          : Column(
+              children: <Widget>[
+                ProfileItems(
+                  image: Image.asset('assets/icons/heart.png'),
+                  title: 'Wishlist',
+                  onTap: () => _goToWishList(context),
+                  notifications:
+                      Provider.of<WishList>(context).wishList.length.toString(),
+                ),
+                ProfileItems(
+                  image: Image.asset('assets/icons/setting.png'),
+                  title: 'Settings',
+                  onTap: () => _goToSettings(context),
+                ),
+              ],
             ),
     );
   }

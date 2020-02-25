@@ -16,6 +16,9 @@ class Auth with ChangeNotifier {
   //------------------------------ Register ------------------------------------
   Future<void> register({String email, String password}) async {
     String userName = email.split('@')[0];
+    if (userName.length < 5) {
+      userName = 'AppUser';
+    }
     const url = 'https://erada-soft.com/Infinity/public/api/v1/oauth/register';
     try {
       var body = {
@@ -81,6 +84,7 @@ class Auth with ChangeNotifier {
         throw HttpException(message: responseData['error']['message']);
       }
     } catch (error) {
+      print('::::::::::::' + error.toString());
       throw error;
     }
   }
@@ -147,7 +151,6 @@ class Auth with ChangeNotifier {
       final Map responseData = json.decode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         userData = UserData.fromJson(responseData);
-        print('::::::' + userData.email);
         notifyListeners();
       } else {
         throw HttpException(
