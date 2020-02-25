@@ -185,7 +185,9 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                         });
                       },
                       child: Container(
-                        child: Image.asset('assets/icons/edit.png'),
+                        child: Image.asset(
+                          'assets/icons/edit.png',
+                        ),
                       ),
                     )
               : Container(),
