@@ -139,32 +139,32 @@ class ItemViewer extends StatelessWidget {
                   Spacer(),
                   offerNum > 0
                       ? Container(
-                          height: 20.0,
-                          width: 40.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(
-                                7.0,
-                              ),
-                              bottomLeft: Radius.circular(
-                                7.0,
-                              ),
-                            ),
-                            color: Color(0xffFFE1E0),
-                          ),
-                          child: Center(
-                            child: FittedBox(
-                              child: Text(
-                                '-' + percent.toString().split('.')[0] + '%',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12.0,
-                                ),
-                              ),
-                            ),
-                          ),
+//                          height: 20.0,
+//                          width: 40.0,
+//                          decoration: BoxDecoration(
+//                            borderRadius: BorderRadius.only(
+//                              topLeft: Radius.circular(
+//                                7.0,
+//                              ),
+//                              bottomLeft: Radius.circular(
+//                                7.0,
+//                              ),
+//                            ),
+//                            color: Color(0xffFFE1E0),
+//                          ),
+//                          child: Center(
+//                            child: FittedBox(
+//                              child: Text(
+//                                '-' + percent.toString().split('.')[0] + '%',
+//                                style: TextStyle(
+//                                  fontFamily: 'Roboto',
+//                                  color: Colors.red,
+//                                  fontWeight: FontWeight.bold,
+//                                  fontSize: 12.0,
+//                                ),
+//                              ),
+//                            ),
+//                          ),
                         )
                       : new Container(),
                   SizedBox(
@@ -208,36 +208,37 @@ class ItemViewer extends StatelessWidget {
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        offer,
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Colors.black,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.bold),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Icon(
-                        Icons.attach_money,
-                        color: Colors.black,
-                        size: 14.0,
-                      ),
-                      SizedBox(
-                        width: 3.0,
-                      ),
+//                      Text(
+//                        offer,
+//                        style: TextStyle(
+//                            fontFamily: 'Roboto',
+//                            color: Colors.black,
+//                            fontSize: 14.0,
+//                            fontWeight: FontWeight.bold),
+//                        overflow: TextOverflow.ellipsis,
+//                      ),
+//                      Icon(
+//                        Icons.attach_money,
+//                        color: Colors.black,
+//                        size: 14.0,
+//                      ),
+//                      SizedBox(
+//                        width: 3.0,
+//                      ),
                       Text(
                         price,
                         style: TextStyle(
                           fontFamily: 'Roboto',
-                          color: Colors.grey,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
                           fontSize: 14.0,
-                          decoration: TextDecoration.lineThrough,
+                          //decoration: TextDecoration.lineThrough,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Icon(
                         Icons.attach_money,
-                        color: Colors.grey,
+                        color: Colors.black,
                         size: 14.0,
                       ),
                     ],

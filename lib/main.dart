@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:infinity/authScreens/loginScreen.dart';
+import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
 import 'package:infinity/widgets/loader.dart';
 import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
@@ -39,7 +40,7 @@ class _MyAppState extends State<MyApp> {
       child: Consumer<Auth>(
         builder: (context, auth, _) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'infinity',
+          title: 'Eltawfeer',
           theme: ThemeData(
             primaryColor: Colors.grey,
           ),
