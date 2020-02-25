@@ -1,8 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:infinity/widgets/GlobalDialog.dart';
-import 'package:infinity/widgets/loader.dart';
+import '../widgets/GlobalDialog.dart';
+import '../widgets/loader.dart';
 import 'package:provider/provider.dart';
 import '../authScreens/loginScreen.dart';
 import '../widgets/globalTextFormField.dart';
@@ -11,6 +9,7 @@ import '../widgets/facebookSigning.dart';
 import '../widgets/pageRoute.dart';
 import '../Providers/Auth.dart';
 import '../models/httpExceptionModel.dart';
+import '../mainScreens/bottomNavigationScreen.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -24,6 +23,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isLoading = false;
 
   //--------------------------------methods-------------------------------------
+  void _skip() {
+    Navigator.pushReplacement(
+      context,
+      ScaleRoute(
+        page: BottomNavigationScreen(),
+      ),
+    );
+  }
+
   String emailValidator(value) {
     if (value.isEmpty || !value.contains('@')) {
       return 'Invalid email!';
@@ -63,8 +71,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final formData = _formKey.currentState;
     if (formData.validate()) {
       formData.save();
-//      print(':::::::::::::' + _email);
-//      print(':::::::::::::' + _password);
       setState(() {
         _isLoading = true;
       });
@@ -154,8 +160,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: _formKey,
           child: ListView(
             children: <Widget>[
-              SizedBox(
+              Container(
                 height: MediaQuery.of(context).size.height * 0.12,
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    InkWell(
+                      child: Text(
+                        'Skip',
+                        style: TextStyle(
+                          color: Colors.blue[900],
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                      onTap: _skip,
+                    ),
+                  ],
+                ),
               ),
               FaceBookSigning(
                 onTab: () {

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import '../authScreens/loginScreen.dart';
-import '../widgets/pageRoute.dart';
 
 class CheckEmailScreen extends StatelessWidget {
   void _goToLoginScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      SizeRoute(
-        page: LogInScreen(),
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => LogInScreen(),
       ),
+      (Route<dynamic> route) => false,
     );
   }
 
@@ -40,7 +39,7 @@ class CheckEmailScreen extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: 'Roboto',
-                    fontSize: 12.0,
+                    fontSize: 14.0,
                   ),
                 ),
               ),

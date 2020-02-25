@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import '../mainScreens/bottomNavigationScreen.dart';
+import '../widgets/loader.dart';
+import '../widgets/GlobalDialog.dart';
 import '../mainScreens/accountInfo.dart';
 import '../widgets/pageRoute.dart';
+import '../models/httpExceptionModel.dart';
+import 'package:provider/provider.dart';
+import '../Providers/Auth.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -9,7 +15,7 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   //----------------------------variables---------------------------------------
-  bool switchOn = true;
+  bool switchOn = true, _isLoading = false;
   String selected = 'Arabic';
 
   //-----------------------------methods----------------------------------------
@@ -49,7 +55,7 @@ class _SettingScreenState extends State<SettingScreen> {
           style: TextStyle(color: Colors.blue),
         ),
         content: Text(
-          'Do you want to delete this Account?',
+          "Once you delete your account you can't register with the same account again, anu confirmed oreders still on process",
           style: TextStyle(
             fontFamily: 'Roboto',
           ),
@@ -62,16 +68,95 @@ class _SettingScreenState extends State<SettingScreen> {
             child: Text('No'),
           ),
           FlatButton(
-            onPressed: () {
+            onPressed: () async {
               Navigator.of(context).pop(true);
-              //TODO ------------
+              setState(() {
+                _isLoading = true;
+              });
+
+              try {
+                await Provider.of<Auth>(context, listen: false)
+                    .deactivateAccount();
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => BottomNavigationScreen(),
+                  ),
+                  (Route<dynamic> route) => false,
+                );
+                setState(() {
+                  _isLoading = false;
+                });
+              } on HttpException catch (error) {
+                var errorMessage = 'error deleting this account';
+                if (error
+                    .toString()
+                    .contains('You are not authenticated for this request.')) {
+                  errorMessage = 'You are not authenticated for this request.';
+                }
+                _showErrorDialog(errorMessage);
+                setState(() {
+                  _isLoading = false;
+                });
+              } catch (error) {
+                const errorMessage = 'error deleting this account';
+                _showErrorDialog(errorMessage);
+                setState(() {
+                  _isLoading = false;
+                });
+              }
             },
             child: Text('Yes'),
           ),
         ],
       ),
     );
-    //TODO -----------------
+  }
+
+  void _showErrorDialog(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (ctx) => GlobalDialog(
+        header: 'Validation',
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              errorMessage,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+                fontFamily: 'Roboto',
+              ),
+              softWrap: true,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10.0,
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      'Ok',
+                      style: TextStyle(
+                        color: Colors.blue[800],
+                        fontSize: 18.0,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -290,23 +375,37 @@ class _SettingScreenState extends State<SettingScreen> {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              InkWell(
-                onTap: _deleteAccount,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15.0,
-                    horizontal: 10.0,
-                  ),
-                  child: Text(
-                    'Delete account',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.0,
-                      fontFamily: 'Roboto',
+              _isLoading
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 20.0,
+                          ),
+                          child: ColorLoader(
+                            color1: Colors.black,
+                          ),
+                        ),
+                      ],
+                    )
+                  : InkWell(
+                      onTap: _deleteAccount,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 15.0,
+                          horizontal: 10.0,
+                        ),
+                        child: Text(
+                          'Delete account',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
             ],
           ),
         ],
