@@ -34,6 +34,8 @@ dependencies:
   bubble: ^1.1.9+1
   http: ^0.12.0+4
   flutter_launcher_icons: ^0.7.4
+  pin_code_text_field: ^1.5.1
+
 
 dev_dependencies:
   flutter_test:
