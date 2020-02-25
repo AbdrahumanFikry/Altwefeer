@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/widgets/alertDialog.dart';
 import 'package:provider/provider.dart';
 import '../widgets/accountInfoWidget.dart';
 import '../Providers/Auth.dart';
-import '../widgets/GlobalDialog.dart';
+import '../widgets/globalDialog.dart';
 import '../models/httpExceptionModel.dart';
 import '../widgets/EmptyScreen.dart';
 
@@ -69,13 +70,13 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
         if (error.toString().contains('The email has already been taken.')) {
           errorMessage = 'The email has already been taken';
         }
-        _showErrorDialog(errorMessage);
+        GlobalAlertDialog().showErrorDialog(errorMessage, context);
         setState(() {
           _isLoading = false;
         });
       } catch (error) {
         const errorMessage = 'check internet connection and try again';
-        _showErrorDialog(errorMessage);
+        GlobalAlertDialog().showErrorDialog(errorMessage, context);
         setState(() {
           _isLoading = false;
         });
@@ -84,53 +85,6 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
         _edit = false;
       });
     }
-  }
-
-  void _showErrorDialog(String errorMessage) {
-    showDialog(
-      context: context,
-      builder: (ctx) => GlobalDialog(
-        header: 'Validation',
-        content: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              errorMessage,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16.0,
-                fontFamily: 'Roboto',
-              ),
-              softWrap: true,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10.0,
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      'Ok',
-                      style: TextStyle(
-                        color: Colors.blue[800],
-                        fontSize: 18.0,
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   @override

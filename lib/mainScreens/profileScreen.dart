@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/widgets/EmptyScreen.dart';
 import '../authScreens/loginScreen.dart';
 import '../mainScreens/addressBookScreen.dart';
 import '../mainScreens/settingScreen.dart';

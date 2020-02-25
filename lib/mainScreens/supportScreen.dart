@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../widgets/GlobalDialog.dart';
+import '../widgets/globalDialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import '../widgets/messageViewer.dart';

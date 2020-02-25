@@ -29,7 +29,7 @@ class GlobalDialog extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(vertical: 10.0),
               decoration: BoxDecoration(
-                color: Colors.blue[800],
+                color: Color(0xffD89900),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10.0),
                   topRight: Radius.circular(10.0),

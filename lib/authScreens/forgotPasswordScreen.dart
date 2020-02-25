@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/widgets/alertDialog.dart';
 import 'package:infinity/widgets/loader.dart';
 import '../widgets/globalTextFormField.dart';
 import '../widgets/globalButton.dart';
 import '../authScreens/checkEmailScreen.dart';
 import '../widgets/pageRoute.dart';
-import '../widgets/GlobalDialog.dart';
+import '../widgets/globalDialog.dart';
 import '../models/httpExceptionModel.dart';
 import '../Providers/Auth.dart';
 import 'package:provider/provider.dart';
@@ -57,65 +58,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         if (error.toString().contains('error')) {
           errorMessage = 'error sending code to this email!';
         }
-        _showErrorDialog(errorMessage);
+        GlobalAlertDialog().showErrorDialog(errorMessage, context);
         setState(() {
           _isLoading = false;
         });
       } catch (error) {
         const errorMessage = 'error sending code to this email!';
-        _showErrorDialog(errorMessage);
+        GlobalAlertDialog().showErrorDialog(errorMessage, context);
         setState(() {
           _isLoading = false;
         });
       }
     }
-  }
-
-  void _showErrorDialog(String errorMessage) {
-    showDialog(
-      context: context,
-      builder: (ctx) => GlobalDialog(
-        header: 'Validation',
-        content: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              errorMessage,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16.0,
-                fontFamily: 'Roboto',
-              ),
-              softWrap: true,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10.0,
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      'Ok',
-                      style: TextStyle(
-                        color: Colors.blue[800],
-                        fontSize: 18.0,
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   //------------------------------------build----------------------------------
