@@ -223,12 +223,12 @@ class _DetailScreenState extends State<DetailScreen> {
                                 ? Icon(
                                     Icons.favorite,
                                     color: Colors.red,
-                                    size: 20.0,
+                                    size: 30.0,
                                   )
                                 : Icon(
                                     Icons.favorite_border,
-                                    color: Colors.black,
-                                    size: 20.0,
+                                    color: Colors.black.withOpacity(0.65),
+                                    size: 30.0,
                                   ),
                           ),
                         ),
@@ -286,7 +286,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 60.0,
                           decoration: BoxDecoration(
-                            color: Color(0xffD9EEFF),
+                            color: Color(0xffD89900).withOpacity(0.10),
                             borderRadius: BorderRadius.circular(
                               100.0,
                             ),
@@ -296,7 +296,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               child: Text(
                                 'Buy Now',
                                 style: TextStyle(
-                                  color: Color(0xff008BFF),
+                                  color: Color(0xffD89900),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16.0,
                                 ),
@@ -306,13 +306,13 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                       ),
                       BottomSheetAction(
-                        buttonTitle: 'Add TO Cart',
+                        buttonTitle: 'Add to Cart',
                         onTab: _addToCart,
                         child: Container(
                           height: 42,
                           width: MediaQuery.of(context).size.width / 2 - 50.0,
                           decoration: BoxDecoration(
-                            color: Color(0xff008BFF),
+                            color: Color(0xffD89900),
                             borderRadius: BorderRadius.circular(
                               100.0,
                             ),
@@ -320,7 +320,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           child: Center(
                             child: FittedBox(
                               child: Text(
-                                'Add To Cart',
+                                'Add to Cart',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,

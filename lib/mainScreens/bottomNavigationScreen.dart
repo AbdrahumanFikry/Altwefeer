@@ -48,14 +48,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               'assets/icons/home.png',
             ),
             activeIcon: Image.asset(
-              'assets/icons/homeActive.png',
+              'assets/icons/homeActive.png',color: Color(0xffD89900),
             ),
             title: Text(
               "Home",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 0 ? Colors.black : Color(0xff008BFF),
+                color: index != 0 ? Colors.black : Color(0xffD89900),
               ),
             ),
           ),
@@ -64,14 +64,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               'assets/icons/category.png',
             ),
             activeIcon: Image.asset(
-              'assets/icons/categoryActive.png',
+              'assets/icons/categoryActive.png',color: Color(0xffD89900),
             ),
             title: Text(
               "Categories",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 1 ? Colors.black : Color(0xff008BFF),
+                color: index != 1 ? Colors.black : Color(0xffD89900),
               ),
             ),
           ),
@@ -80,14 +80,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               'assets/icons/account.png',
             ),
             activeIcon: Image.asset(
-              'assets/icons/accountActive.png',
+              'assets/icons/accountActive.png',color: Color(0xffD89900),
             ),
             title: Text(
               "Account",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 2 ? Colors.black : Color(0xff008BFF),
+                color: index != 2 ? Colors.black : Color(0xffD89900),
               ),
             ),
           ),

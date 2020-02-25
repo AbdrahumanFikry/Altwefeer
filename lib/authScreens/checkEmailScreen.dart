@@ -58,7 +58,7 @@ class CheckEmailScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: Color(0xff008BFF),
+                      color: Color(0xffD89900),
                       borderRadius: BorderRadius.circular(
                         40.0,
                       ),

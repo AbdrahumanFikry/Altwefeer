@@ -22,7 +22,7 @@ class GlobalButton extends StatelessWidget {
           height: 50,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Color(0xff008BFF),
+            color: Color(0xffD89900),
             borderRadius: BorderRadius.circular(100.0),
           ),
           child: Center(

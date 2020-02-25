@@ -84,7 +84,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                           height: 7.0,
                           width: 20.0,
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Color(0xffD89900),
                             borderRadius: BorderRadius.all(
                               Radius.circular(
                                 10.0,

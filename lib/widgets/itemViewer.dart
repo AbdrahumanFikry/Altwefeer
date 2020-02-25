@@ -130,7 +130,7 @@ class ItemViewer extends StatelessWidget {
                               )
                             : Icon(
                                 Icons.favorite_border,
-                                color: Colors.black,
+                                color: Colors.black87,
                                 size: 20.0,
                               ),
                       ),

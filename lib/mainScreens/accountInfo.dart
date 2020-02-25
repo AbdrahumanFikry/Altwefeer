@@ -96,7 +96,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                     child: Text(
                       'Done',
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: Color(0xffD89900),
                         fontSize: 18.0,
                         fontFamily: 'Roboto',
                       ),

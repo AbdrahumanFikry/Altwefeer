@@ -98,13 +98,13 @@ class SubCategory extends StatelessWidget {
                   Text(
                     'All',
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Color(0xffD89900),
                       fontFamily: 'Roboto',
                     ),
                   ),
                   Icon(
                     Icons.arrow_forward_ios,
-                    color: Colors.blue,
+                    color: Color(0xffD89900),
                     size: 16.0,
                   ),
                 ],

@@ -184,7 +184,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           color:
-                              selected == 'Arabic' ? Colors.blue : Colors.grey,
+                              selected == 'Arabic' ?  Color(0xffD89900) : Colors.grey,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         padding: const EdgeInsets.symmetric(
@@ -205,6 +205,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       child: Center(
                                           child: Icon(
                                         Icons.done,
+                                            color: Color(0xffD89900),
                                         size: 15.0,
                                       )),
                                     ),
@@ -235,7 +236,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           color:
-                              selected == 'English' ? Colors.blue : Colors.grey,
+                              selected == 'English' ? Color(0xffD89900) : Colors.grey,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         padding: const EdgeInsets.symmetric(
@@ -256,7 +257,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       child: Center(
                                         child: Icon(
                                           Icons.done,
-                                          color: Colors.blue,
+                                          color: Color(0xffD89900),
                                           size: 15.0,
                                         ),
                                       ),
