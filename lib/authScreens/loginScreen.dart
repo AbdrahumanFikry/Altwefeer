@@ -9,7 +9,7 @@ import '../widgets/globalButton.dart';
 import '../widgets/facebookSigning.dart';
 import '../widgets/pageRoute.dart';
 import '../widgets/globalDialog.dart';
-import '../Providers/Auth.dart';
+import '../Providers/authenticationProvider.dart';
 import '../models/httpExceptionModel.dart';
 import '../widgets/loader.dart';
 
@@ -155,43 +155,43 @@ class _LogInScreenState extends State<LogInScreen> {
                   ],
                 ),
               ),
-              FaceBookSigning(
-                onTab: () {
-                  FocusScope.of(context).requestFocus(new FocusNode());
-                  _facebookSignUp();
-                },
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              //----------------------------Divider-------------------------------
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    height: 1.0,
-                    color: Color(0xffCFCFCF),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      right: 8.0,
-                      left: 8.0,
-                    ),
-                    child: Text(
-                      'Or',
-                      style: TextStyle(
-                        color: Color(0xffCFCFCF),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    height: 1.0,
-                    color: Color(0xffCFCFCF),
-                  ),
-                ],
-              ),
+//              FaceBookSigning(
+//                onTab: () {
+//                  FocusScope.of(context).requestFocus(new FocusNode());
+//                  _facebookSignUp();
+//                },
+//              ),
+//              SizedBox(
+//                height: 30.0,
+//              ),
+//              //----------------------------Divider-------------------------------
+//              Row(
+//                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                children: <Widget>[
+//                  Container(
+//                    width: MediaQuery.of(context).size.width * 0.45,
+//                    height: 1.0,
+//                    color: Color(0xffCFCFCF),
+//                  ),
+//                  Padding(
+//                    padding: const EdgeInsets.only(
+//                      right: 8.0,
+//                      left: 8.0,
+//                    ),
+//                    child: Text(
+//                      'Or',
+//                      style: TextStyle(
+//                        color: Color(0xffCFCFCF),
+//                      ),
+//                    ),
+//                  ),
+//                  Container(
+//                    width: MediaQuery.of(context).size.width * 0.45,
+//                    height: 1.0,
+//                    color: Color(0xffCFCFCF),
+//                  ),
+//                ],
+//              ),
               //------------------------------------------------------------------
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.06,
@@ -206,7 +206,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
               SizedBox(
-                height: 30.0,
+                height: 105.0,
               ),
               GlobalTextFormField(
                 hintText: 'Email Address',

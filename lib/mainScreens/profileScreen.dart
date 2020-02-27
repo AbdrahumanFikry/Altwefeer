@@ -10,7 +10,7 @@ import '../widgets/profileItems.dart';
 import '../Providers/wishListProvider.dart';
 import '../mainScreens/paymentScreen.dart';
 import '../mainScreens/tabBarScreen.dart';
-import '../Providers/Auth.dart';
+import '../Providers/authenticationProvider.dart';
 
 class ProfileScreen extends StatelessWidget {
   void _goToOrders(BuildContext context) {

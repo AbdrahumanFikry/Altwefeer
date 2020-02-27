@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:infinity/Providers/categoriesProvider.dart';
 import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
 import './Providers/wishListProvider.dart';
 import './mainScreens/splashScreen.dart';
-import './Providers/Auth.dart';
+import './Providers/authenticationProvider.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,6 +35,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (context) => Auth(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CategoriesProvider(),
         ),
       ],
       child: Consumer<Auth>(

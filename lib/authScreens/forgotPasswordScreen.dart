@@ -7,7 +7,7 @@ import '../authScreens/checkEmailScreen.dart';
 import '../widgets/pageRoute.dart';
 import '../widgets/globalDialog.dart';
 import '../models/httpExceptionModel.dart';
-import '../Providers/Auth.dart';
+import '../Providers/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {

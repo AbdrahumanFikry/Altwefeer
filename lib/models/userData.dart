@@ -1,17 +1,17 @@
 class UserData {
   int id;
-  String name;
   String email;
+  String phone;
 
   UserData({
     this.id,
-    this.name,
     this.email,
+    this.phone,
   });
 
   UserData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
-    email = json['email'];
+    email = json['email'] == null ? 'error fetching email' : json['email'];
+    phone = json['phone'] == null ? 'error fetching phone' : json['phone'];
   }
 }

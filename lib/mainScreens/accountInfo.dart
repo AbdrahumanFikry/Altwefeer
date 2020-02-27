@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/authScreens/loginScreen.dart';
 import 'package:infinity/widgets/alertDialog.dart';
+import 'package:infinity/widgets/loader.dart';
+import 'package:infinity/widgets/pageRoute.dart';
 import 'package:provider/provider.dart';
 import '../widgets/accountInfoWidget.dart';
-import '../Providers/Auth.dart';
-import '../widgets/globalDialog.dart';
+import '../Providers/authenticationProvider.dart';
 import '../models/httpExceptionModel.dart';
 import '../widgets/EmptyScreen.dart';
 
@@ -15,11 +17,11 @@ class AccountInfoScreen extends StatefulWidget {
 class _AccountInfoScreenState extends State<AccountInfoScreen> {
   //-------------------------------variables------------------------------------
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  String _name, _email, _password;
+  String _oldPhone, _oldEmail, _phoneNumber, _email, _password;
   bool _edit = false, _isLoading = false;
 
   //--------------------------------methods-------------------------------------
-  String nameValidator(value) {
+  String phoneValidator(value) {
     if (value.isEmpty) {
       return 'This field is required!';
     }
@@ -40,16 +42,33 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
     return null;
   }
 
-  void onSavedName(value) {
-    _name = value;
+  void onSavedPhone(value) {
+    if (value == _oldPhone) {
+      _phoneNumber = null;
+    } else {
+      _phoneNumber = value;
+    }
   }
 
   void onSavedEmail(value) {
-    _email = value;
+    if (value == _oldEmail) {
+      _email = null;
+    } else {
+      _email = value;
+    }
   }
 
   void onSavedPassword(value) {
     _password = value;
+  }
+
+  void edit() {
+    GlobalAlertDialog().showErrorDialog(
+        'if you changed your email,\nyou will be signed out until you verify the new email',
+        context);
+    setState(() {
+      _edit = true;
+    });
   }
 
   Future<void> _update() async {
@@ -60,8 +79,8 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
         _isLoading = true;
       });
       try {
-        await Provider.of<Auth>(context, listen: false)
-            .updateUserData(email: _email, password: _password, name: _name);
+        await Provider.of<Auth>(context, listen: false).updateUserData(
+            email: _email, password: _password, phone: _phoneNumber);
         setState(() {
           _isLoading = false;
         });
@@ -69,8 +88,17 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
         var errorMessage = 'check email and password and try again';
         if (error.toString().contains('The email has already been taken.')) {
           errorMessage = 'The email has already been taken';
+          GlobalAlertDialog().showErrorDialog(errorMessage, context);
+        } else if (error.toString().contains('email updated')) {
+          errorMessage = 'The email has already been taken';
+          GlobalAlertDialog().showErrorDialog(errorMessage, context);
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => LogInScreen(),
+            ),
+            (Route<dynamic> route) => false,
+          );
         }
-        GlobalAlertDialog().showErrorDialog(errorMessage, context);
         setState(() {
           _isLoading = false;
         });
@@ -90,6 +118,8 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<Auth>(context, listen: false);
+    _oldEmail = auth.userData.email;
+    _oldPhone = auth.userData.phone;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -115,29 +145,27 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
         actions: <Widget>[
           auth.isAuth
               ? _edit
-                  ? InkWell(
-                      onTap: _update,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 15.0,
-                          horizontal: 10.0,
-                        ),
-                        child: Text(
-                          'Done',
-                          style: TextStyle(
-                            color: Color(0xffD89900),
-                            fontSize: 18.0,
-                            fontFamily: 'Roboto',
+                  ? _isLoading
+                      ? LineLoader()
+                      : InkWell(
+                          onTap: _update,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 15.0,
+                              horizontal: 10.0,
+                            ),
+                            child: Text(
+                              'Done',
+                              style: TextStyle(
+                                color: Color(0xffD89900),
+                                fontSize: 18.0,
+                                fontFamily: 'Roboto',
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    )
+                        )
                   : GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _edit = true;
-                        });
-                      },
+                      onTap: edit,
                       child: Container(
                         child: Image.asset(
                           'assets/icons/edit.png',
@@ -148,32 +176,35 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
         ],
       ),
       body: auth.isAuth
-          ? ListView(
-              children: <Widget>[
-                SizedBox(
-                  height: 10.0,
-                ),
-                AccountInfoWidget(
-                  title: auth.userData.name,
-                  onSaved: onSavedName,
-                  validator: nameValidator,
-                  edit: _edit,
-                ),
-                AccountInfoWidget(
-                  title: auth.userData.email,
-                  onSaved: onSavedEmail,
-                  validator: emailValidator,
-                  edit: _edit,
-                ),
-                AccountInfoWidget(
-                  title: 'Password (encrypted)',
-                  onSaved: onSavedPassword,
-                  validator: passwordValidator,
-                  edit: _edit,
-                  isPassword: true,
-                  password: '',
-                ),
-              ],
+          ? Form(
+              key: _formKey,
+              child: ListView(
+                children: <Widget>[
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  AccountInfoWidget(
+                    title: auth.userData.phone,
+                    onSaved: onSavedPhone,
+                    validator: phoneValidator,
+                    edit: _edit,
+                  ),
+                  AccountInfoWidget(
+                    title: auth.userData.email,
+                    onSaved: onSavedEmail,
+                    validator: emailValidator,
+                    edit: _edit,
+                  ),
+                  AccountInfoWidget(
+                    title: 'Password (encrypted)',
+                    onSaved: onSavedPassword,
+                    validator: passwordValidator,
+                    edit: _edit,
+                    isPassword: true,
+                    password: '',
+                  ),
+                ],
+              ),
             )
           : EmptyScreen(
               needSign: true,

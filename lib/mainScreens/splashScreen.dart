@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:infinity/Providers/Auth.dart';
+import 'package:infinity/Providers/authenticationProvider.dart';
 import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
 import 'package:provider/provider.dart';
 import '../authScreens/loginScreen.dart';

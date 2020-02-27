@@ -14,18 +14,15 @@ class Auth with ChangeNotifier {
   }
 
   //------------------------------ Register ------------------------------------
-  Future<void> register({String email, String password}) async {
-    String userName = email.split('@')[0];
-    if (userName.length < 5) {
-      userName = 'AppUser';
-    }
+  Future<void> register(
+      {String email, String password, String phoneNumber}) async {
     const url = 'https://erada-soft.com/Infinity/public/api/v1/oauth/register';
     try {
       var body = {
         'password': password,
-        'name': userName,
         'password_confirmation': password,
         'email': email,
+        'phone': phoneNumber,
       };
 
       Map<String, String> headers = {
@@ -42,7 +39,13 @@ class Auth with ChangeNotifier {
         throw HttpException(message: 'Done');
       } else {
         throw HttpException(
-            message: responseData['error']['fields']['email'][0]);
+            message: responseData['error']['fields']
+                    .toString()
+                    .contains('email:')
+                ? responseData['error']['fields']['email'][0]
+                : responseData['error']['fields'].toString().contains('phone:')
+                    ? responseData['error']['fields']['phone'][0]
+                    : responseData['error']['message']);
       }
     } catch (error) {
       throw error;
@@ -84,7 +87,6 @@ class Auth with ChangeNotifier {
         throw HttpException(message: responseData['error']['message']);
       }
     } catch (error) {
-      print('::::::::::::' + error.toString());
       throw error;
     }
   }
@@ -163,14 +165,25 @@ class Auth with ChangeNotifier {
 
   //--------------------------- Update User Data -------------------------------
   Future<void> updateUserData(
-      {String email, String password, String name}) async {
+      {String email, String password, String phone}) async {
     const url = 'https://erada-soft.com/Infinity/public/api/v1/profile';
     try {
-      var body = {
-        'name': name,
-        'password': password,
-        'email': email,
-      };
+      var body;
+      if (email == null && phone != null) {
+        body = {
+          'phone': phone,
+          'password': password,
+        };
+      } else if (phone == null && email != null) {
+        body = {
+          'password': password,
+          'email': email,
+        };
+      } else {
+        body = {
+          'password': password,
+        };
+      }
 
       Map<String, String> headers = {
         'Accept': 'application/json',
@@ -184,8 +197,12 @@ class Auth with ChangeNotifier {
       );
       final Map responseData = json.decode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {
-        print('::::::::::::::' + responseData.toString());
-        fetchUserData();
+        if (responseData.containsKey('email')) {
+          fetchUserData();
+          throw HttpException(message: responseData['email']);
+        } else {
+          fetchUserData();
+        }
         notifyListeners();
       } else {
         throw HttpException(message: responseData['error']['fields']['email']);

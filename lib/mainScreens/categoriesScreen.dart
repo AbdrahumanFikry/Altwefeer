@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/widgets/categoriesShimmer.dart';
+import 'package:infinity/widgets/loader.dart';
 import '../widgets/subCategorySelector.dart';
 import '../widgets/subCategory.dart';
 import '../widgets/pageRoute.dart';
@@ -8,6 +10,8 @@ import '../mainScreens/cartScreen.dart';
 import 'package:badges/badges.dart';
 import '../widgets/animatedList.dart';
 import '../mainScreens/searchScreen.dart';
+import '../Providers/categoriesProvider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -54,7 +58,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Cart>(context, listen: false).fetchData();
+//    Provider.of<Cart>(context, listen: false).fetchData();
+    final categories = Provider.of<CategoriesProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -122,50 +127,87 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           fontFamily: 'Roboto',
                         ),
                       ),
-                      child:
-                          Tab(icon: new Image.asset('assets/icons/cart.png')),
+                      child: Tab(
+                        icon: new Image.asset(
+                          'assets/icons/cart.png',
+                        ),
+                      ),
                     ),
               onPressed: () => _goToCart(context),
             ),
           ),
         ],
       ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            color: Colors.white,
-            width: MediaQuery.of(context).size.width * 0.30,
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => _select(index),
-                  child: SubCategorySelector(
-                    title: 'Accessories',
-                    selected: _selected,
-                    index: index,
+      body: FutureBuilder(
+        future: categories.categories == null
+            ? Provider.of<CategoriesProvider>(context, listen: false)
+                .fetchCategories()
+            : null,
+        builder: (context, dataSnapShot) {
+          if (dataSnapShot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: ColorLoader(),
+            );
+          } else {
+            if (dataSnapShot.error != null) {
+              return Center(
+                child: Text(
+                  'Check internet connection!',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                    fontSize: 18.0,
+                    fontFamily: 'Roboto',
                   ),
-                );
-              },
-            ),
-          ),
-          Expanded(
-            child: Container(
-              color: Colors.grey[400],
-              child: ListViewEffect(
-                duration: _duration,
-                children: _categories
-                    .map(
-                      (item) => SubCategory(
-                        title: 'Make up',
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
-          ),
-        ],
+                ),
+              );
+            }
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width * 0.30,
+                  child: ListView.builder(
+                    itemCount: categories.categories.data.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () => _select(index),
+                        child: SubCategorySelector(
+                          title: categories.categories.data[index].name,
+                          selected: _selected,
+                          index: index,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+//                Expanded(
+//                  child: Shimmer.fromColors(
+//                    baseColor: Colors.grey[300],
+//                    highlightColor: Colors.grey[100],
+//                    enabled: true,
+//                    child: CategoriesShimmer(),
+//                  ),
+//                ),
+                Expanded(
+                  child: Container(
+                    color: Colors.grey[400],
+                    child: ListViewEffect(
+                      duration: _duration,
+                      children: _categories
+                          .map(
+                            (item) => SubCategory(
+                              title: 'Make up',
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }
+        },
       ),
     );
   }

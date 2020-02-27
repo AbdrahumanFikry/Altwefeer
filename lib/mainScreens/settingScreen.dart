@@ -7,7 +7,7 @@ import '../mainScreens/accountInfo.dart';
 import '../widgets/pageRoute.dart';
 import '../models/httpExceptionModel.dart';
 import 'package:provider/provider.dart';
-import '../Providers/Auth.dart';
+import '../Providers/authenticationProvider.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -56,7 +56,7 @@ class _SettingScreenState extends State<SettingScreen> {
           style: TextStyle(color: Colors.blue),
         ),
         content: Text(
-          "Once you delete your account you can't register with the same account again, anu confirmed oreders still on process",
+          "Do you want to delete your account",
           style: TextStyle(
             fontFamily: 'Roboto',
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/widgets/alertDialog.dart';
+import 'package:infinity/widgets/phoneNumberInput.dart';
 import '../widgets/globalDialog.dart';
 import '../widgets/loader.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,7 @@ import '../widgets/globalTextFormField.dart';
 import '../widgets/globalButton.dart';
 import '../widgets/facebookSigning.dart';
 import '../widgets/pageRoute.dart';
-import '../Providers/Auth.dart';
+import '../Providers/authenticationProvider.dart';
 import '../models/httpExceptionModel.dart';
 import '../mainScreens/bottomNavigationScreen.dart';
 
@@ -20,7 +21,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   //-------------------------------variables------------------------------------
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  String _email, _password;
+  String _email, _password, _phoneNumber, _code = '+20';
   bool _isLoading = false;
 
   //--------------------------------methods-------------------------------------
@@ -40,6 +41,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return null;
   }
 
+  String phoneNumberValidator(value) {
+    if (value.length == 0) {
+      return 'This field is required!';
+    } else if (value.length < 9) {
+      return 'number must greter than 9 numbers';
+    }
+    return null;
+  }
+
   String passwordValidator(value) {
     if (value.isEmpty || value.length < 6) {
       return 'password is too short!';
@@ -53,6 +63,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void onSavedPassword(value) {
     _password = value;
+  }
+
+  void onCodeChanged(value) {
+    setState(() {
+      _code = value;
+    });
+    FocusScope.of(context).requestFocus(new FocusNode());
+  }
+
+  void onSavedPhone(value) {
+    _phoneNumber = value;
   }
 
   void _facebookSignUp() {
@@ -76,8 +97,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _isLoading = true;
       });
       try {
-        await Provider.of<Auth>(context, listen: false)
-            .register(email: _email, password: _password);
+        await Provider.of<Auth>(context, listen: false).register(
+            email: _email,
+            password: _password,
+            phoneNumber: _code + _phoneNumber);
         setState(() {
           _isLoading = false;
         });
@@ -91,6 +114,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           errorMessage = 'The email must be a valid email address';
         } else if (error.toString().contains('Done')) {
           errorMessage = 'a verification code was sent to your email';
+        } else if (error
+            .toString()
+            .contains('The phone has already been taken.')) {
+          errorMessage = 'The phone has already been taken';
         }
         GlobalAlertDialog().showErrorDialog(errorMessage, context);
         setState(() {
@@ -138,43 +165,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               ),
-              FaceBookSigning(
-                onTab: () {
-                  FocusScope.of(context).requestFocus(new FocusNode());
-                  _facebookSignUp();
-                },
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              //----------------------------Divider-------------------------------
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    height: 1.0,
-                    color: Color(0xffCFCFCF),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      right: 8.0,
-                      left: 8.0,
-                    ),
-                    child: Text(
-                      'Or',
-                      style: TextStyle(
-                        color: Color(0xffCFCFCF),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    height: 1.0,
-                    color: Color(0xffCFCFCF),
-                  ),
-                ],
-              ),
+//              FaceBookSigning(
+//                onTab: () {
+//                  FocusScope.of(context).requestFocus(new FocusNode());
+//                  _facebookSignUp();
+//                },
+//              ),
+//              SizedBox(
+//                height: 30.0,
+//              ),
+//              //----------------------------Divider-------------------------------
+//              Row(
+//                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                children: <Widget>[
+//                  Container(
+//                    width: MediaQuery.of(context).size.width * 0.45,
+//                    height: 1.0,
+//                    color: Color(0xffCFCFCF),
+//                  ),
+//                  Padding(
+//                    padding: const EdgeInsets.only(
+//                      right: 8.0,
+//                      left: 8.0,
+//                    ),
+//                    child: Text(
+//                      'Or',
+//                      style: TextStyle(
+//                        color: Color(0xffCFCFCF),
+//                      ),
+//                    ),
+//                  ),
+//                  Container(
+//                    width: MediaQuery.of(context).size.width * 0.45,
+//                    height: 1.0,
+//                    color: Color(0xffCFCFCF),
+//                  ),
+//                ],
+//              ),
               //------------------------------------------------------------------
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.06,
@@ -190,6 +217,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(
                 height: 30.0,
+              ),
+              PhoneNumberInput(
+                onChanged: onCodeChanged,
+                validator: phoneNumberValidator,
+                onSaved: onSavedPhone,
+                code: _code,
+                codes: [
+                  '+20',
+                  '+966',
+                  '+951',
+                ],
               ),
               GlobalTextFormField(
                 hintText: 'Email Address',
