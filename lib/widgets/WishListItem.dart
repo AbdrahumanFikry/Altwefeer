@@ -76,7 +76,7 @@ class WishListItem extends StatelessWidget {
                 ),
               ),
               image: DecorationImage(
-                image: AssetImage(
+                image: NetworkImage(
                   item.image,
                 ),
                 fit: BoxFit.cover,

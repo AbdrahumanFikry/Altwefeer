@@ -100,7 +100,7 @@ class ItemViewer extends StatelessWidget {
                 ),
                 image: DecorationImage(
                   image: NetworkImage(
-                    images[0].path,
+                    images[0].path == null ? '' : images[0].path,
                   ),
                   fit: BoxFit.cover,
                 ),

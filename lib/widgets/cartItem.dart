@@ -97,7 +97,7 @@ class CartItem extends StatelessWidget {
                   ),
                 ),
                 image: DecorationImage(
-                  image: AssetImage(
+                  image: NetworkImage(
                     item.image,
                   ),
                   fit: BoxFit.cover,
@@ -174,10 +174,9 @@ class CartItem extends StatelessWidget {
                               Spacer(),
                             ],
                           ),
-                             IncrementalWidget(
-                              item: item,
-                            ),
-
+                          IncrementalWidget(
+                            item: item,
+                          ),
                         ],
                       )
                     : Column(
