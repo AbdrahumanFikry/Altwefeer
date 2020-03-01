@@ -84,7 +84,7 @@ class SubElement extends StatelessWidget {
   Widget build(BuildContext context) {
     bool _isFavourite = false;
     double offerNum = double.tryParse(offer);
-    double percent = 100 - ((double.parse(offer) / double.parse(price)) * 100);
+//    double percent = 100 - ((double.parse(offer) / double.parse(price)) * 100);
     final wishList = Provider.of<WishList>(context);
     int index = wishList.wishList.indexWhere((i) => i.id == id);
     if (index != -1) {
@@ -119,8 +119,8 @@ class SubElement extends StatelessWidget {
                 ),
               ),
               image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/iphoneTest.png',
+                image: NetworkImage(
+                  image,
                 ),
                 fit: BoxFit.cover,
               ),
@@ -129,8 +129,8 @@ class SubElement extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                offerNum > 0
-                    ? Container(
+//                offerNum > 0
+//                    ? Container(
 //                        height: 20.0,
 //                        width: 40.0,
 //                        decoration: BoxDecoration(
@@ -157,8 +157,8 @@ class SubElement extends StatelessWidget {
 //                            ),
 //                          ),
 //                        ),
-                      )
-                    : new Container(),
+//                        )
+//                    : new Container(),
                 SizedBox(
                   height: 10.0,
                 ),
@@ -181,29 +181,30 @@ class SubElement extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
                   ),
-                  offerNum == 0
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              price,
-                              style: TextStyle(
-                                fontFamily: 'Roboto',
-                                color: Colors.black,
-                                fontSize: 12.0,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Icon(
-                              Icons.attach_money,
-                              color: Colors.black,
-                              size: 12.0,
-                            ),
-                          ],
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
+//                  offerNum == 0
+//                      ?
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        price,
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          color: Colors.black,
+                          fontSize: 12.0,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Icon(
+                        Icons.attach_money,
+                        color: Colors.black,
+                        size: 12.0,
+                      ),
+                    ],
+                  ),
+//                      : Row(
+//                          mainAxisAlignment: MainAxisAlignment.start,
+//                          children: <Widget>[
 //                            Text(
 //                              offer,
 //                              style: TextStyle(
@@ -221,24 +222,24 @@ class SubElement extends StatelessWidget {
 //                            SizedBox(
 //                              width: 3.0,
 //                            ),
-                            Text(
-                              price,
-                              style: TextStyle(
-                                fontFamily: 'Roboto',
-                                color: Colors.black,
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold
-                                //decoration: TextDecoration.lineThrough,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Icon(
-                              Icons.attach_money,
-                              color: Colors.black,
-                              size: 14.0,
-                            ),
-                          ],
-                        ),
+//                            Text(
+//                              price,
+//                              style: TextStyle(
+//                                  fontFamily: 'Roboto',
+//                                  color: Colors.black,
+//                                  fontSize: 14.0,
+//                                  fontWeight: FontWeight.bold
+//                                  //decoration: TextDecoration.lineThrough,
+//                                  ),
+//                              overflow: TextOverflow.ellipsis,
+//                            ),
+//                            Icon(
+//                              Icons.attach_money,
+//                              color: Colors.black,
+//                              size: 14.0,
+//                            ),
+//                          ],
+//                        ),
                   Row(
                     children: <Widget>[
                       Icon(
@@ -288,7 +289,9 @@ class SubElement extends StatelessWidget {
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             radius: 18.0,
-                            child: Image.asset('assets/icons/addToCart.png'),
+                            child: Image.asset(
+                              'assets/icons/addToCart.png',
+                            ),
                           ),
                         ),
                       ),

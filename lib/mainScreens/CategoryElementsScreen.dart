@@ -22,8 +22,7 @@ class CategoryElementsScreen extends StatelessWidget {
     );
   }
 
-  void _goToDetailsScreen(BuildContext context, int id, String title,
-      String price, String image, String offer) {
+  void _goToDetailsScreen(BuildContext context, int id) {
     Navigator.of(context).push(
       ScaleRoute(
         page: DetailScreen(
@@ -56,29 +55,27 @@ class CategoryElementsScreen extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Image.asset('assets/icons/filter.png'),
+            icon: Image.asset(
+              'assets/icons/filter.png',
+            ),
             onPressed: () => _filter(context),
           ),
         ],
       ),
       body: ListView.builder(
-        itemCount: 2,
+        itemCount: allItems.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => _goToDetailsScreen(
-                context,
-                index,
-                'Apple Iphone X With Facetime - 64 GB, 4G LTE, Space Grey ',
-                '5000',
-                'assets/images/iphoneTest.png',
-                '4200'),
+              context,
+              allItems[index].id,
+            ),
             child: SubElement(
-              id: index,
-              title:
-                  'Apple Iphone X With Facetime - 64 GB, 4G LTE, Space Grey ',
-              price: '5000',
-              image: 'assets/images/iphoneTest.png',
-              offer: '4200',
+              id: allItems[index].id,
+              title: allItems[index].name,
+              price: allItems[index].price.toString(),
+              image: allItems[index].images[0].path,
+              offer: '0',
             ),
           );
         },
