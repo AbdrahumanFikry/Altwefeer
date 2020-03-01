@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/models/singleCategory.dart';
 import '../mainScreens/FilterScreen.dart';
 import '../mainScreens/detailScreen.dart';
 import '../widgets/pageRoute.dart';
@@ -6,9 +7,11 @@ import '../widgets/subElement.dart';
 
 class CategoryElementsScreen extends StatelessWidget {
   final String title;
+  final List<Products> allItems;
 
   CategoryElementsScreen({
     this.title,
+    this.allItems,
   });
 
   void _filter(BuildContext context) {
@@ -25,10 +28,6 @@ class CategoryElementsScreen extends StatelessWidget {
       ScaleRoute(
         page: DetailScreen(
           id: id,
-          title: title,
-          price: price,
-          image: image,
-          offer: offer,
         ),
       ),
     );

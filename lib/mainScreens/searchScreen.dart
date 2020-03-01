@@ -1,36 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/mainScreens/detailScreen.dart';
+import 'package:infinity/widgets/pageRoute.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import '../Providers/productsProvider.dart';
+import '../Providers/categoriesProvider.dart';
 
 class SearchScreen extends SearchDelegate<String> {
   final List<String> _words;
-  List<String> _history = [];
+//  List<String> _history = [];
 
-  void addToHistory(List<String> history) async {
-    final prefs = await SharedPreferences.getInstance();
-    if (!prefs.containsKey('searchHistory')) {
-      final historyData = json.encode(
-        {
-          'data': history,
-        },
-      );
-      prefs.setString('searchHistory', historyData);
-    }
+//  Future<void> addToHistory(List<String> history) async {
+//    print('::::::::::::::: start :::::::::::::::::');
+//    print('::::::::' + _history.length.toString());
+//    final prefs = await SharedPreferences.getInstance();
+//    if (!prefs.containsKey('searchHistory')) {
+//      final historyData = json.encode(
+//        {
+//          'data': history,
+//        },
+//      );
+//      await prefs.setString('searchHistory', historyData);
+//    }
+//  }
+
+  void done(String suggestion, BuildContext context) {
+    int id;
+    Provider.of<ProductsProvider>(context, listen: false)
+        .products
+        .sections
+        .forEach(
+      (section) {
+        section.src.forEach(
+          (product) {
+            if (product.name == suggestion) {
+              id = product.id;
+            }
+          },
+        );
+      },
+    );
+    Navigator.of(context).push(
+      FadeRoute(
+        page: DetailScreen(
+          id: id,
+        ),
+      ),
+    );
   }
 
-  void fetchHistory() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (!prefs.containsKey('searchHistory')) {
-      return null;
-    }
-    final responseData =
-        json.decode(prefs.getString('searchHistory')) as Map<String, dynamic>;
-    final List<String> loadedItems = [];
-    responseData['data'].forEach((itemData) {
-      loadedItems.add(itemData);
-    });
-    _history = loadedItems;
-  }
+//  void fetchHistory() async {
+//    final prefs = await SharedPreferences.getInstance();
+//    if (!prefs.containsKey('searchHistory')) {
+//      return null;
+//    }
+//    final responseData =
+//        json.decode(prefs.getString('searchHistory')) as Map<String, dynamic>;
+//    final List<String> loadedItems = [];
+//    responseData['data'].forEach((itemData) {
+//      loadedItems.add(itemData);
+//    });
+//    _history = loadedItems;
+//  }
 
   SearchScreen(List<String> words)
       : _words = words,
@@ -38,7 +70,7 @@ class SearchScreen extends SearchDelegate<String> {
 
   @override
   Widget buildLeading(BuildContext context) {
-    fetchHistory();
+//    fetchHistory();
     return IconButton(
       tooltip: 'Back',
       icon: AnimatedIcon(
@@ -56,32 +88,69 @@ class SearchScreen extends SearchDelegate<String> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text('You have selected the word:'),
-            GestureDetector(
-              onTap: () {
-                this.close(context, this.query);
-              },
-              child: Text(
-                this.query,
-                style: Theme.of(context)
-                    .textTheme
-                    .display1
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
-        ),
-      ),
+//        child: Column(
+//          mainAxisSize: MainAxisSize.min,
+//          children: <Widget>[
+//            Text(
+//              'Go to this Product?',
+//            ),
+//            Text(
+//              this.query,
+//              style: Theme.of(context).textTheme.display1.copyWith(
+//                    fontWeight: FontWeight.bold,
+//                  ),
+//            ),
+//            GestureDetector(
+//              onTap: () async {
+//                var item;
+//                Provider.of<ProductsProvider>(context, listen: false)
+//                    .products
+//                    .sections
+//                    .forEach(
+//                  (section) {
+//                    item = section.src.firstWhere(
+//                      (product) => product.name == this.query,
+//                    );
+//                  },
+//                );
+//                Navigator.of(context).push(
+//                  FadeRoute(
+//                    page: DetailScreen(
+//                      id: item.id,
+//                    ),
+//                  ),
+//                );
+//                this.close(context, this.query);
+//              },
+//              child: Icon(
+//                Icons.arrow_forward_ios,
+//                color: Colors.grey[500],
+//                size: 30.0,
+//              ),
+//            ),
+//            GestureDetector(
+//              onTap: () async {
+//                this.close(context, this.query);
+//              },
+//              child: Text(
+//                this.query,
+//                style: Theme.of(context)
+//                    .textTheme
+//                    .display1
+//                    .copyWith(fontWeight: FontWeight.bold),
+//              ),
+//            ),
+//          ],
+//        ),
+          ),
     );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     final Iterable<String> suggestions = this.query.isEmpty
-        ? _history
+        ? []
+        //history
         : _words.where((word) => word.startsWith(query));
 
     return _SuggestionList(
@@ -89,8 +158,9 @@ class SearchScreen extends SearchDelegate<String> {
       suggestions: suggestions == null ? [] : suggestions.toList(),
       onSelected: (String suggestion) async {
         this.query = suggestion;
-        this._history.add(suggestion);
-        addToHistory(_history);
+//        this._history.add(suggestion);
+//        await addToHistory(_history);
+        done(suggestion, context);
         showResults(context);
       },
     );

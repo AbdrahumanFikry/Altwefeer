@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:infinity/Providers/categoriesProvider.dart';
+import './Providers/categoriesProvider.dart';
+import './Providers/productsProvider.dart';
 import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
 import './Providers/wishListProvider.dart';
@@ -35,6 +36,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (context) => Auth(),
+        ),
+        ChangeNotifierProxyProvider<Auth, ProductsProvider>(
+          update: (context, auth, _) => ProductsProvider(token: auth.token),
         ),
         ChangeNotifierProvider(
           create: (context) => CategoriesProvider(),

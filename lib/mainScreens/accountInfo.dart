@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:infinity/authScreens/loginScreen.dart';
 import 'package:infinity/widgets/alertDialog.dart';
 import 'package:infinity/widgets/loader.dart';
-import 'package:infinity/widgets/pageRoute.dart';
 import 'package:provider/provider.dart';
 import '../widgets/accountInfoWidget.dart';
 import '../Providers/authenticationProvider.dart';
@@ -178,33 +177,37 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
       body: auth.isAuth
           ? Form(
               key: _formKey,
-              child: ListView(
-                children: <Widget>[
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  AccountInfoWidget(
-                    title: auth.userData.phone,
-                    onSaved: onSavedPhone,
-                    validator: phoneValidator,
-                    edit: _edit,
-                  ),
-                  AccountInfoWidget(
-                    title: auth.userData.email,
-                    onSaved: onSavedEmail,
-                    validator: emailValidator,
-                    edit: _edit,
-                  ),
-                  AccountInfoWidget(
-                    title: 'Password (encrypted)',
-                    onSaved: onSavedPassword,
-                    validator: passwordValidator,
-                    edit: _edit,
-                    isPassword: true,
-                    password: '',
-                  ),
-                ],
-              ),
+              child: auth.userData.email == null
+                  ? Center(
+                      child: ColorLoader(),
+                    )
+                  : ListView(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        AccountInfoWidget(
+                          title: auth.userData.phone,
+                          onSaved: onSavedPhone,
+                          validator: phoneValidator,
+                          edit: _edit,
+                        ),
+                        AccountInfoWidget(
+                          title: auth.userData.email,
+                          onSaved: onSavedEmail,
+                          validator: emailValidator,
+                          edit: _edit,
+                        ),
+                        AccountInfoWidget(
+                          title: 'Password (encrypted)',
+                          onSaved: onSavedPassword,
+                          validator: passwordValidator,
+                          edit: _edit,
+                          isPassword: true,
+                          password: '',
+                        ),
+                      ],
+                    ),
             )
           : EmptyScreen(
               needSign: true,

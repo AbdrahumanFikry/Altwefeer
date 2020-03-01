@@ -7,19 +7,21 @@ import '../widgets/section.dart';
 
 class DetailSliverList extends StatefulWidget {
   final String title;
-  final String image;
+  final List images;
   final String description;
   final String price;
   final String offer;
-  final String reviews;
+  final List reviews;
+  final List features;
 
   DetailSliverList({
     this.title,
-    this.image,
+    this.images,
     this.description,
     this.price,
     this.offer,
     this.reviews,
+    this.features,
   });
 
   @override
@@ -38,9 +40,9 @@ class _DetailSliverListState extends State<DetailSliverList> {
 
   @override
   Widget build(BuildContext context) {
-    double offerNum = double.parse(widget.offer);
-    double percent =
-        100 - ((double.parse(widget.offer) / double.parse(widget.price)) * 100);
+//    double offerNum = double.parse(widget.offer);
+//    double percent =
+//        100 - ((double.parse(widget.offer) / double.parse(widget.price)) * 100);
     return SliverList(
       delegate: SliverChildListDelegate(
         [
@@ -51,29 +53,30 @@ class _DetailSliverListState extends State<DetailSliverList> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                offerNum == 0
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            widget.price,
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              color: Colors.black,
-                              fontSize: 16.0,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Icon(
-                            Icons.attach_money,
-                            color: Colors.black,
-                            size: 16.0,
-                          ),
-                        ],
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
+//                offerNum == 0
+//                    ?
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      widget.price,
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Icon(
+                      Icons.attach_money,
+                      color: Colors.black,
+                      size: 16.0,
+                    ),
+                  ],
+                )
+//                    : Row(
+//                        mainAxisAlignment: MainAxisAlignment.start,
+//                        children: <Widget>[
 //                          Text(
 //                            widget.offer,
 //                            style: TextStyle(
@@ -91,26 +94,26 @@ class _DetailSliverListState extends State<DetailSliverList> {
 //                          SizedBox(
 //                            width: 3.0,
 //                          ),
-                          Text(
-                            widget.price,
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14.0,
-                              //decoration: TextDecoration.lineThrough,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Icon(
-                            Icons.attach_money,
-                            color: Colors.black,
-                            size: 14.0,
-                          ),
-                        ],
-                      ),
-                offerNum > 0
-                    ? Container(
+//                          Text(
+//                            widget.price,
+//                            style: TextStyle(
+//                              fontFamily: 'Roboto',
+//                              color: Colors.black,
+//                              fontWeight: FontWeight.bold,
+//                              fontSize: 14.0,
+//                              //decoration: TextDecoration.lineThrough,
+//                            ),
+//                            overflow: TextOverflow.ellipsis,
+//                          ),
+//                          Icon(
+//                            Icons.attach_money,
+//                            color: Colors.black,
+//                            size: 14.0,
+//                          ),
+//                        ],
+//                      ),
+//                offerNum > 0
+//                    ? Container(
 //                        height: 20.0,
 //                        width: 40.0,
 //                        decoration: BoxDecoration(
@@ -134,8 +137,8 @@ class _DetailSliverListState extends State<DetailSliverList> {
 //                            ),
 //                          ),
 //                        ),
-                      )
-                    : new Container(),
+//                      )
+//                    : new Container(),
               ],
             ),
           ),
@@ -144,7 +147,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
               left: 16.0,
             ),
             child: Text(
-              'Samsung Galaxy Note10 - 6.3-inch 256GB/8GB Dual SIM 4G Mobile Phone - Aura Black',
+              widget.title,
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: 'Roboto',
@@ -216,11 +219,11 @@ class _DetailSliverListState extends State<DetailSliverList> {
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: 3,
+            itemCount: widget.features.length,
             itemBuilder: (context, index) {
               return Features(
-                key: ValueKey(index),
-                feature: 'fast shipping',
+                key: ValueKey(widget.features[index].id),
+                feature: widget.features[index].feature,
               );
             },
           ),
@@ -263,7 +266,10 @@ class _DetailSliverListState extends State<DetailSliverList> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40.0),
               ),
-              child: Image.asset('assets/images/iphoneTest.png'),
+              child: Image.network(
+                widget.images[0].path,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Container(
@@ -287,7 +293,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
                         ),
                       ),
                       Text(
-                        widget.reviews == null ? '0' : widget.reviews,
+                        widget.reviews.length.toString(),
                       ),
                     ],
                   ),
@@ -295,9 +301,11 @@ class _DetailSliverListState extends State<DetailSliverList> {
                 GestureDetector(
                   onTap: _viewMoreOrLess,
                   child: AnimatedContainer(
-                    height: _isMore
-                        ? MediaQuery.of(context).size.height * 0.6
-                        : 220.0,
+                    height: widget.reviews.length == 0
+                        ? 70
+                        : _isMore
+                            ? MediaQuery.of(context).size.height * 0.6
+                            : 220.0,
                     duration: Duration(
                       milliseconds: 500,
                     ),
@@ -305,46 +313,50 @@ class _DetailSliverListState extends State<DetailSliverList> {
                       children: <Widget>[
                         Expanded(
                           child: ListView.builder(
-                            itemCount: _isMore ? 5 : 2,
+                            itemCount: _isMore
+                                ? widget.reviews.length
+                                : widget.reviews.length == 0 ? 0 : 2,
                             physics: _isMore
                                 ? ScrollPhysics()
                                 : NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return ReviewItem(
-                                user: 'Mohamed Mostafa',
-                                rate: 4.5,
-                                date: '4 months',
-                                review: 'Not too bad ',
+                                user: 'User',
+                                rate: widget.reviews[index].rate,
+                                date: ' ',
+                                review: widget.reviews[index].review,
                               );
                             },
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            vertical: 10.0,
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            vertical: 7.0,
-                            horizontal: 25.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(
-                                30.0,
+                        widget.reviews.length <= 3
+                            ? SizedBox()
+                            : Container(
+                                margin: EdgeInsets.symmetric(
+                                  vertical: 10.0,
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 7.0,
+                                  horizontal: 25.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      30.0,
+                                    ),
+                                  ),
+                                ),
+                                child: Text(
+                                  _isMore ? 'View less' : 'View more',
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontFamily: 'Roboto',
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          child: Text(
-                            _isMore ? 'View less' : 'View more',
-                            style: TextStyle(
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -358,9 +370,9 @@ class _DetailSliverListState extends State<DetailSliverList> {
             color: Color(0xffF0F4F9),
           ),
           //------------------------ Recommended -------------------------------
-          Section(
-            title: 'Recommended',
-          ),
+//          Section(
+//            title: 'Recommended',
+//          ),
           SizedBox(
             height: 70.0,
           ),

@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/mainScreens/CategoryElementsScreen.dart';
 import 'package:infinity/mainScreens/detailScreen.dart';
+import 'package:infinity/models/singleCategory.dart';
 import '../widgets/pageRoute.dart';
 import '../widgets/metaSubCategoryItem.dart';
 
 class SubCategory extends StatelessWidget {
   final String title;
+  final List<Products> items;
 
   SubCategory({
     this.title,
+    this.items,
   });
 
-  void _goToDetails(BuildContext context) {
+  void _goToDetails(BuildContext context, int id) {
     Navigator.push(
       context,
       ScaleRoute(
         page: DetailScreen(
-          title: 'Samsung S10+ - asdxd bvnhvn jaaa, mkcmsckmsk 50',
-          price: '5000',
-          offer: '4652',
-          image: '',
-          id: 100,
+          id: id,
         ),
       ),
     );
@@ -31,7 +30,8 @@ class SubCategory extends StatelessWidget {
       context,
       ScaleRoute(
         page: CategoryElementsScreen(
-          title: 'Make up',
+          title: title,
+          allItems: items,
         ),
       ),
     );
@@ -126,14 +126,14 @@ class SubCategory extends StatelessWidget {
               ),
             ),
             child: ListView.builder(
-              itemCount: 3,
+              itemCount: items.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () => _goToDetails(context),
+                  onTap: () => _goToDetails(context, items[index].id),
                   child: MetaSubCategoryItem(
-                    title: 'Perfume',
-                    image: 'assets/images/iphoneTest.png',
+                    title: items[index].name,
+                    image: items[index].images[0].path,
                   ),
                 );
               },

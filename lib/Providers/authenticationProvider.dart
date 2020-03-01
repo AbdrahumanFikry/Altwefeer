@@ -13,6 +13,10 @@ class Auth with ChangeNotifier {
     return _token != null;
   }
 
+  String get token {
+    return _token;
+  }
+
   //------------------------------ Register ------------------------------------
   Future<void> register(
       {String email, String password, String phoneNumber}) async {
@@ -155,8 +159,7 @@ class Auth with ChangeNotifier {
         userData = UserData.fromJson(responseData);
         notifyListeners();
       } else {
-        throw HttpException(
-            message: responseData['error']['fields']['email'][0]);
+        throw HttpException(message: responseData['error']['message']);
       }
     } catch (error) {
       throw error;

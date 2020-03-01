@@ -8,19 +8,17 @@ import '../models/cartItemModel.dart';
 class ItemViewer extends StatelessWidget {
   final int id;
   final String title;
-  final String image;
+  final List images;
   final String price;
   final String offer;
 
   ItemViewer({
     this.id,
     this.title,
-    this.image,
+    this.images,
     this.price,
     this.offer,
   });
-
-  //------------------------------variables------------------------------------
 
   //------------------------------methods--------------------------------------
 
@@ -32,7 +30,7 @@ class ItemViewer extends StatelessWidget {
         CartItemModel(
           id: id,
           name: title,
-          image: image,
+          image: images[0].path,
           amount: 1,
           price: offer == '0' ? double.tryParse(price) : double.tryParse(offer),
         ),
@@ -42,7 +40,7 @@ class ItemViewer extends StatelessWidget {
         CartItemModel(
           id: id,
           name: title,
-          image: image,
+          image: images[0].path,
           amount: 1,
           price: offer == '0' ? double.tryParse(price) : double.tryParse(offer),
         ),
@@ -56,10 +54,6 @@ class ItemViewer extends StatelessWidget {
       ScaleRoute(
         page: DetailScreen(
           id: id,
-          title: title,
-          price: price,
-          image: image,
-          offer: offer,
         ),
       ),
     );
@@ -69,7 +63,7 @@ class ItemViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     bool _isFavourite = false;
     double offerNum = double.parse(offer);
-    double percent = 100 - ((double.parse(offer) / double.parse(price)) * 100);
+//    double percent = 100 - ((double.parse(offer) / double.parse(price)) * 100);
     final wishList = Provider.of<WishList>(context);
     int index = wishList.wishList.indexWhere((i) => i.id == id);
     if (index != -1) {
@@ -105,8 +99,8 @@ class ItemViewer extends StatelessWidget {
                   ),
                 ),
                 image: DecorationImage(
-                  image: AssetImage(
-                    image,
+                  image: NetworkImage(
+                    images[0].path,
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -137,8 +131,8 @@ class ItemViewer extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  offerNum > 0
-                      ? Container(
+//                  offerNum > 0
+//                      ? Container(
 //                          height: 20.0,
 //                          width: 40.0,
 //                          decoration: BoxDecoration(
@@ -165,8 +159,8 @@ class ItemViewer extends StatelessWidget {
 //                              ),
 //                            ),
 //                          ),
-                        )
-                      : new Container(),
+//                          )
+//                      : new Container(),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -185,29 +179,31 @@ class ItemViewer extends StatelessWidget {
               maxLines: 2,
             ),
             Spacer(),
-            offerNum == 0
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        price,
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          color: Colors.black,
-                          fontSize: 12.0,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Icon(
-                        Icons.attach_money,
-                        color: Colors.black,
-                        size: 12.0,
-                      ),
-                    ],
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
+//            offerNum == 0
+//                ?
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  price,
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    color: Colors.black,
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Icon(
+                  Icons.attach_money,
+                  color: Colors.black,
+                  size: 12.0,
+                ),
+              ],
+            )
+//                : Row(
+//                    mainAxisAlignment: MainAxisAlignment.start,
+//                    children: <Widget>[
 //                      Text(
 //                        offer,
 //                        style: TextStyle(
@@ -225,24 +221,24 @@ class ItemViewer extends StatelessWidget {
 //                      SizedBox(
 //                        width: 3.0,
 //                      ),
-                      Text(
-                        price,
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14.0,
-                          //decoration: TextDecoration.lineThrough,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Icon(
-                        Icons.attach_money,
-                        color: Colors.black,
-                        size: 14.0,
-                      ),
-                    ],
-                  ),
+//                      Text(
+//                        price,
+//                        style: TextStyle(
+//                          fontFamily: 'Roboto',
+//                          color: Colors.black,
+//                          fontWeight: FontWeight.bold,
+//                          fontSize: 14.0,
+//                          //decoration: TextDecoration.lineThrough,
+//                        ),
+//                        overflow: TextOverflow.ellipsis,
+//                      ),
+//                      Icon(
+//                        Icons.attach_money,
+//                        color: Colors.black,
+//                        size: 14.0,
+//                      ),
+//                    ],
+//                  ),
           ],
         ),
       ),
