@@ -20,7 +20,7 @@ class Auth with ChangeNotifier {
   //------------------------------ Register ------------------------------------
   Future<void> register(
       {String email, String password, String phoneNumber}) async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/oauth/register';
+    const url = 'https://hearts2020.com/eco/api/v1/oauth/register';
     try {
       var body = {
         'password': password,
@@ -58,7 +58,7 @@ class Auth with ChangeNotifier {
 
   //-------------------------------- LogIn -------------------------------------
   Future<void> logIn({String email, String password}) async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/oauth/login';
+    const url = 'https://hearts2020.com/eco/api/v1/oauth/login';
     try {
       var body = {
         'email': email,
@@ -110,7 +110,7 @@ class Auth with ChangeNotifier {
 
   //------------------------------- LogOut -------------------------------------
   Future<void> logout() async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/logout';
+    const url = 'https://hearts2020.com/eco/api/v1/logout';
     try {
       Map<String, String> headers = {
         'Accept': 'application/json',
@@ -144,7 +144,7 @@ class Auth with ChangeNotifier {
 
   //------------------------------ User Data -----------------------------------
   Future<void> fetchUserData() async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/user';
+    const url = 'https://hearts2020.com/eco/api/v1/user';
     try {
       Map<String, String> headers = {
         'Accept': 'application/json',
@@ -169,7 +169,7 @@ class Auth with ChangeNotifier {
   //--------------------------- Update User Data -------------------------------
   Future<void> updateUserData(
       {String email, String password, String phone}) async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/profile';
+    const url = 'https://hearts2020.com/eco/api/v1/profile';
     try {
       var body;
       if (email == null && phone != null) {
@@ -217,7 +217,7 @@ class Auth with ChangeNotifier {
 
   //-------------------------- Deactivate Account ------------------------------
   Future<void> deactivateAccount() async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/deactivate';
+    const url = 'https://hearts2020.com/eco/api/v1/deactivate';
     try {
       Map<String, String> headers = {
         'Accept': 'application/json',
@@ -244,7 +244,7 @@ class Auth with ChangeNotifier {
 
   //---------------------------- Forgot Password -------------------------------
   Future<void> forgotPassword({@required String email}) async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/password/create';
+    const url = 'https://hearts2020.com/eco/api/v1/password/create';
     try {
       var body = {
         'email': email,

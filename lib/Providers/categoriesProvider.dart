@@ -12,7 +12,7 @@ class CategoriesProvider with ChangeNotifier {
 
   //---------------------------- Fetch Categories ------------------------------
   Future<void> fetchCategories() async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/category';
+    const url = 'https://hearts2020.com/eco/api/v1/category';
     try {
       Map<String, String> headers = {
         'Accept': 'application/json',
@@ -35,7 +35,7 @@ class CategoriesProvider with ChangeNotifier {
 
   //------------------------- Fetch Single Category ----------------------------
   Future<void> fetchSingleCategory({int id}) async {
-    final url = 'https://erada-soft.com/Infinity/public/api/v1/category/$id';
+    final url = 'https://hearts2020.com/eco/api/v1/category/$id';
     try {
       Map<String, String> headers = {
         'Accept': 'application/json',

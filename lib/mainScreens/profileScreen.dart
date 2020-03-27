@@ -65,22 +65,22 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _signOut(BuildContext context) async {
-    await Provider.of<Auth>(context, listen: false).logout();
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) => LogInScreen(),
-      ),
-      (Route<dynamic> route) => false,
-    );
-  }
+//  Future<void> _signOut(BuildContext context) async {
+//    await Provider.of<Auth>(context, listen: false).logout();
+//    Navigator.of(context).pushAndRemoveUntil(
+//      MaterialPageRoute(
+//        builder: (context) => LogInScreen(),
+//      ),
+//      (Route<dynamic> route) => false,
+//    );
+//  }
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<Auth>(context, listen: false);
-    if (auth.isAuth && auth.userData == null) {
-      auth.fetchUserData();
-    }
+//    final auth = Provider.of<Auth>(context, listen: false);
+//    if (auth.isAuth && auth.userData == null) {
+//      auth.fetchUserData();
+//    }
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -97,8 +97,9 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: auth.isAuth
-          ? ListView(
+      body:
+      //auth.isAuth?
+           ListView(
               children: <Widget>[
                 ProfileItems(
                   image: Image.asset('assets/icons/orders.png'),
@@ -163,26 +164,29 @@ class ProfileScreen extends StatelessWidget {
                 ProfileItems(
                   image: Image.asset('assets/icons/signOut.png'),
                   title: 'Sign out',
-                  onTap: () => _signOut(context),
+                  onTap: () => (){
+                    //todo-----
+                  }
+                ),
+                Column(
+                  children: <Widget>[
+                    ProfileItems(
+                      image: Image.asset('assets/icons/heart.png'),
+                      title: 'Wishlist',
+                      onTap: () => _goToWishList(context),
+                      notifications:
+                      Provider.of<WishList>(context).wishList.length.toString(),
+                    ),
+                    ProfileItems(
+                      image: Image.asset('assets/icons/setting.png'),
+                      title: 'Settings',
+                      onTap: () => _goToSettings(context),
+                    ),
+                  ],
                 ),
               ],
             )
-          : Column(
-              children: <Widget>[
-                ProfileItems(
-                  image: Image.asset('assets/icons/heart.png'),
-                  title: 'Wishlist',
-                  onTap: () => _goToWishList(context),
-                  notifications:
-                      Provider.of<WishList>(context).wishList.length.toString(),
-                ),
-                ProfileItems(
-                  image: Image.asset('assets/icons/setting.png'),
-                  title: 'Settings',
-                  onTap: () => _goToSettings(context),
-                ),
-              ],
-            ),
+
     );
   }
 }

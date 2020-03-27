@@ -17,7 +17,7 @@ class ProductsProvider with ChangeNotifier {
 
   //---------------------------- Fetch Products --------------------------------
   Future<void> fetchProducts() async {
-    const url = 'https://erada-soft.com/Infinity/public/api/v1/home';
+    const url = 'https://hearts2020.com/eco/api/v1/home';
     try {
       Map<String, String> headers = {
         'Accept': 'application/json',
@@ -50,7 +50,7 @@ class ProductsProvider with ChangeNotifier {
 
   //------------------------- Fetch Single Product -----------------------------
   Future<void> fetchSingleProducts({@required int id}) async {
-    final url = 'https://erada-soft.com/Infinity/public/api/v1/product/$id';
+    final url = 'https://hearts2020.com/eco/api/v1/product/$id';
     try {
       Map<String, String> headers = {
         'Accept': 'application/json',
@@ -75,7 +75,7 @@ class ProductsProvider with ChangeNotifier {
 
   //------------------------- Fetch Single Category ----------------------------
   Future<void> fetchSingleCategory({int id}) async {
-    final url = 'https://erada-soft.com/Infinity/public/api/v1/category/$id';
+    final url = 'https://hearts2020.com/eco/api/v1/category/$id';
     try {
       Map<String, String> headers = {
         'Accept': 'application/json',

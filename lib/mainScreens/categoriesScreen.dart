@@ -201,14 +201,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     } else {
                       if (dataSnapShot.error != null) {
                         return Center(
-                          child: Text(
-                            'Check internet connection!',
-                            style: TextStyle(
-                              color: Colors.grey[500],
-                              fontSize: 18.0,
-                              fontFamily: 'Roboto',
+                            child: Text(
+                              'Check internet connection!',
+                              style: TextStyle(
+                                color: Colors.grey[500],
+                                fontSize: 12.0,
+                                fontFamily: 'Roboto',
+                              ),
                             ),
-                          ),
+
                         );
                       } else {
                         return Expanded(
