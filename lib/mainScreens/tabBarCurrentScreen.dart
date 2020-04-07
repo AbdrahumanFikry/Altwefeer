@@ -130,58 +130,51 @@ class TabBarCurrentScreen extends StatelessWidget {
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'Grand Total : ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Roboto',
-                          fontSize: 14.0,
-                        ),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Grand Total : ',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Roboto',
+                        fontSize: 14.0,
                       ),
-                      Expanded(
-                        child: Text(
-                          '450 ' + ' EGP',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Roboto',
-                            fontSize: 14.0,
-                          ),
-                        ),
+                    ),
+                    Text(
+                      '450 ' + ' EGP',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                        fontSize: 14.0,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'Order Number : ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Roboto',
-                          fontSize: 14.0,
-                        ),
+                SizedBox(height: 0.2,),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Order Number : ',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Roboto',
+                        fontSize: 14.0,
                       ),
-                      Expanded(
-                        child: Text(
-                          '5697',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Roboto',
-                            fontSize: 14.0,
-                          ),
-                        ),
+                    ),
+                    Text(
+                      '5697',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                        fontSize: 14.0,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

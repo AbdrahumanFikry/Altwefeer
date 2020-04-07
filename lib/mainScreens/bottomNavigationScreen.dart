@@ -5,6 +5,7 @@ import '../mainScreens/homeScreen.dart';
 import '../mainScreens/profileScreen.dart';
 import '../Providers/cartProvider.dart';
 import '../Providers/wishListProvider.dart';
+import 'mainCategoryScreen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   void initState() {
     _pages = [
       HomeScreen(),
-      CategoriesScreen(),
+      MainCategoryScreen(),
       ProfileScreen(),
     ];
     Provider.of<Cart>(context, listen: false).fetchData();
@@ -48,14 +49,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               'assets/icons/home.png',
             ),
             activeIcon: Image.asset(
-              'assets/icons/homeActive.png',color: Color(0xffD89900),
+              'assets/icons/homeActive.png',
             ),
             title: Text(
               "Home",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 0 ? Colors.black : Color(0xffD89900),
+                color: index != 0 ? Colors.black : Color(0xff008BFF),
               ),
             ),
           ),
@@ -64,14 +65,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               'assets/icons/category.png',
             ),
             activeIcon: Image.asset(
-              'assets/icons/categoryActive.png',color: Color(0xffD89900),
+              'assets/icons/categoryActive.png',
             ),
             title: Text(
               "Categories",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 1 ? Colors.black : Color(0xffD89900),
+                color: index != 1 ? Colors.black : Color(0xff008BFF),
               ),
             ),
           ),
@@ -80,14 +81,14 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               'assets/icons/account.png',
             ),
             activeIcon: Image.asset(
-              'assets/icons/accountActive.png',color: Color(0xffD89900),
+              'assets/icons/accountActive.png',
             ),
             title: Text(
               "Account",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Roboto',
-                color: index != 2 ? Colors.black : Color(0xffD89900),
+                color: index != 2 ? Colors.black : Color(0xff008BFF),
               ),
             ),
           ),

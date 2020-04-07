@@ -3,19 +3,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:infinity/mainScreens/ImageViewer.dart';
 
 class DetailSlider extends StatelessWidget {
-  final List images;
+  final List<String> imgList = [
+    'assets/images/iphoneTest.png',
+    'assets/images/iphoneTest.png',
+    'assets/images/iphoneTest.png',
+    'assets/images/iphoneTest.png',
+    'assets/images/iphoneTest.png',
+  ];
 
-  DetailSlider({this.images});
-
-//  [
-//    'assets/images/iphoneTest.png',
-//    'assets/images/iphoneTest.png',
-//    'assets/images/iphoneTest.png',
-//    'assets/images/iphoneTest.png',
-//    'assets/images/iphoneTest.png',
-//  ];
-
-  void _showImage(BuildContext context, List imgList, String image, int id) {
+  void _showImage(BuildContext context, String image, int id) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -32,14 +28,8 @@ class DetailSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> imgList = [];
     int index = 0;
     double deviceWidth = MediaQuery.of(context).size.width;
-    images.forEach(
-      (image) {
-        imgList.add(image.path);
-      },
-    );
     return CarouselSlider(
       height: 150.0,
       viewportFraction: 0.9,
@@ -52,7 +42,7 @@ class DetailSlider extends StatelessWidget {
           return Hero(
             tag: index.toString(),
             child: GestureDetector(
-              onTap: () => _showImage(context, imgList, imageTest, index),
+              onTap: () => _showImage(context, imageTest, index),
               child: Container(
                 width: deviceWidth > 400
                     ? 400

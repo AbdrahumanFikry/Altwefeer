@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/widgets/alertDialog.dart';
-import 'package:infinity/widgets/loader.dart';
 import '../widgets/globalTextFormField.dart';
 import '../widgets/globalButton.dart';
 import '../authScreens/checkEmailScreen.dart';
 import '../widgets/pageRoute.dart';
-import '../widgets/globalDialog.dart';
-import '../models/httpExceptionModel.dart';
-import '../Providers/authenticationProvider.dart';
-import 'package:provider/provider.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override
@@ -19,7 +13,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   //----------------------------------variables-----------------------//
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String _email;
-  bool _isLoading = false;
 
   //-----------------------------------functions-----------------------//
   String emailValidator(value) {
@@ -37,38 +30,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     final formData = _formKey.currentState;
     if (formData.validate()) {
       formData.save();
-//      print(':::::::::::::' + _email);
-      setState(() {
-        _isLoading = true;
-      });
-      try {
-        await Provider.of<Auth>(context, listen: false)
-            .forgotPassword(email: _email);
-        Navigator.pushReplacement(
-          context,
-          FadeRoute(
-            page: CheckEmailScreen(),
-          ),
-        );
-        setState(() {
-          _isLoading = false;
-        });
-      } on HttpException catch (error) {
-        var errorMessage = 'error sending code to this email!';
-        if (error.toString().contains('error')) {
-          errorMessage = 'error sending code to this email!';
-        }
-        GlobalAlertDialog().showErrorDialog(errorMessage, context);
-        setState(() {
-          _isLoading = false;
-        });
-      } catch (error) {
-        const errorMessage = 'error sending code to this email!';
-        GlobalAlertDialog().showErrorDialog(errorMessage, context);
-        setState(() {
-          _isLoading = false;
-        });
-      }
+      print(':::::::::::::' + _email);
+      //TODO ----------
+      Navigator.push(
+        context,
+        FadeRoute(
+          page: CheckEmailScreen(),
+        ),
+      );
     }
   }
 
@@ -99,30 +68,26 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             },
           ),
         ),
-        body: _isLoading
-            ? Center(
-                child: ColorLoader(),
-              )
-            : Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    GlobalTextFormField(
-                      hintText: 'Email Address',
-                      isPassword: false,
-                      validator: emailValidator,
-                      onSaved: onSavedEmail,
-                    ),
-                    GlobalButton(
-                      buttonTitle: 'Continue',
-                      onTab: _forgotPassword,
-                    )
-                  ],
-                ),
+        body: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 20.0,
               ),
+              GlobalTextFormField(
+                hintText: 'Email Address',
+                isPassword: false,
+                validator: emailValidator,
+                onSaved: onSavedEmail,
+              ),
+              GlobalButton(
+                buttonTitle: 'Continue',
+                onTab: _forgotPassword,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

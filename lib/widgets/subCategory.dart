@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/mainScreens/CategoryElementsScreen.dart';
 import 'package:infinity/mainScreens/detailScreen.dart';
-import 'package:infinity/models/singleCategory.dart';
 import '../widgets/pageRoute.dart';
 import '../widgets/metaSubCategoryItem.dart';
 
 class SubCategory extends StatelessWidget {
   final String title;
-  final List<Products> items;
 
   SubCategory({
     this.title,
-    this.items,
   });
 
-  void _goToDetails(BuildContext context, int id) {
+  void _goToDetails(BuildContext context) {
     Navigator.push(
       context,
       ScaleRoute(
         page: DetailScreen(
-          id: id,
+          title: 'Samsung S10+ - asdxd bvnhvn jaaa, mkcmsckmsk 50',
+          price: '5000',
+          offer: '4652',
+          image: '',
+          id: 100,
         ),
       ),
     );
@@ -30,8 +31,7 @@ class SubCategory extends StatelessWidget {
       context,
       ScaleRoute(
         page: CategoryElementsScreen(
-          title: title,
-          allItems: items,
+          title: 'Make up',
         ),
       ),
     );
@@ -98,13 +98,13 @@ class SubCategory extends StatelessWidget {
                   Text(
                     'All',
                     style: TextStyle(
-                      color: Color(0xffD89900),
+                      color: Colors.blue,
                       fontFamily: 'Roboto',
                     ),
                   ),
                   Icon(
                     Icons.arrow_forward_ios,
-                    color: Color(0xffD89900),
+                    color: Colors.blue,
                     size: 16.0,
                   ),
                 ],
@@ -126,14 +126,14 @@ class SubCategory extends StatelessWidget {
               ),
             ),
             child: ListView.builder(
-              itemCount: items.length,
+              itemCount: 3,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () => _goToDetails(context, items[index].id),
+                  onTap: () => _goToDetails(context),
                   child: MetaSubCategoryItem(
-                    title: items[index].name,
-                    image: items[index].images[0].path,
+                    title: 'Perfume',
+                    image: 'assets/images/iphoneTest.png',
                   ),
                 );
               },

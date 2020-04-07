@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './Providers/categoriesProvider.dart';
-import './Providers/productsProvider.dart';
+import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
 import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
 import './Providers/wishListProvider.dart';
 import './mainScreens/splashScreen.dart';
-import './Providers/authenticationProvider.dart';
+import 'mainScreens/mainCategoryScreen.dart';
 
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -33,28 +33,14 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (context) => WishList(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => Auth(),
-        ),
-        ChangeNotifierProxyProvider<Auth, ProductsProvider>(
-          update: (context, auth, _) => ProductsProvider(token: auth.token),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CategoriesProvider(),
-        ),
       ],
-      child: Consumer<Auth>(
-        builder: (context, auth, _) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'infinity',
-          theme: ThemeData(
-            primaryColor: Colors.grey,
-          ),
-          home: FutureBuilder(
-            future: auth.tryAutoLogin(),
-            builder: (ctx, snapShot) => SplashScreen(),
-          ),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'infinity',
+        theme: ThemeData(
+          primaryColor: Colors.grey,
         ),
+        home: BottomNavigationScreen(),
       ),
     );
   }

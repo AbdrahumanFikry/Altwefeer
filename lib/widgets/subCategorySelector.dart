@@ -15,7 +15,7 @@ class SubCategorySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60.0,
-      color: selected == index ? Color(0xffD89900).withOpacity(0.10) : Colors.white,
+      color: selected == index ? Colors.blue[50] : Colors.white,
       child: Padding(
         padding: const EdgeInsets.only(
           right: 1.0,
@@ -25,7 +25,7 @@ class SubCategorySelector extends StatelessWidget {
             Container(
               height: 60.0,
               width: 7.0,
-              color: selected == index ? Color(0xffD89900) : Colors.white,
+              color: selected == index ? Colors.blue[800] : Colors.white,
             ),
             SizedBox(
               width: 10.0,
@@ -35,7 +35,7 @@ class SubCategorySelector extends StatelessWidget {
                 child: Text(
                   title,
                   style: TextStyle(
-                    color: selected == index ? Color(0xffD89900) : Colors.black,
+                    color: selected == index ? Colors.blue[800] : Colors.black,
                     fontFamily: 'Roboto',
                   ),
                   maxLines: 2,

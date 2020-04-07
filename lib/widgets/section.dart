@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/Providers/productsProvider.dart';
-import 'package:provider/provider.dart';
 import '../widgets/itemViewer.dart';
 import '../widgets/slider.dart';
 
 class Section extends StatelessWidget {
   final String title;
-  final int sectionIndex;
-  final List data;
-  final List ads;
+  final int index;
 
   Section({
     @required this.title,
-    this.sectionIndex,
-    this.data,
-    this.ads,
+    this.index,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        sectionIndex == 0
-            ? AdsSlider(ads: ads)
+        index == 0
+            ? AdsSlider()
             : SizedBox(
                 height: 0.5,
               ),
@@ -62,14 +56,15 @@ class Section extends StatelessWidget {
                 ),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: data.length,
+                  itemCount: 10,
                   itemBuilder: (context, index) {
                     return ItemViewer(
-                      id: data[index].id,
-                      title: data[index].name,
-                      price: data[index].price.toString(),
-                      images: data[index].images,
-                      offer: '0',
+                      id: index,
+                      title:
+                          'Apple Iphone X With Facetime - 64 GB, 4G LTE, Space Grey ',
+                      price: '5000',
+                      image: 'assets/images/iphoneTest.png',
+                      offer: '4200',
                     );
                   },
                 ),

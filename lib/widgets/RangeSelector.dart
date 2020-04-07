@@ -83,7 +83,6 @@ class _RangeSelectorState extends State<RangeSelector> {
           max: 10000.0,
           divisions: 1000,
           values: _selectedRange,
-          activeColor: Color(0xffD89900),
           onChanged: (RangeValues range) {
             setState(() {
               _selectedRange = range;
