@@ -1,31 +1,41 @@
 import 'package:flutter/material.dart';
 import '../widgets/mainCategory.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 class MainCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Main Category',style: TextStyle(
-          fontFamily: 'Roboto',
-          fontSize: 15,
-        ),),
+        centerTitle: true,
+        title: Text(
+          'Categories',
+          style: TextStyle(
+            color: Colors.blue,
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0.3,
-        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){Navigator.pop(context);}),
       ),
-      body: GridView.builder(
-          itemCount: 4,
-          gridDelegate:
-          new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: MainCategory(
-                catName: 'Electronics',
-                img: 'assets/images/electronicsImg.jpg',
-              )
-            );
-          }),
+      body: StaggeredGridView.countBuilder(
+        crossAxisCount: 4,
+        itemCount: 10,
+        staggeredTileBuilder: (int index) => new StaggeredTile.count(
+          2,
+          index.isEven ? 2 : 1,
+        ),
+        mainAxisSpacing: 0.0,
+        crossAxisSpacing: 0.0,
+        itemBuilder: (BuildContext context, int index) {
+          return MainCategory(
+            title: 'Electronics',
+            image: 'assets/images/electronicsImg.jpg',
+          );
+        },
+      ),
     );
   }
 }
