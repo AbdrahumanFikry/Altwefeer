@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:infinity/mainScreens/bottomNavigationScreen.dart';
+import 'package:infinity/mainScreens/splashScreen.dart';
 import 'package:provider/provider.dart';
 import './Providers/cartProvider.dart';
 import './Providers/wishListProvider.dart';
-import './mainScreens/splashScreen.dart';
-import 'mainScreens/mainCategoryScreen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
@@ -40,7 +34,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: Colors.grey,
         ),
-        home: BottomNavigationScreen(),
+        home: SplashScreen(),
       ),
     );
   }
