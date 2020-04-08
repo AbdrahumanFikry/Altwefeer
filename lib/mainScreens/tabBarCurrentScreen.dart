@@ -130,7 +130,7 @@ class TabBarCurrentScreen extends StatelessWidget {
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(
@@ -154,6 +154,7 @@ class TabBarCurrentScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: 0.2,),
                 Row(
                   children: <Widget>[
                     Text(

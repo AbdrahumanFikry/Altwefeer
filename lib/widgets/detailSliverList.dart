@@ -7,21 +7,19 @@ import '../widgets/section.dart';
 
 class DetailSliverList extends StatefulWidget {
   final String title;
-  final List images;
+  final String image;
   final String description;
   final String price;
   final String offer;
-  final List reviews;
-  final List features;
+  final String reviews;
 
   DetailSliverList({
     this.title,
-    this.images,
+    this.image,
     this.description,
     this.price,
     this.offer,
     this.reviews,
-    this.features,
   });
 
   @override
@@ -40,9 +38,9 @@ class _DetailSliverListState extends State<DetailSliverList> {
 
   @override
   Widget build(BuildContext context) {
-//    double offerNum = double.parse(widget.offer);
-//    double percent =
-//        100 - ((double.parse(widget.offer) / double.parse(widget.price)) * 100);
+    double offerNum = double.parse(widget.offer);
+    double percent =
+        100 - ((double.parse(widget.offer) / double.parse(widget.price)) * 100);
     return SliverList(
       delegate: SliverChildListDelegate(
         [
@@ -53,92 +51,90 @@ class _DetailSliverListState extends State<DetailSliverList> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-//                offerNum == 0
-//                    ?
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      widget.price,
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        color: Colors.black,
-                        fontSize: 16.0,
+                offerNum == 0
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            widget.price,
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: Colors.black,
+                              fontSize: 16.0,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Icon(
+                            Icons.attach_money,
+                            color: Colors.black,
+                            size: 16.0,
+                          ),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            widget.offer,
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Icon(
+                            Icons.attach_money,
+                            color: Colors.black,
+                            size: 16.0,
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Text(
+                            widget.price,
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: Colors.grey,
+                              fontSize: 14.0,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Icon(
+                            Icons.attach_money,
+                            color: Colors.grey,
+                            size: 14.0,
+                          ),
+                        ],
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Icon(
-                      Icons.attach_money,
-                      color: Colors.black,
-                      size: 16.0,
-                    ),
-                  ],
-                )
-//                    : Row(
-//                        mainAxisAlignment: MainAxisAlignment.start,
-//                        children: <Widget>[
-//                          Text(
-//                            widget.offer,
-//                            style: TextStyle(
-//                                fontFamily: 'Roboto',
-//                                color: Colors.black,
-//                                fontSize: 16.0,
-//                                fontWeight: FontWeight.bold),
-//                            overflow: TextOverflow.ellipsis,
-//                          ),
-//                          Icon(
-//                            Icons.attach_money,
-//                            color: Colors.black,
-//                            size: 16.0,
-//                          ),
-//                          SizedBox(
-//                            width: 3.0,
-//                          ),
-//                          Text(
-//                            widget.price,
-//                            style: TextStyle(
-//                              fontFamily: 'Roboto',
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.bold,
-//                              fontSize: 14.0,
-//                              //decoration: TextDecoration.lineThrough,
-//                            ),
-//                            overflow: TextOverflow.ellipsis,
-//                          ),
-//                          Icon(
-//                            Icons.attach_money,
-//                            color: Colors.black,
-//                            size: 14.0,
-//                          ),
-//                        ],
-//                      ),
-//                offerNum > 0
-//                    ? Container(
-//                        height: 20.0,
-//                        width: 40.0,
-//                        decoration: BoxDecoration(
-//                          borderRadius: BorderRadius.all(
-//                            Radius.circular(
-//                              7.0,
-//                            ),
-//                          ),
-//                          color: Color(0xffFFE1E0),
-//                        ),
-//                        child: Center(
-//                          child: FittedBox(
-//                            child: Text(
-//                              '-' + percent.toString().split('.')[0] + '%',
-//                              style: TextStyle(
-//                                fontFamily: 'Roboto',
-//                                color: Colors.red,
-//                                fontWeight: FontWeight.bold,
-//                                fontSize: 12.0,
-//                              ),
-//                            ),
-//                          ),
-//                        ),
-//                      )
-//                    : new Container(),
+                offerNum > 0
+                    ? Container(
+                        height: 20.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(
+                              7.0,
+                            ),
+                          ),
+                          color: Color(0xffFFE1E0),
+                        ),
+                        child: Center(
+                          child: FittedBox(
+                            child: Text(
+                              '-' + percent.toString().split('.')[0] + '%',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : new Container(),
               ],
             ),
           ),
@@ -147,7 +143,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
               left: 16.0,
             ),
             child: Text(
-              widget.title,
+              'Samsung Galaxy Note10 - 6.3-inch 256GB/8GB Dual SIM 4G Mobile Phone - Aura Black',
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: 'Roboto',
@@ -219,11 +215,11 @@ class _DetailSliverListState extends State<DetailSliverList> {
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: widget.features.length,
+            itemCount: 3,
             itemBuilder: (context, index) {
               return Features(
-                key: ValueKey(widget.features[index].id),
-                feature: widget.features[index].feature,
+                key: ValueKey(index),
+                feature: 'fast shipping',
               );
             },
           ),
@@ -266,10 +262,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40.0),
               ),
-              child: Image.network(
-                widget.images[0].path,
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset('assets/images/iphoneTest.png'),
             ),
           ),
           Container(
@@ -293,7 +286,7 @@ class _DetailSliverListState extends State<DetailSliverList> {
                         ),
                       ),
                       Text(
-                        widget.reviews.length.toString(),
+                        widget.reviews == null ? '0' : widget.reviews,
                       ),
                     ],
                   ),
@@ -301,11 +294,9 @@ class _DetailSliverListState extends State<DetailSliverList> {
                 GestureDetector(
                   onTap: _viewMoreOrLess,
                   child: AnimatedContainer(
-                    height: widget.reviews.length == 0
-                        ? 70
-                        : _isMore
-                            ? MediaQuery.of(context).size.height * 0.6
-                            : 220.0,
+                    height: _isMore
+                        ? MediaQuery.of(context).size.height * 0.6
+                        : 220.0,
                     duration: Duration(
                       milliseconds: 500,
                     ),
@@ -313,50 +304,46 @@ class _DetailSliverListState extends State<DetailSliverList> {
                       children: <Widget>[
                         Expanded(
                           child: ListView.builder(
-                            itemCount: _isMore
-                                ? widget.reviews.length
-                                : widget.reviews.length == 0 ? 0 : 2,
+                            itemCount: _isMore ? 5 : 2,
                             physics: _isMore
                                 ? ScrollPhysics()
                                 : NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return ReviewItem(
-                                user: 'User',
-                                rate: widget.reviews[index].rate,
-                                date: ' ',
-                                review: widget.reviews[index].review,
+                                user: 'Mohamed Mostafa',
+                                rate: 4.5,
+                                date: '4 months',
+                                review: 'Not too bad ',
                               );
                             },
                           ),
                         ),
-                        widget.reviews.length <= 3
-                            ? SizedBox()
-                            : Container(
-                                margin: EdgeInsets.symmetric(
-                                  vertical: 10.0,
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 7.0,
-                                  horizontal: 25.0,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                      30.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Text(
-                                  _isMore ? 'View less' : 'View more',
-                                  style: TextStyle(
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontFamily: 'Roboto',
-                                  ),
-                                ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            vertical: 10.0,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 7.0,
+                            horizontal: 25.0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                30.0,
                               ),
+                            ),
+                          ),
+                          child: Text(
+                            _isMore ? 'View less' : 'View more',
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -370,9 +357,9 @@ class _DetailSliverListState extends State<DetailSliverList> {
             color: Color(0xffF0F4F9),
           ),
           //------------------------ Recommended -------------------------------
-//          Section(
-//            title: 'Recommended',
-//          ),
+          Section(
+            title: 'Recommended',
+          ),
           SizedBox(
             height: 70.0,
           ),

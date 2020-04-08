@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
-import 'package:infinity/widgets/loader.dart';
 import '../widgets/section.dart';
 import '../widgets/pageRoute.dart';
 import '../mainScreens/cartScreen.dart';
 import 'package:provider/provider.dart';
 import '../Providers/cartProvider.dart';
 import '../mainScreens/searchScreen.dart';
-import '../Providers/productsProvider.dart';
 
 class HomeScreen extends StatelessWidget {
   //-----------------------------variables----------------------------------
-//  final SearchScreen _searchItems = SearchScreen(
-//    [
-//      'aaaaa',
-//      'bbbbbbbbbbbb',
-//      'ccccccccccccc',
-//    ],
-//  );
+  final SearchScreen _searchItems = SearchScreen(
+    [
+      'aaaaa',
+      'bbbbbbbbbbbb',
+      'ccccccccccccc',
+    ],
+  );
 
   //-----------------------------methods------------------------------------
 
@@ -30,8 +28,6 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _goToSearch(BuildContext context) async {
-    final SearchScreen _searchItems = SearchScreen(
-        Provider.of<ProductsProvider>(context, listen: false).searchItems);
     await showSearch<String>(
       context: context,
       delegate: _searchItems,
@@ -116,50 +112,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: FutureBuilder(
-        future:
-            Provider.of<ProductsProvider>(context, listen: false).products ==
-                    null
-                ? Provider.of<ProductsProvider>(context, listen: false)
-                    .fetchProducts()
-                : null,
-        builder: (context, dataSnapShot) {
-          if (dataSnapShot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: ColorLoader(),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        child: ListView.builder(
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return Section(
+              title: 'Recommended',
+              index: index,
             );
-          } else {
-            if (dataSnapShot.error != null) {
-              return Center(
-                child: Text(
-                  'Check internet connection!',
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 18.0,
-                    fontFamily: 'Roboto',
-                  ),
-                ),
-              );
-            } else {
-              return Consumer<ProductsProvider>(
-                builder: (context, products, child) => Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: ListView.builder(
-                    itemCount: products.products.sections.length,
-                    itemBuilder: (context, index) {
-                      return Section(
-                        title: products.products.sections[index].title,
-                        sectionIndex: index,
-                        data: products.products.sections[index].src,
-                        ads: products.products.ads,
-                      );
-                    },
-                  ),
-                ),
-              );
-            }
-          }
-        },
+          },
+        ),
       ),
     );
   }

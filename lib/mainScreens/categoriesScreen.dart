@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/widgets/categoriesShimmer.dart';
-import 'package:infinity/widgets/loader.dart';
 import '../widgets/subCategorySelector.dart';
 import '../widgets/subCategory.dart';
 import '../widgets/pageRoute.dart';
@@ -10,9 +8,6 @@ import '../mainScreens/cartScreen.dart';
 import 'package:badges/badges.dart';
 import '../widgets/animatedList.dart';
 import '../mainScreens/searchScreen.dart';
-import '../Providers/categoriesProvider.dart';
-import 'package:shimmer/shimmer.dart';
-import '../Providers/productsProvider.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -24,15 +19,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   int _selected = 0;
   Duration _duration = Duration(milliseconds: 100);
 
-//  List<String> _categories = ["1", "2", "3", "4"];
+  List<String> _categories = ["1", "2", "3", "4"];
 
-//  final SearchScreen _searchItems = SearchScreen(
-//    [
-//      'aaaaa',
-//      'bbbbbbbbbbbb',
-//      'ccccccccccccc',
-//    ],
-//  );
+  final SearchScreen _searchItems = SearchScreen(
+    [
+      'aaaaa',
+      'bbbbbbbbbbbb',
+      'ccccccccccccc',
+    ],
+  );
 
   //------------------------------ methods -------------------------------------
 
@@ -51,8 +46,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 
   void _goToSearch() async {
-    final SearchScreen _searchItems = SearchScreen(
-        Provider.of<ProductsProvider>(context, listen: false).searchItems);
     await showSearch<String>(
       context: context,
       delegate: _searchItems,
@@ -61,8 +54,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-//    Provider.of<Cart>(context, listen: false).fetchData();
-    final categories = Provider.of<CategoriesProvider>(context, listen: false);
+    Provider.of<Cart>(context, listen: false).fetchData();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -130,126 +122,50 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           fontFamily: 'Roboto',
                         ),
                       ),
-                      child: Tab(
-                        icon: new Image.asset(
-                          'assets/icons/cart.png',
-                        ),
-                      ),
+                      child:
+                          Tab(icon: new Image.asset('assets/icons/cart.png')),
                     ),
               onPressed: () => _goToCart(context),
             ),
           ),
         ],
       ),
-      body: FutureBuilder(
-        future: categories.categories == null
-            ? Provider.of<CategoriesProvider>(context, listen: false)
-                .fetchCategories()
-            : null,
-        builder: (context, dataSnapShot) {
-          if (dataSnapShot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: ColorLoader(),
-            );
-          } else {
-            if (dataSnapShot.error != null) {
-              return Center(
-                child: Text(
-                  'Check internet connection!',
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 18.0,
-                    fontFamily: 'Roboto',
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            color: Colors.white,
+            width: MediaQuery.of(context).size.width * 0.30,
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => _select(index),
+                  child: SubCategorySelector(
+                    title: 'Accessories',
+                    selected: _selected,
+                    index: index,
                   ),
-                ),
-              );
-            }
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  color: Colors.white,
-                  width: MediaQuery.of(context).size.width * 0.30,
-                  child: ListView.builder(
-                    itemCount: categories.categories.data.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => _select(index),
-                        child: SubCategorySelector(
-                          title: categories.categories.data[index].name,
-                          selected: _selected,
-                          index: index,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                FutureBuilder(
-                  future: categories.fetchSingleCategory(
-                      id: categories.categories.data[_selected].id),
-                  builder: (context, dataSnapShot) {
-                    if (dataSnapShot.connectionState ==
-                        ConnectionState.waiting) {
-                      return Expanded(
-                        child: Shimmer.fromColors(
-                          baseColor: Colors.grey[300],
-                          highlightColor: Colors.grey[100],
-                          enabled: true,
-                          child: CategoriesShimmer(),
-                        ),
-                      );
-                    } else {
-                      if (dataSnapShot.error != null) {
-                        return Center(
-                          child: Text(
-                            'Check internet connection!',
-                            style: TextStyle(
-                              color: Colors.grey[500],
-                              fontSize: 18.0,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        );
-                      } else {
-                        return Expanded(
-                          child: Container(
-                              color: Colors.white,
-                              child: ListView.builder(
-                                itemCount: categories.subCategories.length,
-                                itemBuilder: (ctx, index) {
-                                  return categories.subCategories[index]
-                                              .products.length ==
-                                          0
-                                      ? SizedBox()
-                                      : SubCategory(
-                                          title: categories
-                                              .subCategories[index].name,
-                                          items: categories
-                                              .subCategories[index].products,
-                                        );
-                                },
-                              )
-//                            ListViewEffect(
-//                              duration: _duration,
-//                              children: categories.subCategories
-//                                  .map(
-//                                    (item) => SubCategory(
-//                                      title:
-//                                          categories.singleCategory.data.name,
-//                                    ),
-//                                  )
-//                                  .toList(),
-//                            ),
-                              ),
-                        );
-                      }
-                    }
-                  },
-                ),
-              ],
-            );
-          }
-        },
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.grey[400],
+              child: ListViewEffect(
+                duration: _duration,
+                children: _categories
+                    .map(
+                      (item) => SubCategory(
+                        title: 'Make up',
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

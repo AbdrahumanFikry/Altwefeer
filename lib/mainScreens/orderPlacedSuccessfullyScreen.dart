@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/mainScreens/tabBarScreen.dart';
-import 'package:infinity/widgets/globalButton.dart';
 import 'package:infinity/widgets/pageRoute.dart';
 
 class OrderPlacedSuccessfullyScreen extends StatelessWidget {
@@ -52,10 +51,30 @@ class OrderPlacedSuccessfullyScreen extends StatelessWidget {
                   right: 16.0,
                   left: 16.0,
                 ),
-                child: GlobalButton(
-                  buttonTitle: 'Track Order',
-                  onTab: () =>_trackOrder(context),
-                )
+                child: GestureDetector(
+                  onTap: () => _trackOrder(context),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: Color(0xff008BFF),
+                      borderRadius: BorderRadius.circular(
+                        40.0,
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Track order',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Roboto',
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               )
             ],
           ),

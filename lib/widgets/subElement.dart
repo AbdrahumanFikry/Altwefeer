@@ -84,14 +84,14 @@ class SubElement extends StatelessWidget {
   Widget build(BuildContext context) {
     bool _isFavourite = false;
     double offerNum = double.tryParse(offer);
-//    double percent = 100 - ((double.parse(offer) / double.parse(price)) * 100);
+    double percent = 100 - ((double.parse(offer) / double.parse(price)) * 100);
     final wishList = Provider.of<WishList>(context);
     int index = wishList.wishList.indexWhere((i) => i.id == id);
     if (index != -1) {
       _isFavourite = true;
     }
     return Container(
-      height: 115.0,
+      height: MediaQuery.of(context).size.height*0.21,
       width: double.infinity,
       margin: EdgeInsets.only(
         left: 10.0,
@@ -104,6 +104,7 @@ class SubElement extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             height: 100.0,
@@ -119,8 +120,8 @@ class SubElement extends StatelessWidget {
                 ),
               ),
               image: DecorationImage(
-                image: NetworkImage(
-                  image,
+                image: AssetImage(
+                  'assets/images/iphoneTest.png',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -129,36 +130,36 @@ class SubElement extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-//                offerNum > 0
-//                    ? Container(
-//                        height: 20.0,
-//                        width: 40.0,
-//                        decoration: BoxDecoration(
-//                          borderRadius: BorderRadius.only(
-//                            topLeft: Radius.circular(
-//                              7.0,
-//                            ),
-//                            bottomLeft: Radius.circular(
-//                              7.0,
-//                            ),
-//                          ),
-//                          color: Colors.white70,
-//                        ),
-//                        child: Center(
-//                          child: FittedBox(
-//                            child: Text(
-//                              '-' + percent.toString().split('.')[0] + '%',
-//                              style: TextStyle(
-//                                fontFamily: 'Roboto',
-//                                color: Colors.red,
-//                                fontWeight: FontWeight.bold,
-//                                fontSize: 12.0,
-//                              ),
-//                            ),
-//                          ),
-//                        ),
-//                        )
-//                    : new Container(),
+                offerNum > 0
+                    ? Container(
+                        height: 20.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(
+                              7.0,
+                            ),
+                            bottomLeft: Radius.circular(
+                              7.0,
+                            ),
+                          ),
+                          color: Colors.white70,
+                        ),
+                        child: Center(
+                          child: FittedBox(
+                            child: Text(
+                              '-' + percent.toString().split('.')[0] + '%',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : new Container(),
                 SizedBox(
                   height: 10.0,
                 ),
@@ -181,65 +182,63 @@ class SubElement extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
                   ),
-//                  offerNum == 0
-//                      ?
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        price,
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          color: Colors.black,
-                          fontSize: 12.0,
+                  offerNum == 0
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              price,
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                color: Colors.black,
+                                fontSize: 12.0,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Icon(
+                              Icons.attach_money,
+                              color: Colors.black,
+                              size: 12.0,
+                            ),
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              offer,
+                              style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  color: Colors.black,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Icon(
+                              Icons.attach_money,
+                              color: Colors.black,
+                              size: 14.0,
+                            ),
+                            SizedBox(
+                              width: 3.0,
+                            ),
+                            Text(
+                              price,
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                color: Colors.grey,
+                                fontSize: 14.0,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Icon(
+                              Icons.attach_money,
+                              color: Colors.grey,
+                              size: 14.0,
+                            ),
+                          ],
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Icon(
-                        Icons.attach_money,
-                        color: Colors.black,
-                        size: 12.0,
-                      ),
-                    ],
-                  ),
-//                      : Row(
-//                          mainAxisAlignment: MainAxisAlignment.start,
-//                          children: <Widget>[
-//                            Text(
-//                              offer,
-//                              style: TextStyle(
-//                                  fontFamily: 'Roboto',
-//                                  color: Colors.black,
-//                                  fontSize: 14.0,
-//                                  fontWeight: FontWeight.bold),
-//                              overflow: TextOverflow.ellipsis,
-//                            ),
-//                            Icon(
-//                              Icons.attach_money,
-//                              color: Colors.black,
-//                              size: 14.0,
-//                            ),
-//                            SizedBox(
-//                              width: 3.0,
-//                            ),
-//                            Text(
-//                              price,
-//                              style: TextStyle(
-//                                  fontFamily: 'Roboto',
-//                                  color: Colors.black,
-//                                  fontSize: 14.0,
-//                                  fontWeight: FontWeight.bold
-//                                  //decoration: TextDecoration.lineThrough,
-//                                  ),
-//                              overflow: TextOverflow.ellipsis,
-//                            ),
-//                            Icon(
-//                              Icons.attach_money,
-//                              color: Colors.black,
-//                              size: 14.0,
-//                            ),
-//                          ],
-//                        ),
                   Row(
                     children: <Widget>[
                       Icon(
@@ -289,9 +288,7 @@ class SubElement extends StatelessWidget {
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             radius: 18.0,
-                            child: Image.asset(
-                              'assets/icons/addToCart.png',
-                            ),
+                            child: Image.asset('assets/icons/addToCart.png'),
                           ),
                         ),
                       ),

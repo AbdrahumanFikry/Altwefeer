@@ -69,7 +69,7 @@ class CartItem extends StatelessWidget {
         }
       },
       child: Container(
-        height: deviceWidth < 400 ? 120 : 90.0,
+        height: deviceWidth < 400 ? MediaQuery.of(context).size.height*0.24 : 90.0,
         width: double.infinity,
         margin: EdgeInsets.only(
           left: 10.0,
@@ -82,6 +82,7 @@ class CartItem extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               height: 80.0,
@@ -97,7 +98,7 @@ class CartItem extends StatelessWidget {
                   ),
                 ),
                 image: DecorationImage(
-                  image: NetworkImage(
+                  image: AssetImage(
                     item.image,
                   ),
                   fit: BoxFit.cover,
@@ -174,9 +175,10 @@ class CartItem extends StatelessWidget {
                               Spacer(),
                             ],
                           ),
-                          IncrementalWidget(
-                            item: item,
-                          ),
+                             IncrementalWidget(
+                              item: item,
+                            ),
+
                         ],
                       )
                     : Column(

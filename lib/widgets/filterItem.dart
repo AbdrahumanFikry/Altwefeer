@@ -29,7 +29,7 @@ class _FilterItemState extends State<FilterItem> {
           value: _selected,
           onChanged: _onChanged,
           checkColor: Colors.white,
-          activeColor: Color(0xffD89900)
+          activeColor: Colors.deepOrange,
         ),
         Text(
           widget.title,

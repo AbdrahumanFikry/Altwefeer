@@ -93,7 +93,6 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                       value: 0,
                       groupValue: groupValue,
                       onChanged: onChanged,
-                      activeColor: Color(0xffD89900),
                     ),
                     Text(
                       'Cash On Delivery',
@@ -158,7 +157,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     height: 7.0,
                     width: 20.0,
                     decoration: BoxDecoration(
-                      color: Color(0xffD89900),
+                      color: Colors.blue,
                       borderRadius: BorderRadius.all(
                         Radius.circular(
                           10.0,

@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/widgets/alertDialog.dart';
-import '../mainScreens/bottomNavigationScreen.dart';
-import '../widgets/loader.dart';
-import '../widgets/globalDialog.dart';
 import '../mainScreens/accountInfo.dart';
 import '../widgets/pageRoute.dart';
-import '../models/httpExceptionModel.dart';
-import 'package:provider/provider.dart';
-import '../Providers/authenticationProvider.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -16,7 +9,7 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   //----------------------------variables---------------------------------------
-  bool switchOn = true, _isLoading = false;
+  bool switchOn = true;
   String selected = 'Arabic';
 
   //-----------------------------methods----------------------------------------
@@ -56,7 +49,7 @@ class _SettingScreenState extends State<SettingScreen> {
           style: TextStyle(color: Colors.blue),
         ),
         content: Text(
-          "Do you want to delete your account",
+          'Do you want to delete this Account?',
           style: TextStyle(
             fontFamily: 'Roboto',
           ),
@@ -69,48 +62,16 @@ class _SettingScreenState extends State<SettingScreen> {
             child: Text('No'),
           ),
           FlatButton(
-            onPressed: () async {
+            onPressed: () {
               Navigator.of(context).pop(true);
-              setState(() {
-                _isLoading = true;
-              });
-
-              try {
-                await Provider.of<Auth>(context, listen: false)
-                    .deactivateAccount();
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                    builder: (context) => BottomNavigationScreen(),
-                  ),
-                  (Route<dynamic> route) => false,
-                );
-                setState(() {
-                  _isLoading = false;
-                });
-              } on HttpException catch (error) {
-                var errorMessage = 'error deleting this account';
-                if (error
-                    .toString()
-                    .contains('You are not authenticated for this request.')) {
-                  errorMessage = 'You are not authenticated for this request.';
-                }
-                GlobalAlertDialog().showErrorDialog(errorMessage, context);
-                setState(() {
-                  _isLoading = false;
-                });
-              } catch (error) {
-                const errorMessage = 'error deleting this account';
-                GlobalAlertDialog().showErrorDialog(errorMessage, context);
-                setState(() {
-                  _isLoading = false;
-                });
-              }
+              //TODO ------------
             },
             child: Text('Yes'),
           ),
         ],
       ),
     );
+    //TODO -----------------
   }
 
   @override
@@ -222,9 +183,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       onTap: _selectArabic,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: selected == 'Arabic'
-                              ? Color(0xffD89900)
-                              : Colors.grey,
+                          color:
+                              selected == 'Arabic' ? Colors.blue : Colors.grey,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         padding: const EdgeInsets.symmetric(
@@ -245,7 +205,6 @@ class _SettingScreenState extends State<SettingScreen> {
                                       child: Center(
                                           child: Icon(
                                         Icons.done,
-                                        color: Color(0xffD89900),
                                         size: 15.0,
                                       )),
                                     ),
@@ -275,9 +234,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       onTap: _selectEnglish,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: selected == 'English'
-                              ? Color(0xffD89900)
-                              : Colors.grey,
+                          color:
+                              selected == 'English' ? Colors.blue : Colors.grey,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         padding: const EdgeInsets.symmetric(
@@ -298,7 +256,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       child: Center(
                                         child: Icon(
                                           Icons.done,
-                                          color: Color(0xffD89900),
+                                          color: Colors.blue,
                                           size: 15.0,
                                         ),
                                       ),
@@ -327,46 +285,28 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
             ],
           ),
-          Consumer<Auth>(
-            builder: (context, auth, child) => auth.isAuth
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      _isLoading
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 20.0,
-                                  ),
-                                  child: ColorLoader(
-                                    color1: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            )
-                          : InkWell(
-                              onTap: _deleteAccount,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 15.0,
-                                  horizontal: 10.0,
-                                ),
-                                child: Text(
-                                  'Delete account',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontFamily: 'Roboto',
-                                  ),
-                                ),
-                              ),
-                            ),
-                    ],
-                  )
-                : Container(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              InkWell(
+                onTap: _deleteAccount,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15.0,
+                    horizontal: 10.0,
+                  ),
+                  child: Text(
+                    'Delete account',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.0,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

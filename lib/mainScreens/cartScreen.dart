@@ -222,7 +222,7 @@ class CartScreen extends StatelessWidget {
                             horizontal: 20.0,
                           ),
                           decoration: BoxDecoration(
-                            color: Color(0xffD89900),
+                            color: Color(0xff008BFF),
                             borderRadius: BorderRadius.circular(
                               100.0,
                             ),

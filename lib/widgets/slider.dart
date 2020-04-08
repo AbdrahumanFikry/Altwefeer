@@ -2,26 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class AdsSlider extends StatelessWidget {
-  final List ads;
-
-  AdsSlider({this.ads});
-
-//  final List<String> imgList = [
-//    'assets/images/test.png',
-//    'assets/images/test.png',
-//    'assets/images/test.png',
-//    'assets/images/test.png',
-//    'assets/images/test.png',
-//  ];
-
+  final List<String> imgList = [
+    'assets/images/test.png',
+    'assets/images/test.png',
+    'assets/images/test.png',
+    'assets/images/test.png',
+    'assets/images/test.png',
+  ];
   @override
   Widget build(BuildContext context) {
-    List<String> imgList = [];
-    ads.forEach(
-      (ad) {
-        imgList.add(ad.path);
-      },
-    );
     double deviceWidth = MediaQuery.of(context).size.width;
     return CarouselSlider(
       height: 180.0,
@@ -42,7 +31,7 @@ class AdsSlider extends StatelessWidget {
                   5.0,
                 ),
               ),
-              child: Image.network(
+              child: Image.asset(
                 imageTest,
                 fit: BoxFit.fill,
                 width: 1000.0,
